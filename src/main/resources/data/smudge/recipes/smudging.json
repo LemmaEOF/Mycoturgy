@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:campfire_cooking",
+  "ingredient": {
+    "item": "smudge:smudge_stick"
+  },
+  "result": "smudge:sage_ash",
+  "experience": 0,
+  "cookingtime": 800
+}

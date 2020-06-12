@@ -31,6 +31,7 @@ public class Smudge implements ModInitializer {
 	public static Item SMUDGE_STICK;
 	public static Item SAGE;
 	public static Item SAGE_SEEDS;
+	public static Item SAGE_ASH;
 
 	public static ItemGroup SMUDGE_GROUP = FabricItemGroupBuilder.build(new Identifier(MODID, MODID), () -> new ItemStack(SMUDGE_STICK));
 
@@ -40,6 +41,7 @@ public class Smudge implements ModInitializer {
 		SMUDGE_STICK = register("smudge_stick", new Item(new Item.Settings().group(SMUDGE_GROUP)));
 		SAGE = register("sage", new Item(new Item.Settings().group(SMUDGE_GROUP)));
 		SAGE_SEEDS = register("sage_seeds", new AliasedBlockItem(SAGE_CROP, new Item.Settings().group(SMUDGE_GROUP)));
+		SAGE_ASH = register("sage_ash", new Item(new Item.Settings().group(SMUDGE_GROUP)));
 
 		LootTableLoadingCallback.EVENT.register((resourceManager, lootManager, id, builder, table) -> {
 			if (id.equals(new Identifier("blocks/grass"))) {
