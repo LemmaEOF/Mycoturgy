@@ -9,4 +9,9 @@
 
 **This mod is open source and under a permissive license.** As such, it can be included in any modpack on any platform without prior permission. We appreciate hearing about people using our mods, but you do not need to ask to use them. See the [LICENSE file](LICENSE) for more details.
 
-Smudge is a Minecraft od for Minecraft 1.16 and above, made for ModFest 1.16. It adds various witching equipment, like smudge sticks and crystals.
+Smudge is a Minecraft mod for Minecraft 1.16 and above, made for ModFest 1.16. It adds various witching equipment, like smudge sticks and crystals.
+
+Asset credits:
+Sage item - @Coda#1552 on discord
+Sage seeds item - ["Unused Textures"](https://github.com/malcolmriley/unused-textures) by Malcolm Rilely
+Smudge stick and sage ash items - edited from assets in ["RPG Items - Retro Pack"](https://emberheartgames.itch.io/rpg-items-retro-pack) by Emberheart Games
