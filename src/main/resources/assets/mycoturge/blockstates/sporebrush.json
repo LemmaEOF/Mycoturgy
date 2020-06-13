@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "age=0": {
+      "model": "mycoturge:block/sporebrush_0"
+    },
+    "age=1": {
+      "model": "mycoturge:block/sporebrush_1"
+    },
+    "age=2": {
+      "model": "mycoturge:block/sporebrush_2"
+    },
+    "age=3": {
+      "model": "mycoturge:block/sporebrush_3"
+    }
+  }
+}

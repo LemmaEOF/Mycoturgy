@@ -1,31 +1,30 @@
 {
   "schemaVersion": 1,
-  "id": "smudge",
+  "id": "mycoturge",
   "version": "${version}",
 
-  "name": "Smudge",
-  "icon": "assets/smudge/icon.png",
-  "description": "Simple witchcraft for ModFest 1.16",
+  "name": "Mycoturge",
+  "icon": "assets/mycoturge/icon.png",
+  "description": "Fungal witchcraft for ModFest 1.16",
   "license": "MIT",
   "contact": {
-    "sources": "https://github.com/Boundarybreaker/Smudge"
+    "sources": "https://github.com/Boundarybreaker/Mycoturge"
   },
   "environment": "*",
   "entrypoints": {
     "main": [
-      "space.bbkr.smudge.Smudge"
+      "space.bbkr.mycoturge.Mycoturge"
     ],
     "client": [
-      "space.bbkr.smudge.SmudgeClient"
+      "space.bbkr.mycoturge.MycoturgeClient"
     ]
   },
   "mixins": [
-    "mixins.smudge.json"
+    "mixins.mycoturge.json"
   ],
   "depends": {
     "fabricloader": ">=0.4.0"
   },
   "custom": {
-    "modmenu:api": true
   }
 }

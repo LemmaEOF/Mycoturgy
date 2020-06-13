@@ -1,7 +1,0 @@
-{
-  "required": true,
-  "package": "space.bbkr.smudge.mixin",
-  "compatibilityLevel": "JAVA_8",
-  "mixins": [
-  ]
-}

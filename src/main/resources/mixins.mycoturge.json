@@ -1,0 +1,7 @@
+{
+  "required": true,
+  "package": "space.bbkr.mycoturge.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+  ]
+}
