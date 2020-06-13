@@ -1,8 +1,12 @@
 package space.bbkr.mycoturge;
 
+import nerdhub.cardinal.components.api.ComponentRegistry;
+import nerdhub.cardinal.components.api.ComponentType;
+import nerdhub.cardinal.components.api.event.ChunkComponentCallback;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import space.bbkr.mycoturge.block.CustomCropBlock;
+import space.bbkr.mycoturge.component.HaustorComponent;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -26,6 +30,9 @@ public class Mycoturge implements ModInitializer {
 
 	public static final Logger logger = LogManager.getLogger();
 
+	//TODO: config
+	public static final int HAUSTOR_TICK_SPEED = 2;
+
 	public static Block SPOREBRUSH_CROP;
 
 	public static Item SPORE_BUNDLE;
@@ -33,7 +40,10 @@ public class Mycoturge implements ModInitializer {
 	public static Item GLITTERING_SPORES;
 	public static Item SPOREBRUSH_ASH;
 
-	public static ItemGroup MYCOTURGE_GROUP = FabricItemGroupBuilder.build(new Identifier(MODID, MODID), () -> new ItemStack(SPORE_BUNDLE));
+	public static final ItemGroup MYCOTURGE_GROUP = FabricItemGroupBuilder.build(new Identifier(MODID, MODID), () -> new ItemStack(SPORE_BUNDLE));
+
+	//TODO: static reg
+	public static final ComponentType<HaustorComponent> HAUSTOR_COMPONENT = ComponentRegistry.INSTANCE.registerIfAbsent(new Identifier(MODID, "haustor"), HaustorComponent.class);
 
 	@Override
 	public void onInitialize() {
@@ -54,6 +64,9 @@ public class Mycoturge implements ModInitializer {
 				).build());
 			}
 		});
+
+		//TODO: static reg
+		ChunkComponentCallback.register(HAUSTOR_COMPONENT, HaustorComponent::new);
 	}
 
 	private static Item register(String name, Item item) {

@@ -3,5 +3,10 @@
   "package": "space.bbkr.mycoturge.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+    "MixinCampfireBlock",
+    "MixinCampfireBlockEntity",
+    "MixinServerWorld"
+  ],
+  "client": [
   ]
 }
