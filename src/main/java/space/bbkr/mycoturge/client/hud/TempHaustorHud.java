@@ -6,7 +6,6 @@ import space.bbkr.mycoturge.Mycoturge;
 import space.bbkr.mycoturge.component.HaustorComponent;
 
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.render.BufferBuilder;
 import net.minecraft.client.render.Tessellator;
 import net.minecraft.client.render.VertexFormats;
@@ -55,7 +54,7 @@ public class TempHaustorHud {
 		blit(left + 63, top, 1, 9, texUV(63), texUV(20), texUV(64), texUV(29));
 
 		RenderSystem.color4f(r, g, b, 1f);
-		int fgLength = (int)(((float)component.getDefense() / 20f) * 62f);
+		int fgLength = (int)(((float)component.getHypha() / 512f) * 62f);
 		//bar FG: left edge, middle, right edge
 		blit(left, top, 1, 9, texUV(0), texUV(29), texUV(1), texUV(38));
 		blit(left + 1, top, fgLength, 9, texUV(1), texUV(29), texUV(fgLength + 1), texUV(38));
@@ -63,7 +62,7 @@ public class TempHaustorHud {
 
 		RenderSystem.color4f(1f, 1f, 1f, 1f);
 
-		MinecraftClient.getInstance().textRenderer.drawWithShadow(matrices, "" + component.getDefense(), left + 66, top, 0xFFFFFF);
+		MinecraftClient.getInstance().textRenderer.drawWithShadow(matrices, "" + component.getHypha(), left + 66, top, 0xFFFFFF);
 		RenderSystem.disableBlend();
 		RenderSystem.disableAlphaTest();
 	}

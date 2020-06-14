@@ -6,11 +6,15 @@ import nerdhub.cardinal.components.api.event.ChunkComponentCallback;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import space.bbkr.mycoturge.block.CustomCropBlock;
+import space.bbkr.mycoturge.block.entity.HaustorSequesterBlockEntity;
 import space.bbkr.mycoturge.component.HaustorComponent;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.item.AliasedBlockItem;
+import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
@@ -34,6 +38,9 @@ public class Mycoturge implements ModInitializer {
 	public static final int HAUSTOR_TICK_SPEED = 2;
 
 	public static Block SPOREBRUSH_CROP;
+
+	public static Block HAUSTOR_SEQUESTER;
+	public static BlockEntityType<HaustorSequesterBlockEntity> HAUSTOR_SEQUESTER_BLOCK_ENTITY;
 
 	public static Item SPORE_BUNDLE;
 	public static Item SPOREBRUSH;
@@ -71,6 +78,12 @@ public class Mycoturge implements ModInitializer {
 
 	private static Item register(String name, Item item) {
 		return Registry.register(Registry.ITEM, new Identifier(MODID, name), item);
+	}
+
+	private static Block register(String name, Block block, Item.Settings settings) {
+		Registry.register(Registry.BLOCK, new Identifier(MODID, name), block);
+		Registry.register(Registry.ITEM, new Identifier(MODID, name), new BlockItem(block, settings));
+		return block;
 	}
 
 	private static Block register(String name, Block block) {

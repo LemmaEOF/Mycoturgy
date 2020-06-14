@@ -1,7 +1,5 @@
 package space.bbkr.mycoturge.mixin;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.function.Supplier;
 
 import org.spongepowered.asm.mixin.Mixin;
@@ -13,6 +11,7 @@ import space.bbkr.mycoturge.Mycoturge;
 import space.bbkr.mycoturge.component.HaustorComponent;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.server.world.ServerChunkManager;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
@@ -43,20 +42,30 @@ public abstract class MixinServerWorld extends World {
 		if (this.random.nextInt(1000) < Mycoturge.HAUSTOR_TICK_SPEED /*5 currently*/) {
 			ChunkPos pos = chunk.getPos();
 			HaustorComponent selfComp = Mycoturge.HAUSTOR_COMPONENT.get(chunk);
-			if (selfComp.getDefense() > 1) {
+			if (selfComp.getHypha() > (getSequesterCount(chunk) * 10) + 1) {
 				for (int i = 0; i < 8; i += 2) {
 					if (this.isChunkLoaded(pos.x + OFFSETS[i], pos.z + OFFSETS[i + 1])) {
 						HaustorComponent otherComp = Mycoturge.HAUSTOR_COMPONENT.get(
 								this.getChunk(pos.x + OFFSETS[i], pos.z + OFFSETS[i + 1])
 						);
-						if (selfComp.getDefense() > otherComp.getDefense() + 1) { //to avoid fluctiations
-							selfComp.setDefense(selfComp.getDefense() - 1);
-							otherComp.setDefense(otherComp.getDefense() + 1);
+						if (selfComp.getHypha() > otherComp.getHypha() + 1) { //to avoid fluctiations
+							selfComp.setHypha(selfComp.getHypha() - 1);
+							otherComp.setHypha(otherComp.getHypha() + 1);
 						}
 					}
 				}
 			}
 		}
 		this.getWorld().getProfiler().pop();
+	}
+
+	private static int getSequesterCount(WorldChunk chunk) {
+		int count = 0;
+		for (BlockEntity be : chunk.getBlockEntities().values()) {
+			if (be.getType() == Mycoturge.HAUSTOR_SEQUESTER_BLOCK_ENTITY) {
+				count++;
+			}
+		}
+		return count;
 	}
 }

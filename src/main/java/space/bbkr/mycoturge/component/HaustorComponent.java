@@ -8,25 +8,24 @@ import space.bbkr.mycoturge.Mycoturge;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.chunk.Chunk;
-import net.minecraft.world.chunk.WorldChunk;
 
 public class HaustorComponent implements ChunkSyncedComponent<HaustorComponent> {
 	public static final Random random = new Random();
 	private final Chunk chunk;
 	//TODO: more types of haustoria?
-	private int defense;
+	private int hypha;
 
 	public HaustorComponent(Chunk chunk) {
 		this.chunk = chunk;
-		defense = random.nextInt(20); //TODO: possible to make seed-based at all?
+		hypha = random.nextInt(64); //TODO: possible to make seed-based at all?
 	}
 
-	public int getDefense() {
-		return defense;
+	public int getHypha() {
+		return hypha;
 	}
 
-	public void setDefense(int defense) {
-		this.defense = defense;
+	public void setHypha(int hypha) {
+		this.hypha = Math.min(hypha, 512);
 		sync();
 	}
 
@@ -42,12 +41,12 @@ public class HaustorComponent implements ChunkSyncedComponent<HaustorComponent> 
 
 	@Override
 	public void fromTag(CompoundTag tag) {
-		this.defense = tag.getInt("Defense");
+		this.hypha = tag.getInt("Hypha");
 	}
 
 	@Override
 	public CompoundTag toTag(CompoundTag tag) {
-		tag.putInt("Defense", defense);
+		tag.putInt("Hypha", hypha);
 		return tag;
 	}
 }
