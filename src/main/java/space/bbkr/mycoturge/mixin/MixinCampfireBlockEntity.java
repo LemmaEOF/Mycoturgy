@@ -30,8 +30,11 @@ public abstract class MixinCampfireBlockEntity extends BlockEntity {
 		for (int i = 0; i < itemsBeingCooked.size(); i++) {
 			if (cookingTimes[i] % 80 == 0 && itemsBeingCooked.get(i).getItem() == Mycoturge.SPORE_BUNDLE) {
 				HaustorComponent component = Mycoturge.HAUSTOR_COMPONENT.get(this.world.getChunk(this.getPos()));
-				//TODO: different effect four soul campfire?
-				component.setHypha(component.getHypha() + 1);
+				if (component.getPrimordia() > 2) {
+					//TODO: different effect four soul campfire?
+					component.changePrimordia(-2);
+					component.changeHypha(1);
+				}
 			}
 		}
 	}

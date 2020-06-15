@@ -1,0 +1,8 @@
+{
+  "name": "book.mycoturge.mycoturgy_field_guide",
+  "landing_text": "text.mycoturge.field_guide_intro",
+  "version": 1,
+  "book_texture": "patchouli:textures/gui/book_purple.png",
+  "model": "patchouli:book_purple",
+  "creative_tab": "mycoturge.mycoturge"
+}

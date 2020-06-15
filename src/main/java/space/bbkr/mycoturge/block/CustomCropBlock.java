@@ -4,12 +4,14 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.CropBlock;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.BlockView;
 
 public class CustomCropBlock extends CropBlock {
 	public static final IntProperty AGE = Properties.AGE_3;
@@ -33,8 +35,7 @@ public class CustomCropBlock extends CropBlock {
 		if (world.getBaseLightLevel(pos, 0) >= 9) {
 			int age = this.getAge(state);
 			if (age < this.getMaxAge()) {
-				float moisture = getAvailableMoisture(this, world, pos);
-				if (random.nextInt((int)(50.0F / moisture) + 1) == 0) {
+				if (random.nextInt(6) == 0) {
 					world.setBlockState(pos, this.withAge(age + 1), 2);
 				}
 			}
@@ -52,5 +53,10 @@ public class CustomCropBlock extends CropBlock {
 
 			world.setBlockState(pos, this.withAge(newAge), 2);
 		}
+	}
+
+	@Override
+	protected boolean canPlantOnTop(BlockState floor, BlockView world, BlockPos pos) {
+		return floor.isOf(Blocks.MYCELIUM) || floor.isOf(Blocks.PODZOL);
 	}
 }

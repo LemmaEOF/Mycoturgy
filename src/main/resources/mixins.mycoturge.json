@@ -5,7 +5,8 @@
   "mixins": [
     "MixinCampfireBlock",
     "MixinCampfireBlockEntity",
-    "MixinServerWorld"
+    "MixinServerWorld",
+    "MixinSpawnHelper"
   ],
   "client": [
   ]
