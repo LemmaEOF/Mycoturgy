@@ -1,0 +1,23 @@
+{
+  "name": "Sporebrush",
+  "icon": "mycoturge:sporebrush",
+  "category": "mycoturge:journal",
+  "advancement": "mycoturge:research/obtain_sporebrush",
+  "pages": [
+    {
+      "type": "text",
+      "text": "The$(thing)spores$()I planted have grown, and I have completed my first harvest. It appears that I was right; this thing I have found is$(thing)a plant and a fungus living in harmony$(). I believe I shall call it $(item)Sporebrush$()."
+    },
+    {
+      "type": "crafting",
+      "recipe": "mycoturge:spore_bundle",
+      "text": "The spores covering the deep blue leaves of this plant are still shining so brightly. They must be full to the brim with energy. I should$(item)bundle$()some leaves together for better storage."
+    },
+    {
+      "type": "campfire",
+      "recipe": "mycoturge:mycoturgy",
+      "title": "Campfire Cooking",
+      "text": "Perhaps $(thing)burning these bundles on a open fire$()might do something...$(br)The sporebrush should burn$(thing)quite slowly$(), but about$(thing)a minute$()should be enough to notice a result."
+    }
+  ]
+}

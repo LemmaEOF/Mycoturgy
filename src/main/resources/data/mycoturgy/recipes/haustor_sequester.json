@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " # ",
+    "#/#"
+  ],
+  "key": {
+    "#": {
+      "item": "mycoturgy:sporebrush_ash"
+    },
+    "/": {
+      "item": "mycoturgy:sporebrush"
+    }
+  },
+  "result": {
+    "item": "mycoturgy:haustor_sequester"
+  }
+}

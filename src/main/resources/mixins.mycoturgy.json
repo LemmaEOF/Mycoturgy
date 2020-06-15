@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "package": "space.bbkr.mycoturgy.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "MixinCampfireBlock",
+    "MixinCampfireBlockEntity",
+    "MixinServerWorld",
+    "MixinSpawnHelper"
+  ],
+  "client": [
+  ]
+}

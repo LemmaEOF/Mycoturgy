@@ -1,0 +1,25 @@
+{
+  "criteria": {
+    "has_brush": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "mycoturgy:sporebrush"
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "recipes": [
+      "mycoturgy:spore_bundle",
+      "mycoturgy:mycoturgy"
+    ]
+  },
+  "requirements": [
+    [
+      "has_brush"
+    ]
+  ]
+}

@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:campfire_cooking",
-  "ingredient": {
-    "item": "mycoturge:spore_bundle"
-  },
-  "result": "mycoturge:sporebrush_ash",
-  "experience": 0,
-  "cookingtime": 800
-}

@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " # ",
+    " S#",
+    "#  "
+  ],
+  "key": {
+    "#": {
+      "item": "mycoturgy:sporebrush"
+    },
+    "S": {
+      "item": "minecraft:string"
+    }
+  },
+  "result": {
+    "item": "mycoturgy:spore_bundle",
+    "count": 1
+  }
+}

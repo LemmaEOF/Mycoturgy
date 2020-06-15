@@ -1,26 +1,26 @@
 {
   "schemaVersion": 1,
-  "id": "mycoturge",
+  "id": "mycoturgy",
   "version": "${version}",
 
-  "name": "Mycoturge",
-  "icon": "assets/mycoturge/icon.png",
+  "name": "Mycoturgy",
+  "icon": "assets/mycoturgy/icon.png",
   "description": "Fungal witchcraft for ModFest 1.16",
   "license": "MIT",
   "contact": {
-    "sources": "https://github.com/Boundarybreaker/Mycoturge"
+    "sources": "https://github.com/Boundarybreaker/Mycoturgy"
   },
   "environment": "*",
   "entrypoints": {
     "main": [
-      "space.bbkr.mycoturge.Mycoturge"
+      "space.bbkr.mycoturgy.Mycoturgy"
     ],
     "client": [
-      "space.bbkr.mycoturge.MycoturgeClient"
+      "space.bbkr.mycoturgy.MycoturgyClient"
     ]
   },
   "mixins": [
-    "mixins.mycoturge.json"
+    "mixins.mycoturgy.json"
   ],
   "depends": {
     "fabricloader": ">=0.4.0"

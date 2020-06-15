@@ -1,0 +1,21 @@
+{
+  "name": "Mycoturgy",
+  "icon": "mycoturgy:sporebrush_ash",
+  "category": "mycoturgy:journal",
+  "advancement": "mycoturgy:research/obtain_ash",
+  "pages": [
+    {
+      "type": "text",
+      "text": "Incredible! Burning the$(item)spore bundle$()has made the atmosphere feel drier, but$(thing)much more powerful$()! These spores$(o)must$()have some form of magic within them. It is the only explanation. I can already feel their$(thing)influence$()spread throughout the world."
+    },
+    {
+      "type": "text",
+      "text": "It is yet weak; it seems to$(thing)dissipate$()over time. Perhaps there is some way to preserve some of it in the area it was produced in?"
+    },
+    {
+      "type": "crafting",
+      "recipe": "mycoturgy:haustor_sequester",
+      "text": "The$(thing)spores$()seem to attach to the$(item)ashes$()from burning brush quite well. Perhaps they can use this to$(thing)keep influence over this region$()."
+    }
+  ]
+}

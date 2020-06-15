@@ -1,0 +1,11 @@
+{
+  "block.mycoturgy.sporebrush": "Sporebrush",
+  "block.mycoturgy.haustor_sequester": "Haustor Sequester",
+  "item.mycoturgy.sporebrush": "Sporebrush",
+  "item.mycoturgy.spore_bundle": "Spore Bundle",
+  "item.mycoturgy.glimmering_spores": "Glimmering Spores",
+  "item.mycoturgy.sporebrush_ash": "Sporebursh Ash",
+  "itemGroup.mycoturgy.mycoturgy": "Mycoturge",
+  "book.mycoturgy.mycoturgy_journal": "Mycoturge's Journal",
+  "text.mycoturgy.journal_intro": "Mycoturgy is the art of working with Sporebrush and Haustor energy."
+}

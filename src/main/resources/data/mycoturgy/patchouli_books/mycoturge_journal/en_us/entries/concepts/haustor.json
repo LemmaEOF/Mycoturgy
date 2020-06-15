@@ -1,0 +1,11 @@
+{
+  "name": "Haustor",
+  "icon": "mycoturgy:glimmering_spores",
+  "category": "mycoturgy:concepts",
+  "pages": [
+    {
+      "type": "text",
+      "text": "$(thing)Haustor$()is the fundamental system of magic with Mycoturgy. "
+    }
+  ]
+}

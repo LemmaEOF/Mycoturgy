@@ -1,0 +1,19 @@
+{
+  "criteria": {
+    "has_spores": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "mycoturgy:glimmering_spores"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_spores"
+    ]
+  ]
+}
