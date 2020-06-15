@@ -11,6 +11,7 @@ import net.minecraft.block.ShapeContext;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
+import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 
 public class HaustorSequesterBlock extends Block implements BlockEntityProvider {
@@ -20,7 +21,7 @@ public class HaustorSequesterBlock extends Block implements BlockEntityProvider 
 
 	@Override
 	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-		return Block.createCuboidShape(2, 0, 2, 14, 10, 14);
+		return VoxelShapes.union(Block.createCuboidShape(2, 0, 2, 14, 1, 14), Block.createCuboidShape(6, 1, 6, 8, 2, 8));
 	}
 
 	@Nullable

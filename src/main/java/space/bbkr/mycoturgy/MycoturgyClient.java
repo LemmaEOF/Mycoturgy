@@ -16,7 +16,7 @@ import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 public class MycoturgyClient implements ClientModInitializer {
 	@Override
 	public void onInitializeClient() {
-		BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(), Mycoturgy.SPOREBRUSH_CROP);
+		BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(), Mycoturgy.SPOREBRUSH_CROP, Mycoturgy.HAUSTOR_SEQUESTER);
 		HudRenderCallback.EVENT.register(TempHaustorHud::render);
 		ClientBookRegistry.INSTANCE.pageTypes.put("campfire", PageCampfire.class);
 	}
