@@ -40,20 +40,29 @@ public abstract class MixinServerWorld extends World {
 	private void tickHaustor(WorldChunk chunk, int randomTickSpeed, CallbackInfo info) {
 		this.getWorld().getProfiler().push("haustor");
 		if (this.random.nextInt(1000) < Mycoturgy.HAUSTOR_TICK_SPEED) {
+			int sequesters = getSequesterCount(chunk);
 			ChunkPos pos = chunk.getPos();
 			HaustorComponent selfComp = Mycoturgy.HAUSTOR_COMPONENT.get(chunk);
-			if (selfComp.getHypha() > (getSequesterCount(chunk) * 10) + 1) {
+			if (selfComp.getHypha() > (sequesters * 10) + 1) {
+				if (this.random.nextInt(6) == 0) {
+					selfComp.changeHypha(-1);
+					selfComp.changePrimordia(2);
+				}
 				for (int i = 0; i < 8; i += 2) {
 					if (this.isChunkLoaded(pos.x + OFFSETS[i], pos.z + OFFSETS[i + 1])) {
 						HaustorComponent otherComp = Mycoturgy.HAUSTOR_COMPONENT.get(
 								this.getChunk(pos.x + OFFSETS[i], pos.z + OFFSETS[i + 1])
 						);
 						if (selfComp.getHypha() > otherComp.getHypha() + 1) { //to avoid fluctuations
-							selfComp.setHypha(selfComp.getHypha() - 1);
-							otherComp.setHypha(otherComp.getHypha() + 1);
+							selfComp.changeHypha(-1);
+							otherComp.changeHypha(1);
 						}
 					}
 				}
+			}
+			if (selfComp.getLamella() > (sequesters * 5) + 1 && this.random.nextInt(18) == 0) {
+				selfComp.changeLamella(-1);
+				selfComp.changeHypha(2);
 			}
 		}
 		this.getWorld().getProfiler().pop();

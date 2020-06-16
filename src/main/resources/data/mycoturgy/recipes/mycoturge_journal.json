@@ -1,0 +1,15 @@
+{
+  "type": "mycoturgy:patchouli_book",
+  "ingredients": [
+    {
+      "item": "minecraft:book"
+    },
+    {
+      "item": "mycoturgy:glimmering_spores"
+    }
+  ],
+  "result": {
+    "item": "patchouli:guide_book"
+  },
+  "book": "mycoturgy:mycoturge_journal"
+}

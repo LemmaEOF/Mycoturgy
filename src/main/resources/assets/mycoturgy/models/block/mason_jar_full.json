@@ -1,0 +1,37 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "minecraft:block/block",
+	"textures": {
+		"0": "mycoturgy:block/mason_jar",
+		"1": "block/water_still",
+		"particle": "mycoturgy:block/mason_jar"
+	},
+	"elements": [
+		{
+			"from": [5, 0, 5],
+			"to": [11, 10, 11],
+			"rotation": {"angle": 0, "axis": "y", "origin": [13, 8, 13]},
+			"faces": {
+				"north": {"uv": [0, 6, 6, 16], "texture": "#0"},
+				"east": {"uv": [0, 6, 6, 16], "texture": "#0"},
+				"south": {"uv": [0, 6, 6, 16], "texture": "#0"},
+				"west": {"uv": [0, 6, 6, 16], "texture": "#0"},
+				"up": {"uv": [10, 0, 16, 6], "texture": "#0"},
+				"down": {"uv": [0, 0, 6, 6], "texture": "#0"}
+			}
+		},
+		{
+			"from": [5.5, 0.5, 5.5],
+			"to": [10.5, 5.5, 10.5],
+			"rotation": {"angle": 0, "axis": "y", "origin": [14, 9, 14]},
+			"faces": {
+				"north": {"uv": [0, 0, 5, 5], "texture": "#1", "tintindex": 1},
+				"east": {"uv": [11, 11, 16, 16], "texture": "#1", "tintindex": 1},
+				"south": {"uv": [11, 0, 16, 5], "texture": "#1", "tintindex": 1},
+				"west": {"uv": [0, 11, 5, 16], "texture": "#1", "tintindex": 1},
+				"up": {"uv": [0, 5, 5, 10], "texture": "#1", "tintindex": 1},
+				"down": {"uv": [11, 5, 16, 10], "texture": "#1", "tintindex": 1}
+			}
+		}
+	]
+}

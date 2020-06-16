@@ -6,12 +6,14 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.CropBlock;
+import net.minecraft.entity.Entity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockView;
+import net.minecraft.world.World;
 
 public class CustomCropBlock extends CropBlock {
 	public static final IntProperty AGE = Properties.AGE_3;
@@ -59,4 +61,5 @@ public class CustomCropBlock extends CropBlock {
 	protected boolean canPlantOnTop(BlockState floor, BlockView world, BlockPos pos) {
 		return floor.isOf(Blocks.MYCELIUM) || floor.isOf(Blocks.PODZOL);
 	}
+
 }

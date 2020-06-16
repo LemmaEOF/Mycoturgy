@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "filled=true": {
+      "model": "mycoturgy:block/mason_jar_full"
+    },
+    "filled=false": {
+      "model": "mycoturgy:block/mason_jar"
+    }
+  }
+}

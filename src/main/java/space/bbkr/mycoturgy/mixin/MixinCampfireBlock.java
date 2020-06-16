@@ -7,6 +7,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import space.bbkr.mycoturgy.Mycoturgy;
+import space.bbkr.mycoturgy.init.MycoturgyItems;
 
 import net.minecraft.block.CampfireBlock;
 import net.minecraft.block.entity.BlockEntity;
@@ -25,7 +26,7 @@ public class MixinCampfireBlock {
 		if (be instanceof CampfireBlockEntity) {
 			CampfireBlockEntity campfire = (CampfireBlockEntity)be;
 			for (ItemStack stack : campfire.getItemsBeingCooked()) {
-				if (stack.getItem() == Mycoturgy.SPORE_BUNDLE) {
+				if (stack.getItem() == MycoturgyItems.SPORE_BUNDLE) {
 					world.addParticle(ParticleTypes.WITCH, (double)pos.getX() + 0.5D + random.nextDouble() / 3.0D * (double)(random.nextBoolean() ? 1 : -1), (double)pos.getY() + random.nextDouble() + random.nextDouble(), (double)pos.getZ() + 0.5D + random.nextDouble() / 3.0D * (double)(random.nextBoolean() ? 1 : -1), 0.0D, 0.07D, 0.0D);
 				}
 			}
