@@ -3,13 +3,13 @@ package space.bbkr.mycoturgy.recipe;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
+import vazkii.patchouli.common.item.PatchouliItems;
 
 import net.minecraft.inventory.CraftingInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.RecipeSerializer;
-import net.minecraft.recipe.ShapedRecipe;
 import net.minecraft.recipe.ShapelessRecipe;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonHelper;
@@ -19,8 +19,8 @@ public class PatchouliBookRecipe extends ShapelessRecipe {
 	private Identifier book;
 	private String group;
 
-	public PatchouliBookRecipe(Identifier id, Identifier book, String group, ItemStack output, DefaultedList<Ingredient> input) {
-		super(id, group, output, input);
+	public PatchouliBookRecipe(Identifier id, Identifier book, String group, DefaultedList<Ingredient> input) {
+		super(id, group, new ItemStack(PatchouliItems.book), input);
 		this.book = book;
 		this.group = group;
 	}
@@ -42,9 +42,8 @@ public class PatchouliBookRecipe extends ShapelessRecipe {
 			} else if (defaultedList.size() > 9) {
 				throw new JsonParseException("Too many ingredients for shapeless recipe");
 			} else {
-				ItemStack itemStack = ShapedRecipe.getItemStack(JsonHelper.getObject(jsonObject, "result"));
 				Identifier bookId = new Identifier(JsonHelper.getString(jsonObject, "book"));
-				return new PatchouliBookRecipe(identifier, bookId, string, itemStack, defaultedList);
+				return new PatchouliBookRecipe(identifier, bookId, string, defaultedList);
 			}
 		}
 
@@ -71,9 +70,8 @@ public class PatchouliBookRecipe extends ShapelessRecipe {
 				defaultedList.set(j, Ingredient.fromPacket(buf));
 			}
 
-			ItemStack itemStack = buf.readItemStack();
 			Identifier book = buf.readIdentifier();
-			return new PatchouliBookRecipe(id, book, string, itemStack, defaultedList);
+			return new PatchouliBookRecipe(id, book, string, defaultedList);
 		}
 
 		@Override
@@ -85,7 +83,6 @@ public class PatchouliBookRecipe extends ShapelessRecipe {
 				ingredient.write(buf);
 			}
 
-			buf.writeItemStack(recipe.getOutput());
 			buf.writeIdentifier(recipe.book);
 		}
 	}

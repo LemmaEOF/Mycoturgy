@@ -29,6 +29,7 @@ public class HaustorComponent implements ChunkSyncedComponent<HaustorComponent> 
 	}
 
 	public void setPrimordia(int primordia) {
+		if (this.primordia == primordia) return;
 		this.primordia = Math.min(primordia, 1024);
 		sync();
 	}
@@ -42,6 +43,7 @@ public class HaustorComponent implements ChunkSyncedComponent<HaustorComponent> 
 	}
 
 	public void setHypha(int hypha) {
+		if (this.hypha == hypha) return;
 		this.hypha = Math.min(hypha, 512);
 		sync();
 	}
@@ -55,6 +57,7 @@ public class HaustorComponent implements ChunkSyncedComponent<HaustorComponent> 
 	}
 
 	public void setLamella(int lamella) {
+		if (this.lamella == lamella) return;
 		this.lamella = Math.min(lamella, 256);
 		sync();
 	}
