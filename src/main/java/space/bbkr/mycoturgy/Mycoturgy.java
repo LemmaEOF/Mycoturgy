@@ -22,7 +22,7 @@ import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
 public class Mycoturgy implements ModInitializer {
 	public static final String MODID = "mycoturgy";
 
-	public static final Logger logger = LogManager.getLogger();
+	public static final Logger logger = LogManager.getLogger(MODID);
 
 	//TODO: config
 	public static final int HAUSTOR_TICK_SPEED = 10;

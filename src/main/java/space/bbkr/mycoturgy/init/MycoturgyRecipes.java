@@ -26,7 +26,7 @@ public class MycoturgyRecipes {
 		return Registry.register(Registry.RECIPE_TYPE, new Identifier(Mycoturgy.MODID, name), new RecipeType<T>() {
 			@Override
 			public String toString() {
-				return "mycoturgy:" + name;
+				return Mycoturgy.MODID + ":" + name;
 			}
 		});
 	}

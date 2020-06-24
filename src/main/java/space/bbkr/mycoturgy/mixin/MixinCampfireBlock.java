@@ -19,6 +19,7 @@ import net.minecraft.world.World;
 
 @Mixin(CampfireBlock.class)
 public class MixinCampfireBlock {
+	//TODO: custom particles?
 	@Inject(method = "spawnSmokeParticle", at = @At("HEAD"))
 	private static void injectParticles(World world, BlockPos pos, boolean isSignal, boolean lotsOfSmoke, CallbackInfo info) {
 		Random random = world.getRandom();

@@ -1,23 +1,21 @@
 package space.bbkr.mycoturgy.inventory;
 
+import space.bbkr.mycoturgy.block.entity.MasonJarBlockEntity;
+
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 
 public class MasonJarInventory extends SimpleInventory {
-	private BlockPos pos;
+	private MasonJarBlockEntity parent;
 
-	public MasonJarInventory(BlockPos pos) {
+	public MasonJarInventory(MasonJarBlockEntity parent) {
 		super(1);
-		this.pos = pos;
-	}
-
-	public void setPos(BlockPos pos) {
-		this.pos = pos;
+		this.parent = parent;
 	}
 
 	public BlockPos getPos() {
-		return pos;
+		return parent.getPos();
 	}
 
 	public ItemStack getStack() {
@@ -26,6 +24,12 @@ public class MasonJarInventory extends SimpleInventory {
 
 	public void setStack(ItemStack stack) {
 		setStack(0, stack);
-		markDirty();
+	}
+
+	@Override
+	public void markDirty() {
+		super.markDirty();
+		parent.markDirty();
+		if (parent.getWorld() != null && !parent.getWorld().isClient) parent.sync();
 	}
 }

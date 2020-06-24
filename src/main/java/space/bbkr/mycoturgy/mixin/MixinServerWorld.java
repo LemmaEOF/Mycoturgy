@@ -9,6 +9,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import space.bbkr.mycoturgy.Mycoturgy;
 import space.bbkr.mycoturgy.component.HaustorComponent;
+import space.bbkr.mycoturgy.init.MycoturgyBlocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.entity.BlockEntity;
@@ -71,7 +72,7 @@ public abstract class MixinServerWorld extends World {
 	private static int getSequesterCount(WorldChunk chunk) {
 		int count = 0;
 		for (BlockEntity be : chunk.getBlockEntities().values()) {
-			if (be.getType() == Mycoturgy.HAUSTOR_SEQUESTER_BLOCK_ENTITY) {
+			if (be.getType() == MycoturgyBlocks.HAUSTOR_SEQUESTER_BLOCK_ENTITY) {
 				count++;
 			}
 		}

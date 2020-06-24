@@ -7,6 +7,7 @@ import space.bbkr.mycoturgy.block.CustomCropBlock;
 import space.bbkr.mycoturgy.block.HaustorSequesterBlock;
 import space.bbkr.mycoturgy.block.MasonJarBlock;
 import space.bbkr.mycoturgy.block.entity.HaustorSequesterBlockEntity;
+import space.bbkr.mycoturgy.block.entity.MasonJarBlockEntity;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -27,12 +28,14 @@ public class MycoturgyBlocks {
 	public static Block MASON_JAR;
 
 	public static BlockEntityType<HaustorSequesterBlockEntity> HAUSTOR_SEQUESTER_BLOCK_ENTITY;
+	public static BlockEntityType<MasonJarBlockEntity> MASON_JAR_BLOCK_ENTITY;
 
 	public static void init() {
 		SPOREBRUSH_CROP = register("sporebrush", new CustomCropBlock(FabricBlockSettings.copyOf(Blocks.WHEAT).breakByHand(true)));
 		HAUSTOR_SEQUESTER = register("haustor_sequester", new HaustorSequesterBlock(FabricBlockSettings.copyOf(Blocks.GRASS).breakByHand(true)), new Item.Settings().group(MycoturgyItems.MYCOTURGY_GROUP));
 		MASON_JAR = register("mason_jar", new MasonJarBlock(FabricBlockSettings.of(Material.GLASS).breakByTool(FabricToolTags.PICKAXES).nonOpaque()), new Item.Settings().group(MycoturgyItems.MYCOTURGY_GROUP));
 		HAUSTOR_SEQUESTER_BLOCK_ENTITY = register("haustor_sequester", HaustorSequesterBlockEntity::new, HAUSTOR_SEQUESTER);
+		MASON_JAR_BLOCK_ENTITY = register("mason_jar", MasonJarBlockEntity::new, MASON_JAR);
 	}
 
 	private static Block register(String name, Block block, Item.Settings settings) {
