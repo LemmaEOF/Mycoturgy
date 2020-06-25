@@ -1,0 +1,16 @@
+{
+  "criteria": {
+    "enable_beta": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "recipes": [
+    ]
+  },
+  "requirements": [
+    [
+      "enable_beta"
+    ]
+  ]
+}

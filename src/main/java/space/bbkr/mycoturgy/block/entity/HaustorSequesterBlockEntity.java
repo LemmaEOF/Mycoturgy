@@ -1,6 +1,5 @@
 package space.bbkr.mycoturgy.block.entity;
 
-import space.bbkr.mycoturgy.Mycoturgy;
 import space.bbkr.mycoturgy.init.MycoturgyBlocks;
 
 import net.minecraft.block.entity.BlockEntity;

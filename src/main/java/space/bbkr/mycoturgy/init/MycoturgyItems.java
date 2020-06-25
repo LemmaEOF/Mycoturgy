@@ -9,6 +9,7 @@ import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tag.Tag;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.Rarity;
 import net.minecraft.util.registry.Registry;
 
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
@@ -30,8 +31,9 @@ public class MycoturgyItems {
 		SPORE_BUNDLE = register("spore_bundle", new Item(new Item.Settings().group(MYCOTURGY_GROUP)));
 		SPOREBRUSH = register("sporebrush", new Item(new Item.Settings().group(MYCOTURGY_GROUP)));
 		GLITTERING_SPORES = register("glimmering_spores", new AliasedBlockItem(MycoturgyBlocks.SPOREBRUSH_CROP, new Item.Settings().group(MYCOTURGY_GROUP)));
-		SPOREBRUSH_ASH = register("sporebrush_ash", new Item(new Item.Settings().group(MYCOTURGY_GROUP)));
-		HAUSTORAL_BAND = register("haustoral_band", new HaustoralBandItem(new Item.Settings().maxCount(1).group(MYCOTURGY_GROUP)));
+		SPOREBRUSH_ASH = register("sporebrush_ash", new AliasedBlockItem(MycoturgyBlocks.SCATTERED_ASHES, new Item.Settings().group(MYCOTURGY_GROUP)));
+		HAUSTORAL_BAND = register("haustoral_band", new HaustoralBandItem(new Item.Settings().maxCount(1).rarity(Rarity.RARE).group(MYCOTURGY_GROUP)));
+
 		NETHERITE_COMPOSED = TagRegistry.item(new Identifier(Mycoturgy.MODID, "netherite_composed"));
 	}
 

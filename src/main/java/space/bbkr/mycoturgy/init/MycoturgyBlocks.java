@@ -17,6 +17,7 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
+import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
@@ -36,7 +37,7 @@ public class MycoturgyBlocks {
 		SPOREBRUSH_CROP = register("sporebrush", new CustomCropBlock(FabricBlockSettings.copyOf(Blocks.WHEAT).breakByHand(true)));
 		HAUSTOR_SEQUESTER = register("haustor_sequester", new HaustorSequesterBlock(FabricBlockSettings.copyOf(Blocks.GRASS).breakByHand(true)), new Item.Settings().group(MycoturgyItems.MYCOTURGY_GROUP));
 		MASON_JAR = register("mason_jar", new MasonJarBlock(FabricBlockSettings.of(Material.GLASS).breakByTool(FabricToolTags.PICKAXES).nonOpaque()), new Item.Settings().group(MycoturgyItems.MYCOTURGY_GROUP));
-		SCATTERED_ASHES = register("scattered_ashes", new ScatteredAshesBlock(FabricBlockSettings.of(Material.SUPPORTED).breakByHand(true).nonOpaque()));
+		SCATTERED_ASHES = register("scattered_ashes", new ScatteredAshesBlock(FabricBlockSettings.of(Material.SUPPORTED).breakByHand(true).breakInstantly().nonOpaque().noCollision().sounds(BlockSoundGroup.SAND)));
 
 		HAUSTOR_SEQUESTER_BLOCK_ENTITY = register("haustor_sequester", HaustorSequesterBlockEntity::new, HAUSTOR_SEQUESTER);
 		MASON_JAR_BLOCK_ENTITY = register("mason_jar", MasonJarBlockEntity::new, MASON_JAR);

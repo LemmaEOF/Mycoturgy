@@ -20,6 +20,8 @@ import net.minecraft.particle.ParticleTypes;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionUtil;
 import net.minecraft.potion.Potions;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.text.TranslatableText;
@@ -54,6 +56,7 @@ public class MasonJarBlock extends Block implements BlockEntityProvider {
 			Potion pot = PotionUtil.getPotion(stack);
 			if (pot == Potions.WATER) {
 				world.setBlockState(pos, state.with(FILLED, true), 2);
+				world.playSound(null, pos, SoundEvents.ITEM_BOTTLE_EMPTY, SoundCategory.BLOCKS, 1f, 1f);
 				if (!player.isCreative()) {
 					player.setStackInHand(hand, new ItemStack(Items.GLASS_BOTTLE));
 				}
@@ -61,6 +64,7 @@ public class MasonJarBlock extends Block implements BlockEntityProvider {
 			}
 		} else if (stack.getItem() == Items.GLASS_BOTTLE && state.get(FILLED)) {
 			world.setBlockState(pos, state.with(FILLED, false), 2);
+			world.playSound(null, pos, SoundEvents.ITEM_BOTTLE_FILL, SoundCategory.BLOCKS, 1f, 1f);
 			ItemUsage.method_30012(stack, player, PotionUtil.setPotion(new ItemStack(Items.POTION), Potions.WATER));
 			return ActionResult.SUCCESS;
 		} else if (stack.getItem() == MycoturgyItems.SPOREBRUSH_ASH) {
@@ -68,6 +72,7 @@ public class MasonJarBlock extends Block implements BlockEntityProvider {
 			if (be instanceof MasonJarBlockEntity) {
 				MasonJarBlockEntity jar = (MasonJarBlockEntity)be;
 				if (jar.getAshes() <= 12) {
+					world.playSound(null, pos, SoundEvents.ITEM_CROP_PLANT, SoundCategory.BLOCKS, 1f, 1f);
 					jar.addAshes();
 					if (!player.isCreative()) {
 						player.getStackInHand(hand).decrement(1);

@@ -1,0 +1,16 @@
+{
+  "criteria": {
+    "cast_spell": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "recipes": [
+    ]
+  },
+  "requirements": [
+    [
+      "cast_spell"
+    ]
+  ]
+}

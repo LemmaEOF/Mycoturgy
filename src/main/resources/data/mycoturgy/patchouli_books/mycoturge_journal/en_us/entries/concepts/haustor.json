@@ -2,6 +2,7 @@
   "name": "Haustor",
   "icon": "mycoturgy:glimmering_spores",
   "category": "mycoturgy:concepts",
+  "advancement": "mycoturgy:research/docs_beta",
   "pages": [
     {
       "type": "text",

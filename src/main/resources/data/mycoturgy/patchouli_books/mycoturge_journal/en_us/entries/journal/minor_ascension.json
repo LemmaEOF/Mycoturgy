@@ -1,6 +1,6 @@
 {
   "name": "6. Minor Ascension",
-  "icon": "mycoturgy:haustoral_band",
+  "icon": "mycoturgy:textures/icons/hypha.png",
   "category": "mycoturgy:journal",
   "advancement": "mycoturgy:research/equip_haustoral_band",
   "pages": [
@@ -15,6 +15,10 @@
     {
       "type": "text",
       "text": "Since my awareness elevated, I have begun to feel emotions which are not my own. A constant flood, as if they are the soul of $(key)the world itself$(). I have also felt $(h)something$(/h) calling to me once more. Its voice is pained. There is an $(key)imbalance$() with the world. $(thing)Incursions$() from realms not our own, along with an $(item)accursed metal$() undaunted by flame. I can hear the $(thing)cries$() of the world. It's almost $(key)as if $(h)Nature herself$(/h) $(key)is crying$(). I need to help her. What can I do?"
+    },
+    {
+      "type": "text",
+      "text": "My mind keeps returning to the $(item)ashes$() left over from burning Sporebrush. They still have so much $(key)potential$() in them, even after being burnt. There must be $(key)remnants of Nature's will$() within them still. Perhaps I can use this to $(key)communicate$() with them. I wonder what would happen if I $(key)scattered ashes across podzol$() and $(key)shared my will to them through the Haustoral Band$()..."
     }
   ]
 }

@@ -1,6 +1,7 @@
 package space.bbkr.mycoturgy.block.entity;
 
 import java.util.Optional;
+import java.util.Random;
 
 import space.bbkr.mycoturgy.Mycoturgy;
 import space.bbkr.mycoturgy.block.MasonJarBlock;
@@ -14,9 +15,15 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.particle.ParticleEffect;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.recipe.Recipe;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Tickable;
+import net.minecraft.util.math.Vec3d;
 
 import net.fabricmc.fabric.api.block.entity.BlockEntityClientSerializable;
 import net.fabricmc.fabric.api.util.NbtType;
@@ -41,7 +48,10 @@ public class MasonJarBlockEntity extends BlockEntity implements Tickable, BlockE
 			potentialRecipe.ifPresent(jarBrewingRecipe -> currentRecipe = jarBrewingRecipe);
 		} else {
 			if (currentRecipe.matches(inv, world)) {
+				Vec3d jarPos = new Vec3d(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5).add(getCachedState().getModelOffset(world, pos));
+				Random random = new Random();
 				processTime++;
+				if (processTime % 10 == 0) ((ServerWorld)world).spawnParticles(ParticleTypes.BUBBLE, jarPos.x + random.nextDouble() * (1/8D) * (double)(random.nextBoolean() ? 1 : -1), jarPos.y + random.nextDouble() * (3/8D), jarPos.z + random.nextDouble() * (1/8D) * (double)(random.nextBoolean() ? 1 : -1), random.nextInt(5), 0.0, 0.1, 0.0, 0.1);
 				if (processTime >= currentRecipe.getTime()) {
 					HaustorComponent component = Mycoturgy.HAUSTOR_COMPONENT.get(world.getChunk(this.pos));
 					component.changeHypha(currentRecipe.getHyphaCost() * -1);
@@ -53,6 +63,8 @@ public class MasonJarBlockEntity extends BlockEntity implements Tickable, BlockE
 					currentRecipe = null;
 					ashes--;
 					if (ashes < 0) ashes = 0;
+					world.playSound(null, pos, SoundEvents.ENTITY_WITCH_DRINK, SoundCategory.BLOCKS, 1f, 1f);
+					((ServerWorld)world).spawnParticles(ParticleTypes.SPLASH, jarPos.x + random.nextDouble() * (3/16D) * (double)(random.nextBoolean() ? 1 : -1), jarPos.y + random.nextDouble() * (1/2D), jarPos.z + random.nextDouble() * (3/16D) * (double)(random.nextBoolean() ? 1 : -1), 30, 0.0, 0.7, 0.0, 0.7);
 					world.setBlockState(pos, getCachedState().with(MasonJarBlock.FILLED, false));
 				}
 				markDirty();

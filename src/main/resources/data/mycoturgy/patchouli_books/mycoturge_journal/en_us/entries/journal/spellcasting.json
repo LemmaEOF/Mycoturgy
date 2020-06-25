@@ -1,0 +1,18 @@
+{
+  "name": "7. Spellcasting",
+  "icon": "mycoturgy:textures/icons/lamella.png",
+  "category": "mycoturgy:journal",
+  "advancement": "mycoturgy:research/cast_spell",
+  "pages": [
+    {
+      "type": "text",
+      "text": "For once, a hypothesis of mine was correct! A $(key)massive mushroom$() now stands before me where the ashes were scattered, and the ground around it has turned to $(item)mycelium$(). What is more, I can sense that this has $(key)turned some of the $(thing)Hypha$(key) nearby into $(thing)Lamella$(). I must investigate to see what else I can bring about with these $(item)ashes$()."
+    },
+    {
+      "type": "spotlight",
+      "item": "minecraft:podzol",
+      "title": "Mycelic Growth",
+      "text": "Grows a $(item)giant mushroom$(), surrounding its base with $(item)Mycelium$().$(br2)Cost:$(br)$(li)10 hypha$()"
+    }
+  ]
+}
