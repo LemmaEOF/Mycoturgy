@@ -2,16 +2,17 @@ package space.bbkr.mycoturgy.client.hud;
 
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
+import dev.emi.trinkets.api.TrinketsApi;
 import org.lwjgl.opengl.GL11;
 import space.bbkr.mycoturgy.Mycoturgy;
 import space.bbkr.mycoturgy.component.HaustorComponent;
+import space.bbkr.mycoturgy.init.MycoturgyItems;
 
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.BufferBuilder;
 import net.minecraft.client.render.Tessellator;
 import net.minecraft.client.render.VertexFormats;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
 
 import net.fabricmc.api.EnvType;
@@ -19,31 +20,33 @@ import net.fabricmc.api.Environment;
 
 //TODO: *really* gotta make a lib for this, so that this doesn't overlap with CRPG or Trion
 @Environment(EnvType.CLIENT)
-public class TempHaustorHud {
+public class HaustorBandHud {
 	private static MinecraftClient client = MinecraftClient.getInstance();
 
 	private static final Identifier BAR_TEX = new Identifier(Mycoturgy.MODID, "textures/gui/bars.png");
-	private static final Identifier ICON_TEX = new Identifier(Mycoturgy.MODID, "textures/icons/trion.png");
+	private static final Identifier PRIMORDIA_TEX = new Identifier(Mycoturgy.MODID, "textures/icons/primordia.png");
+	private static final Identifier HYPHA_TEX = new Identifier(Mycoturgy.MODID, "textures/icons/hypha.png");
+	private static final Identifier LAMELLA_TEX = new Identifier(Mycoturgy.MODID, "textures/icons/lamella.png");
 
 	public static void render(MatrixStack matrices, float tickDelta) {
-//		if (client.player.getStackInHand(Hand.MAIN_HAND)) //TODO: only display with specific item in hand
-		matrices.push();
-		HaustorComponent component = Mycoturgy.HAUSTOR_COMPONENT.get(client.player.world.getChunk(client.player.getBlockPos()));
-		//TODO: real colors - these are just the trion ones right now
-		drawBar(matrices, 0x5FEC94, (float)component.getPrimordia(), 1024f, 4, 28);
-		drawBar(matrices, 0x5FD3EC, (float)component.getHypha(), 512f, 4, 40);
-		drawBar(matrices, 0xEC5F6B, (float)component.getLamella(), 256f, 4, 52);
-		matrices.pop();
+		if (TrinketsApi.getTrinketComponent(client.player).getStack("hand:ring").getItem() == MycoturgyItems.HAUSTORAL_BAND) {
+			matrices.push();
+			HaustorComponent component = Mycoturgy.HAUSTOR_COMPONENT.get(client.player.world.getChunk(client.player.getBlockPos()));
+			//TODO: real colors - these are just the trion ones right now
+			drawBar(matrices, PRIMORDIA_TEX, 0x7ACFA1, (float) component.getPrimordia(), 1024f, 4, 28);
+			drawBar(matrices, HYPHA_TEX, 0x4D5BB1, (float) component.getHypha(), 512f, 4, 40);
+			drawBar(matrices, LAMELLA_TEX, 0x8B6ECA, (float) component.getLamella(), 256f, 4, 52);
+			matrices.pop();
+		}
 	}
 
-	private static void drawBar(MatrixStack matrices, int color, float amount, float max, int left, int top) {
-		//TODO: icons? Is this gonna be more permanent?
+	private static void drawBar(MatrixStack matrices, Identifier icon, int color, float amount, float max, int left, int top) {
 		//draw icon
-		client.getTextureManager().bindTexture(ICON_TEX);
+		client.getTextureManager().bindTexture(icon);
 		RenderSystem.enableBlend();
 		RenderSystem.blendFuncSeparate(GlStateManager.SrcFactor.SRC_ALPHA, GlStateManager.DstFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SrcFactor.ONE, GlStateManager.DstFactor.ZERO);
 //		RenderSystem.enableAlphaTest();
-		//TODO: how does color work now?
+		//TODO: how does color work now? does this need any change?
 		RenderSystem.color4f(1f, 1f, 1f, 1f);
 		blit(left, top, 9, 9);
 
@@ -68,7 +71,9 @@ public class TempHaustorHud {
 
 		RenderSystem.color4f(1f, 1f, 1f, 1f);
 
-		MinecraftClient.getInstance().textRenderer.drawWithShadow(matrices, "" + (int)amount, left + 66, top, 0xFFFFFF);
+		if (client.player.isSneaking()) {
+			MinecraftClient.getInstance().textRenderer.drawWithShadow(matrices, "" + (int) amount, left + 66, top, 0xFFFFFF);
+		}
 		RenderSystem.disableBlend();
 //		RenderSystem.disableAlphaTest();
 	}

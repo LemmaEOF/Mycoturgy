@@ -1,19 +1,19 @@
 {
-  "name": "Discovery",
+  "name": "1. Discovery",
   "icon": "mycoturgy:glimmering_spores",
   "category": "mycoturgy:journal",
   "advancement": "mycoturgy:research/obtain_spores",
   "pages": [
     {
       "type": "text",
-      "text": "It is truly remarkable! I have found a mysterious$(thing)spore$()which seems to enveloped a bundle of seeds. It gives off the most$(o)peculiar$()glimmer. What could these be used for?"
+      "text": "It is truly remarkable! I have found a mysterious $(thing)spore$() which seems to enveloped a bundle of seeds. It gives off the most $(o)peculiar$() glimmer. What could these be used for?"
     },
     {
       "type": "spotlight",
       "item": "mycoturgy:glimmering_spores",
       "title": "Glimmering Spores",
       "link_recipe": false,
-      "text": "I must plant these as soon as I can. These might grow well in$(item)mycelium$()or$(item)podzol$()..."
+      "text": "I must $(key)plant$() these as soon as I can. These might grow well in $(item)mycelium$() or $(item)podzol$()..."
     }
   ]
 }

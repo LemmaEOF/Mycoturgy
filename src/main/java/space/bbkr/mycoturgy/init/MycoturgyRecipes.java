@@ -2,7 +2,7 @@ package space.bbkr.mycoturgy.init;
 
 
 import space.bbkr.mycoturgy.Mycoturgy;
-import space.bbkr.mycoturgy.recipe.JarBrewingRecipe;
+import space.bbkr.mycoturgy.recipe.JarInfusingRecipe;
 import space.bbkr.mycoturgy.recipe.PatchouliBookRecipe;
 
 import net.minecraft.recipe.Recipe;
@@ -12,13 +12,13 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
 public class MycoturgyRecipes {
-	public static RecipeType<JarBrewingRecipe> MASON_JAR_RECIPE;
-	public static RecipeSerializer<JarBrewingRecipe> MASON_JAR_SERIALIZER;
+	public static RecipeType<JarInfusingRecipe> MASON_JAR_RECIPE;
+	public static RecipeSerializer<JarInfusingRecipe> MASON_JAR_SERIALIZER;
 	public static RecipeSerializer<PatchouliBookRecipe> PATCHOULI_BOOK_SERIALZIER;
 
 	public static void init() {
-		MASON_JAR_RECIPE = register("jar_brewing");
-		MASON_JAR_SERIALIZER = register("jar_brewing", new JarBrewingRecipe.Serializer());
+		MASON_JAR_RECIPE = register("jar_infusing");
+		MASON_JAR_SERIALIZER = register("jar_infusing", new JarInfusingRecipe.Serializer());
 		PATCHOULI_BOOK_SERIALZIER = Registry.register(Registry.RECIPE_SERIALIZER, new Identifier(Mycoturgy.MODID, "patchouli_book"), new PatchouliBookRecipe.Serializer());
 	}
 

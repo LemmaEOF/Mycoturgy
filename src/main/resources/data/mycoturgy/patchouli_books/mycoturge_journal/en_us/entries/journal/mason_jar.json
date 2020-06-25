@@ -1,0 +1,17 @@
+{
+  "name": "4. Mason Jars",
+  "icon": "mycoturgy:mason_jar",
+  "category": "mycoturgy:journal",
+  "advancement": "mycoturgy:research/obtain_ash",
+  "pages": [
+    {
+      "type": "text",
+      "text": "I must make attempts to further inspect these $(thing)spores$(). Perhaps attempting to $(key)preserve them$() would help. Pickling them using $(item)ashes$() may prove to be effective. I $(o)know$() there is a piece to the puzzle I'm missing. Just what could it be?"
+    },
+    {
+      "type": "crafting",
+      "recipe": "mycoturgy:mason_jar",
+      "text": "I should try peserving a $(item)bundle of sporebrush$() together at once. One scoop of $(item)ashes$() and a $(item)bottle of water $() should be enough. While I wait, I should $(key)burn more Sporebrush$() to keep the atmosphere charged.$(br)$(t:Mason jar crafting requires Haustor energy)$(l)(?)$()"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "name": "6. Minor Ascension",
+  "icon": "mycoturgy:haustoral_band",
+  "category": "mycoturgy:journal",
+  "advancement": "mycoturgy:research/equip_haustoral_band",
+  "pages": [
+    {
+      "type": "text",
+      "text": "It is as if all my senses have expanded. I can $(o)feel$() the energy released from the $(item)Sporebrush$(). No, not released. $(o)Converted$(). This new $(thing)sight$() has revealed more to me of the $(item)Sporebrush$() than I could ever hope to learn on my own. In truth, there are $(key)three forms$() of this magic, each of which $(key)depend on the others$(). Their names are clear in my head, like I always knew them."
+    },
+    {
+      "type": "text",
+      "text": "This magic is known as $(thing)Haustor$(), and it is the $(key)lifeblood$() of the world as we know it. $(thing)Primordial Haustor$(), or Primordia, is plentiful no matter where you go, but isn't typically noticeable on its own. When $(item)Sporebrush$() is burned, it converts primordia into $(thing)Hypha$(), which is volatile and disperses quickly. Lastly is $(thing)Lamellan Haustor$(), which is still a mystery to me. Perhaps I can come about it by $(key)exploring what I can do with my new capabilities$()."
+    },
+    {
+      "type": "text",
+      "text": "Since my awareness elevated, I have begun to feel emotions which are not my own. A constant flood, as if they are the soul of $(key)the world itself$(). I have also felt $(h)something$(/h) calling to me once more. Its voice is pained. There is an $(key)imbalance$() with the world. $(thing)Incursions$() from realms not our own, along with an $(item)accursed metal$() undaunted by flame. I can hear the $(thing)cries$() of the world. It's almost $(key)as if $(h)Nature herself$(/h) $(key)is crying$(). I need to help her. What can I do?"
+    }
+  ]
+}

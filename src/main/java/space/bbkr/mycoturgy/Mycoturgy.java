@@ -1,5 +1,8 @@
 package space.bbkr.mycoturgy;
 
+import dev.emi.trinkets.api.SlotGroups;
+import dev.emi.trinkets.api.Slots;
+import dev.emi.trinkets.api.TrinketSlots;
 import nerdhub.cardinal.components.api.ComponentRegistry;
 import nerdhub.cardinal.components.api.ComponentType;
 import nerdhub.cardinal.components.api.event.ChunkComponentCallback;
@@ -35,6 +38,7 @@ public class Mycoturgy implements ModInitializer {
 		MycoturgyBlocks.init();
 		MycoturgyItems.init();
 		MycoturgyRecipes.init();
+		TrinketSlots.addSlot(SlotGroups.HAND, Slots.RING, new Identifier("trinkets", "textures/item/empty_trinket_slot_ring.png"));
 
 		LootTableLoadingCallback.EVENT.register((resourceManager, lootManager, id, builder, table) -> {
 			if (id.equals(new Identifier("blocks/grass"))) {

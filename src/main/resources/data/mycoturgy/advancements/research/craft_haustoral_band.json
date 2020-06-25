@@ -1,0 +1,23 @@
+{
+  "criteria": {
+    "has_band": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "mycoturgy:haustoral_band"
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "recipes": [
+    ]
+  },
+  "requirements": [
+    [
+      "has_band"
+    ]
+  ]
+}

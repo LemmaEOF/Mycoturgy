@@ -1,23 +1,23 @@
 {
-  "name": "Sporebrush",
+  "name": "2. Sporebrush",
   "icon": "mycoturgy:sporebrush",
   "category": "mycoturgy:journal",
   "advancement": "mycoturgy:research/obtain_sporebrush",
   "pages": [
     {
       "type": "text",
-      "text": "The$(thing)spores$()I planted have grown, and I have completed my first harvest. It appears that I was right; this thing I have found is$(thing)a plant and a fungus living in harmony$(). I believe I shall call it $(item)Sporebrush$()."
+      "text": "The $(thing)spores$() I planted have grown, and I have completed my first harvest. It appears that I was right; this thing I have found is $(key)a plant and a fungus living in harmony$(). I believe I shall call it $(item)Sporebrush$()."
     },
     {
       "type": "crafting",
       "recipe": "mycoturgy:spore_bundle",
-      "text": "The spores covering the deep blue leaves of this plant are still shining so brightly. They must be full to the brim with energy. I should$(item)bundle$()some leaves together for better storage."
+      "text": "The spores covering the deep blue leaves of this plant are still shining so brightly. They must be full to the brim with energy. I should $(item)bundle$() some leaves together for better storage."
     },
     {
       "type": "campfire",
       "recipe": "mycoturgy:mycoturgy",
       "title": "Campfire Cooking",
-      "text": "Perhaps $(thing)burning these bundles on a open fire$()might do something...$(br)The sporebrush should burn$(thing)quite slowly$(), but about$(thing)a minute$()should be enough to notice a result."
+      "text": "Perhaps $(key)burning these bundles on a open fire$() might do something...$(br)The sporebrush should burn quite slowly, but about $(key)a minute$() should be enough to notice a result."
     }
   ]
 }

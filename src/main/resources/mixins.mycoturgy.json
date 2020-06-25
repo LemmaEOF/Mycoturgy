@@ -7,7 +7,5 @@
     "MixinCampfireBlockEntity",
     "MixinServerWorld",
     "MixinSpawnHelper"
-  ],
-  "client": [
   ]
 }

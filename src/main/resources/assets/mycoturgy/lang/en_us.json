@@ -9,5 +9,7 @@
   "itemGroup.mycoturgy.mycoturgy": "Mycoturge",
   "book.mycoturgy.mycoturgy_journal": "Mycoturge's Journal",
   "text.mycoturgy.journal_intro": "Mycoturgy is the art of working with Sporebrush and Haustor energy.",
+  "text.mycoturgy.hypha_cost": "Hypha Cost",
+  "text.mycoturgy.lamella_cost": "Lamella Cost",
   "msg.mycoturgy.ashes": "Current ashes: %s"
 }

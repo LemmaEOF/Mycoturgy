@@ -15,10 +15,11 @@ import net.minecraft.recipe.RecipeType;
 import net.minecraft.recipe.ShapedRecipe;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonHelper;
+import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
 
 //TODO: any other costs? put ash in the jar maybe?
-public class JarBrewingRecipe implements Recipe<MasonJarInventory> {
+public class JarInfusingRecipe implements Recipe<MasonJarInventory> {
 	private Identifier id;
 	private Ingredient input;
 	private ItemStack output;
@@ -26,7 +27,7 @@ public class JarBrewingRecipe implements Recipe<MasonJarInventory> {
 	private int hyphaCost;
 	private int lamellaCost;
 
-	public JarBrewingRecipe(Identifier id, Ingredient input, ItemStack output, int time, int hyphaCost, int lamellaCost) {
+	public JarInfusingRecipe(Identifier id, Ingredient input, ItemStack output, int time, int hyphaCost, int lamellaCost) {
 		this.id = id;
 		this.input = input;
 		this.output = output;
@@ -64,6 +65,11 @@ public class JarBrewingRecipe implements Recipe<MasonJarInventory> {
 	}
 
 	@Override
+	public DefaultedList<Ingredient> getPreviewInputs() {
+		return DefaultedList.ofSize(1, input);
+	}
+
+	@Override
 	public ItemStack getOutput() {
 		return output;
 	}
@@ -79,39 +85,39 @@ public class JarBrewingRecipe implements Recipe<MasonJarInventory> {
 	}
 
 	@Override
-	public RecipeSerializer<JarBrewingRecipe> getSerializer() {
+	public RecipeSerializer<JarInfusingRecipe> getSerializer() {
 		return MycoturgyRecipes.MASON_JAR_SERIALIZER;
 	}
 
 	@Override
-	public RecipeType<JarBrewingRecipe> getType() {
+	public RecipeType<JarInfusingRecipe> getType() {
 		return MycoturgyRecipes.MASON_JAR_RECIPE;
 	}
 
-	public static class Serializer implements RecipeSerializer<JarBrewingRecipe> {
+	public static class Serializer implements RecipeSerializer<JarInfusingRecipe> {
 
 		@Override
-		public JarBrewingRecipe read(Identifier id, JsonObject json) {
+		public JarInfusingRecipe read(Identifier id, JsonObject json) {
 			Ingredient ing = Ingredient.fromJson(JsonHelper.getObject(json, "ingredient"));
 			ItemStack res = ShapedRecipe.getItemStack(JsonHelper.getObject(json, "result"));
-			int time = JsonHelper.getInt(json, "brewingtime", 400);
+			int time = JsonHelper.getInt(json, "infusingtime", 400);
 			int hypha = JsonHelper.getInt(json, "hyphacost", 0);
-			int lamella = JsonHelper.getInt(json, "lamellalcost", 0);
-			return new JarBrewingRecipe(id, ing, res, time, hypha, lamella);
+			int lamella = JsonHelper.getInt(json, "lamellacost", 0);
+			return new JarInfusingRecipe(id, ing, res, time, hypha, lamella);
 		}
 
 		@Override
-		public JarBrewingRecipe read(Identifier id, PacketByteBuf buf) {
+		public JarInfusingRecipe read(Identifier id, PacketByteBuf buf) {
 			Ingredient ing = Ingredient.fromPacket(buf);
 			ItemStack res = buf.readItemStack();
 			int time = buf.readVarInt();
 			int hypha = buf.readVarInt();
 			int lamella = buf.readVarInt();
-			return new JarBrewingRecipe(id, ing, res, time, hypha, lamella);
+			return new JarInfusingRecipe(id, ing, res, time, hypha, lamella);
 		}
 
 		@Override
-		public void write(PacketByteBuf buf, JarBrewingRecipe recipe) {
+		public void write(PacketByteBuf buf, JarInfusingRecipe recipe) {
 			recipe.input.write(buf);
 			buf.writeItemStack(recipe.output);
 			buf.writeVarInt(recipe.time);

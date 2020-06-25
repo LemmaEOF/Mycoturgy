@@ -6,6 +6,7 @@ import space.bbkr.mycoturgy.Mycoturgy;
 import space.bbkr.mycoturgy.block.CustomCropBlock;
 import space.bbkr.mycoturgy.block.HaustorSequesterBlock;
 import space.bbkr.mycoturgy.block.MasonJarBlock;
+import space.bbkr.mycoturgy.block.ScatteredAshesBlock;
 import space.bbkr.mycoturgy.block.entity.HaustorSequesterBlockEntity;
 import space.bbkr.mycoturgy.block.entity.MasonJarBlockEntity;
 
@@ -26,6 +27,7 @@ public class MycoturgyBlocks {
 	public static Block SPOREBRUSH_CROP;
 	public static Block HAUSTOR_SEQUESTER;
 	public static Block MASON_JAR;
+	public static Block SCATTERED_ASHES;
 
 	public static BlockEntityType<HaustorSequesterBlockEntity> HAUSTOR_SEQUESTER_BLOCK_ENTITY;
 	public static BlockEntityType<MasonJarBlockEntity> MASON_JAR_BLOCK_ENTITY;
@@ -34,6 +36,8 @@ public class MycoturgyBlocks {
 		SPOREBRUSH_CROP = register("sporebrush", new CustomCropBlock(FabricBlockSettings.copyOf(Blocks.WHEAT).breakByHand(true)));
 		HAUSTOR_SEQUESTER = register("haustor_sequester", new HaustorSequesterBlock(FabricBlockSettings.copyOf(Blocks.GRASS).breakByHand(true)), new Item.Settings().group(MycoturgyItems.MYCOTURGY_GROUP));
 		MASON_JAR = register("mason_jar", new MasonJarBlock(FabricBlockSettings.of(Material.GLASS).breakByTool(FabricToolTags.PICKAXES).nonOpaque()), new Item.Settings().group(MycoturgyItems.MYCOTURGY_GROUP));
+		SCATTERED_ASHES = register("scattered_ashes", new ScatteredAshesBlock(FabricBlockSettings.of(Material.SUPPORTED).breakByHand(true).nonOpaque()));
+
 		HAUSTOR_SEQUESTER_BLOCK_ENTITY = register("haustor_sequester", HaustorSequesterBlockEntity::new, HAUSTOR_SEQUESTER);
 		MASON_JAR_BLOCK_ENTITY = register("mason_jar", MasonJarBlockEntity::new, MASON_JAR);
 	}

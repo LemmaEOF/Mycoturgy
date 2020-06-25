@@ -1,0 +1,16 @@
+{
+  "criteria": {
+    "feel_corruption": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "recipes": [
+    ]
+  },
+  "requirements": [
+    [
+      "feel_corruption"
+    ]
+  ]
+}

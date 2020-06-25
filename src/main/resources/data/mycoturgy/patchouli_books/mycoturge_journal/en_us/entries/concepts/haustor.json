@@ -5,7 +5,7 @@
   "pages": [
     {
       "type": "text",
-      "text": "$(thing)Haustor$()is the fundamental system of magic with Mycoturgy. "
+      "text": "$(thing)Haustor$() is the fundamental system of magic with Mycoturgy. There are three forms of Haustor, called $(thing)Primordia$(), $(thing)Hypha$(), and $(thing)Lamella$()."
     }
   ]
 }

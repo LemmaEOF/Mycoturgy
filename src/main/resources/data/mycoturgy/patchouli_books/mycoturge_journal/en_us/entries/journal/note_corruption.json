@@ -1,0 +1,12 @@
+{
+  "name": "Note: Corruption",
+  "icon": "minecraft:netherite",
+  "category": "mycoturgy:journal",
+  "advancement": "mycoturgy:research/feel_corruption",
+  "pages": [
+    {
+      "type": "text",
+      "text": "I see what $(h)She$(/h) meant about an $(item)accursed metal$() now. Even touching this $(item)Netherite$() burns, the pain centered around my $(item)ring$(). The metal is poison to them; and it is now poison to me too.$(br)I must find a $(thing)cure$() to its corruption, but for now I should $(key)avoid any direct contact with the material$()."
+    }
+  ]
+}

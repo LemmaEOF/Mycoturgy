@@ -52,6 +52,16 @@ public class HaustorComponent implements ChunkSyncedComponent<HaustorComponent> 
 		setHypha(hypha + amount);
 	}
 
+	public void spendHypha(int amount) {
+		changeHypha(-amount);
+		changePrimordia(2*amount);
+	}
+
+	public void spawnHypha(int amount) {
+		changeHypha(amount);
+		changePrimordia(-2*amount);
+	}
+
 	public int getLamella() {
 		return lamella;
 	}
@@ -64,6 +74,16 @@ public class HaustorComponent implements ChunkSyncedComponent<HaustorComponent> 
 
 	public void changeLamella(int amount) {
 		setLamella(lamella + amount);
+	}
+
+	public void spendLamella(int amount) {
+		changeLamella(-amount);
+		changeHypha(2*amount);
+	}
+
+	public void spawnLamella(int amount) {
+		changeLamella(amount);
+		changeHypha(-2*amount);
 	}
 
 	@Override

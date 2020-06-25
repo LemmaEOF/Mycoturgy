@@ -1,0 +1,11 @@
+{
+  "type": "mycoturgy:jar_infusing",
+  "ingredient": {
+    "item": "mycoturgy:spore_bundle"
+  },
+  "result": {
+    "item": "mycoturgy:haustoral_band"
+  },
+  "infusingtime": 200,
+  "hyphacost": 10
+}

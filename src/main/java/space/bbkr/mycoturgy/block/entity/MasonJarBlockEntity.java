@@ -8,7 +8,7 @@ import space.bbkr.mycoturgy.component.HaustorComponent;
 import space.bbkr.mycoturgy.init.MycoturgyBlocks;
 import space.bbkr.mycoturgy.init.MycoturgyRecipes;
 import space.bbkr.mycoturgy.inventory.MasonJarInventory;
-import space.bbkr.mycoturgy.recipe.JarBrewingRecipe;
+import space.bbkr.mycoturgy.recipe.JarInfusingRecipe;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
@@ -26,7 +26,7 @@ public class MasonJarBlockEntity extends BlockEntity implements Tickable, BlockE
 	private MasonJarInventory inv = new MasonJarInventory(this);
 	private byte ashes = 0;
 	private int processTime = 0;
-	private JarBrewingRecipe currentRecipe;
+	private JarInfusingRecipe currentRecipe;
 
 	public MasonJarBlockEntity() {
 		super(MycoturgyBlocks.MASON_JAR_BLOCK_ENTITY);
@@ -37,7 +37,7 @@ public class MasonJarBlockEntity extends BlockEntity implements Tickable, BlockE
 		ticks++;
 		if (world == null || world.isClient || !getCachedState().get(MasonJarBlock.FILLED) || ashes <= 0) return;
 		if (currentRecipe == null) {
-			Optional<JarBrewingRecipe> potentialRecipe = this.world.getRecipeManager().getFirstMatch(MycoturgyRecipes.MASON_JAR_RECIPE, inv, this.world);
+			Optional<JarInfusingRecipe> potentialRecipe = this.world.getRecipeManager().getFirstMatch(MycoturgyRecipes.MASON_JAR_RECIPE, inv, this.world);
 			potentialRecipe.ifPresent(jarBrewingRecipe -> currentRecipe = jarBrewingRecipe);
 		} else {
 			if (currentRecipe.matches(inv, world)) {
@@ -89,8 +89,8 @@ public class MasonJarBlockEntity extends BlockEntity implements Tickable, BlockE
 		this.inv.setStack(ItemStack.fromTag(tag.getCompound("Stack")));
 		if (tag.contains("Recipe", NbtType.STRING)) {
 			Optional<? extends Recipe<?>> recipeOpt = this.world.getRecipeManager().get(new Identifier(tag.getString("Recipe")));
-			if (recipeOpt.isPresent() && recipeOpt.get() instanceof JarBrewingRecipe) {
-				this.currentRecipe = (JarBrewingRecipe)recipeOpt.get();
+			if (recipeOpt.isPresent() && recipeOpt.get() instanceof JarInfusingRecipe) {
+				this.currentRecipe = (JarInfusingRecipe)recipeOpt.get();
 			} else {
 				this.currentRecipe = null;
 			}

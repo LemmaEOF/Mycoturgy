@@ -1,0 +1,16 @@
+{
+  "criteria": {
+    "equip_band": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "recipes": [
+    ]
+  },
+  "requirements": [
+    [
+      "equip_band"
+    ]
+  ]
+}
