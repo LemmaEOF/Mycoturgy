@@ -1,5 +1,7 @@
 package space.bbkr.mycoturgy.client.hud;
 
+import java.util.Optional;
+
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 import dev.emi.trinkets.api.TrinketsApi;
@@ -31,11 +33,14 @@ public class HaustorBandHud {
 	public static void render(MatrixStack matrices, float tickDelta) {
 		if (TrinketsApi.getTrinketComponent(client.player).getStack("hand:ring").getItem() == MycoturgyItems.HAUSTORAL_BAND) {
 			matrices.push();
-			HaustorComponent component = Mycoturgy.HAUSTOR_COMPONENT.get(client.player.world.getChunk(client.player.getBlockPos()));
+			Optional<HaustorComponent> componentOpt = Mycoturgy.HAUSTOR_COMPONENT.maybeGet(client.player.world.getChunk(client.player.getBlockPos()));
 			//TODO: real colors - these are just the trion ones right now
-			drawBar(matrices, PRIMORDIA_TEX, 0x7ACFA1, (float) component.getPrimordia(), 1024f, 4, 28);
-			drawBar(matrices, HYPHA_TEX, 0x4D5BB1, (float) component.getHypha(), 512f, 4, 40);
-			drawBar(matrices, LAMELLA_TEX, 0x8B6ECA, (float) component.getLamella(), 256f, 4, 52);
+			if (componentOpt.isPresent()) {
+				HaustorComponent component = componentOpt.get();
+				drawBar(matrices, PRIMORDIA_TEX, 0x7ACFA1, (float) component.getPrimordia(), 1024f, 4, 28);
+				drawBar(matrices, HYPHA_TEX, 0x4D5BB1, (float) component.getHypha(), 512f, 4, 40);
+				drawBar(matrices, LAMELLA_TEX, 0x8B6ECA, (float) component.getLamella(), 256f, 4, 52);
+			}
 			matrices.pop();
 		}
 	}
