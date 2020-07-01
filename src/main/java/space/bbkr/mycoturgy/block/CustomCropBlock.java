@@ -33,6 +33,11 @@ public class CustomCropBlock extends CropBlock {
 	}
 
 	@Override
+	public int getMaxAge() {
+		return 3;
+	}
+
+	@Override
 	public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
 		if (world.getBaseLightLevel(pos, 0) >= 9) {
 			int age = this.getAge(state);

@@ -9,6 +9,7 @@ import vazkii.patchouli.client.book.ClientBookRegistry;
 
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.fluid.Fluids;
+import net.minecraft.util.Identifier;
 
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
@@ -29,8 +30,7 @@ public class MycoturgyClient implements ClientModInitializer {
 		//TODO: change color if ashes in jar?
 		ColorProviderRegistry.BLOCK.register((state, world, pos, index) -> FluidRenderHandlerRegistry.INSTANCE.get(Fluids.WATER).getFluidColor(world, pos, Fluids.WATER.getDefaultState()), MycoturgyBlocks.MASON_JAR);
 		HudRenderCallback.EVENT.register(HaustorBandHud::render);
-		ClientBookRegistry.INSTANCE.pageTypes.put("campfire", PageCampfire.class);
-		ClientBookRegistry.INSTANCE.pageTypes.put("jar_infusing", PageJarInfusing.class);
+		ClientBookRegistry.INSTANCE.pageTypes.put(new Identifier(Mycoturgy.MODID, "jar_infusing"), PageJarInfusing.class);
 		BlockEntityRendererRegistry.INSTANCE.register(MycoturgyBlocks.MASON_JAR_BLOCK_ENTITY, MasonJarBlockEntityRenderer::new);
 	}
 }

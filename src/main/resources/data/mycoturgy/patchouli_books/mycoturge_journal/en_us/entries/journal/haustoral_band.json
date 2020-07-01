@@ -9,7 +9,7 @@
       "text": "I don't understand. Instead of pickling, the $(item)sporebrush$() I placed in the jar has instead $(key)woven itself into a ring$(). Was there more $(thing)influence$() left in those ashes than I thought? I feel the atmosphere's energy dimming. Did it draw from there?$(br)Whatever happened, there is now a $(item)ring$() in my palm. It's woven elegantly, intentionally. This was not a mere act of fate."
     },
     {
-      "type": "jar_infusing",
+      "type": "mycoturgy:jar_infusing",
       "recipe": "mycoturgy:haustoral_band",
       "text": "The $(item)ring$() is calling to me. It's not quite a voice, but more of a feeling. A $(thing)will$(). $(h)Something$(/h) needs help. I need to help it. The $(item)ring$() can give me that power. All I need to do is $(key)put it on$()."
     }
