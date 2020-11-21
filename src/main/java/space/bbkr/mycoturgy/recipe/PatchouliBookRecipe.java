@@ -16,8 +16,8 @@ import net.minecraft.util.JsonHelper;
 import net.minecraft.util.collection.DefaultedList;
 
 public class PatchouliBookRecipe extends ShapelessRecipe {
-	private Identifier book;
-	private String group;
+	private final Identifier book;
+	private final String group;
 
 	public PatchouliBookRecipe(Identifier id, Identifier book, String group, DefaultedList<Ingredient> input) {
 		super(id, group, new ItemStack(PatchouliItems.book), input);

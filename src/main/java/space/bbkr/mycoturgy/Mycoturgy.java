@@ -31,7 +31,8 @@ public class Mycoturgy implements ModInitializer {
 		MycoturgyBlocks.init();
 		MycoturgyItems.init();
 		MycoturgyRecipes.init();
-		TrinketSlots.addSlot(SlotGroups.HAND, Slots.RING, new Identifier("trinkets", "textures/item/empty_trinket_slot_ring.png"));
+		TrinketSlots.addSlot(SlotGroups.HAND, Slots.RING, new Identifier("trinkets",
+				"textures/item/empty_trinket_slot_ring.png"));
 
 		LootTableLoadingCallback.EVENT.register((resourceManager, lootManager, id, builder, table) -> {
 			if (id.equals(new Identifier("blocks/grass"))) {

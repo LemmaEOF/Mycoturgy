@@ -21,12 +21,12 @@ import net.minecraft.world.World;
 
 //TODO: any other costs? put ash in the jar maybe?
 public class JarInfusingRecipe implements Recipe<MasonJarInventory> {
-	private Identifier id;
-	private Ingredient input;
-	private ItemStack output;
-	private int time;
-	private int hyphaCost;
-	private int lamellaCost;
+	private final Identifier id;
+	private final Ingredient input;
+	private final ItemStack output;
+	private final int time;
+	private final int hyphaCost;
+	private final int lamellaCost;
 
 	public JarInfusingRecipe(Identifier id, Ingredient input, ItemStack output, int time, int hyphaCost, int lamellaCost) {
 		this.id = id;

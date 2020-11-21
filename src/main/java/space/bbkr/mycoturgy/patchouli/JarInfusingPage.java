@@ -16,10 +16,10 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 
 @Environment(EnvType.CLIENT)
-public class PageJarInfusing extends PageDoubleRecipeRegistry<JarInfusingRecipe> {
+public class JarInfusingPage extends PageDoubleRecipeRegistry<JarInfusingRecipe> {
 	private static final Identifier CUSTOM_CRAFTING_TEXTURE = new Identifier(Mycoturgy.MODID, "textures/gui/custom_crafting.png");
 
-	public PageJarInfusing() {
+	public JarInfusingPage() {
 		super(MycoturgyRecipes.MASON_JAR_RECIPE);
 	}
 

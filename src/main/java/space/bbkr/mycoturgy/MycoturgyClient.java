@@ -3,8 +3,7 @@ package space.bbkr.mycoturgy;
 import space.bbkr.mycoturgy.client.hud.HaustorBandHud;
 import space.bbkr.mycoturgy.client.render.MasonJarBlockEntityRenderer;
 import space.bbkr.mycoturgy.init.MycoturgyBlocks;
-import space.bbkr.mycoturgy.patchouli.PageCampfire;
-import space.bbkr.mycoturgy.patchouli.PageJarInfusing;
+import space.bbkr.mycoturgy.patchouli.JarInfusingPage;
 import vazkii.patchouli.client.book.ClientBookRegistry;
 
 import net.minecraft.client.render.RenderLayer;
@@ -30,7 +29,7 @@ public class MycoturgyClient implements ClientModInitializer {
 		//TODO: change color if ashes in jar?
 		ColorProviderRegistry.BLOCK.register((state, world, pos, index) -> FluidRenderHandlerRegistry.INSTANCE.get(Fluids.WATER).getFluidColor(world, pos, Fluids.WATER.getDefaultState()), MycoturgyBlocks.MASON_JAR);
 		HudRenderCallback.EVENT.register(HaustorBandHud::render);
-		ClientBookRegistry.INSTANCE.pageTypes.put(new Identifier(Mycoturgy.MODID, "jar_infusing"), PageJarInfusing.class);
+		ClientBookRegistry.INSTANCE.pageTypes.put(new Identifier(Mycoturgy.MODID, "jar_infusing"), JarInfusingPage.class);
 		BlockEntityRendererRegistry.INSTANCE.register(MycoturgyBlocks.MASON_JAR_BLOCK_ENTITY, MasonJarBlockEntityRenderer::new);
 	}
 }
