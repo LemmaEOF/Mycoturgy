@@ -10,6 +10,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import space.bbkr.mycoturgy.Mycoturgy;
 import space.bbkr.mycoturgy.component.HaustorComponent;
 import space.bbkr.mycoturgy.init.MycoturgyBlocks;
+import space.bbkr.mycoturgy.init.MycoturgyComponents;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.entity.BlockEntity;
@@ -32,18 +33,18 @@ public abstract class MixinServerWorld extends World {
 
 	@Shadow public abstract void updateNeighbors(BlockPos pos, Block block);
 
-	protected MixinServerWorld(MutableWorldProperties mutableWorldProperties, RegistryKey<World> registryKey, RegistryKey<DimensionType> registryKey2, DimensionType dimensionType, Supplier<Profiler> profiler, boolean bl, boolean bl2, long l) {
-		super(mutableWorldProperties, registryKey, registryKey2, dimensionType, profiler, bl, bl2, l);
+	protected MixinServerWorld(MutableWorldProperties properties, RegistryKey<World> registryRef, DimensionType dimensionType, Supplier<Profiler> profiler, boolean isClient, boolean debugWorld, long seed) {
+		super(properties, registryRef, dimensionType, profiler, isClient, debugWorld, seed);
 	}
 
 	//TODO: is it possible to have this *not* be a cellular automoton, or otherwise optimize this further?
 	@Inject(method = "tickChunk", at = @At("TAIL"))
 	private void tickHaustor(WorldChunk chunk, int randomTickSpeed, CallbackInfo info) {
-		this.getWorld().getProfiler().push("haustor");
+		this.getProfiler().push("haustor");
 		if (this.random.nextInt(1000) < Mycoturgy.HAUSTOR_TICK_SPEED) {
 			int sequesters = getSequesterCount(chunk);
 			ChunkPos pos = chunk.getPos();
-			HaustorComponent selfComp = Mycoturgy.HAUSTOR_COMPONENT.get(chunk);
+			HaustorComponent selfComp = MycoturgyComponents.HAUSTOR_COMPONENT.get(chunk);
 			if (selfComp.getHypha() > (sequesters * 10) + 1) {
 				if (this.random.nextInt(6) == 0) {
 					selfComp.changeHypha(-1);
@@ -51,7 +52,7 @@ public abstract class MixinServerWorld extends World {
 				}
 				for (int i = 0; i < 8; i += 2) {
 					if (this.isChunkLoaded(pos.x + OFFSETS[i], pos.z + OFFSETS[i + 1])) {
-						HaustorComponent otherComp = Mycoturgy.HAUSTOR_COMPONENT.get(
+						HaustorComponent otherComp = MycoturgyComponents.HAUSTOR_COMPONENT.get(
 								this.getChunk(pos.x + OFFSETS[i], pos.z + OFFSETS[i + 1])
 						);
 						if (selfComp.getHypha() > otherComp.getHypha() + 1) { //to avoid fluctuations
@@ -66,7 +67,7 @@ public abstract class MixinServerWorld extends World {
 				selfComp.changeHypha(2);
 			}
 		}
-		this.getWorld().getProfiler().pop();
+		this.getProfiler().pop();
 	}
 
 	private static int getSequesterCount(WorldChunk chunk) {

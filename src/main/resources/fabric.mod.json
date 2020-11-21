@@ -30,6 +30,9 @@
       "strategy": "github",
       "owner": "Boundarybreaker",
       "repository": "Mycoturgy"
-    }
+    },
+    "cardinal-components": [
+      "mycoturgy:haustor"
+    ]
   }
 }

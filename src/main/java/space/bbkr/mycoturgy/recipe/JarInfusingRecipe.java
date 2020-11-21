@@ -3,6 +3,7 @@ package space.bbkr.mycoturgy.recipe;
 import com.google.gson.JsonObject;
 import space.bbkr.mycoturgy.Mycoturgy;
 import space.bbkr.mycoturgy.component.HaustorComponent;
+import space.bbkr.mycoturgy.init.MycoturgyComponents;
 import space.bbkr.mycoturgy.init.MycoturgyRecipes;
 import space.bbkr.mycoturgy.inventory.MasonJarInventory;
 
@@ -50,7 +51,7 @@ public class JarInfusingRecipe implements Recipe<MasonJarInventory> {
 
 	@Override
 	public boolean matches(MasonJarInventory inv, World world) {
-		HaustorComponent component = Mycoturgy.HAUSTOR_COMPONENT.get(world.getChunk(inv.getPos()));
+		HaustorComponent component = MycoturgyComponents.HAUSTOR_COMPONENT.get(world.getChunk(inv.getPos()));
 		return input.test(inv.getStack()) && component.getHypha() >= hyphaCost && component.getLamella() >= lamellaCost;
 	}
 

@@ -7,6 +7,7 @@ import space.bbkr.mycoturgy.Mycoturgy;
 import space.bbkr.mycoturgy.block.MasonJarBlock;
 import space.bbkr.mycoturgy.component.HaustorComponent;
 import space.bbkr.mycoturgy.init.MycoturgyBlocks;
+import space.bbkr.mycoturgy.init.MycoturgyComponents;
 import space.bbkr.mycoturgy.init.MycoturgyRecipes;
 import space.bbkr.mycoturgy.inventory.MasonJarInventory;
 import space.bbkr.mycoturgy.recipe.JarInfusingRecipe;
@@ -53,7 +54,7 @@ public class MasonJarBlockEntity extends BlockEntity implements Tickable, BlockE
 				processTime++;
 				if (processTime % 10 == 0) ((ServerWorld)world).spawnParticles(ParticleTypes.BUBBLE, jarPos.x + random.nextDouble() * (1/8D) * (double)(random.nextBoolean() ? 1 : -1), jarPos.y + random.nextDouble() * (3/8D), jarPos.z + random.nextDouble() * (1/8D) * (double)(random.nextBoolean() ? 1 : -1), random.nextInt(5), 0.0, 0.1, 0.0, 0.1);
 				if (processTime >= currentRecipe.getTime()) {
-					HaustorComponent component = Mycoturgy.HAUSTOR_COMPONENT.get(world.getChunk(this.pos));
+					HaustorComponent component = MycoturgyComponents.HAUSTOR_COMPONENT.get(world.getChunk(this.pos));
 					component.changeHypha(currentRecipe.getHyphaCost() * -1);
 					component.changePrimordia(currentRecipe.getHyphaCost() * 2);
 					component.changeLamella(currentRecipe.getLamellaCost() * -1);

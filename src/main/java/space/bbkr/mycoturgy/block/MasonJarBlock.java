@@ -20,6 +20,7 @@ import net.minecraft.particle.ParticleTypes;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionUtil;
 import net.minecraft.potion.Potions;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
@@ -114,7 +115,7 @@ public class MasonJarBlock extends Block implements BlockEntityProvider {
 	}
 
 	@Override
-	public void onStacksDropped(BlockState state, World world, BlockPos pos, ItemStack stack) {
+	public void onStacksDropped(BlockState state, ServerWorld world, BlockPos pos, ItemStack stack) {
 		super.onStacksDropped(state, world, pos, stack);
 		BlockEntity be = world.getBlockEntity(pos);
 		if (be instanceof MasonJarBlockEntity && !world.isClient) {

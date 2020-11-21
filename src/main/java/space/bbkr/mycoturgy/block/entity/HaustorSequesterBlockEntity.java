@@ -8,5 +8,5 @@ public class HaustorSequesterBlockEntity extends BlockEntity {
 	public HaustorSequesterBlockEntity() {
 		super(MycoturgyBlocks.HAUSTOR_SEQUESTER_BLOCK_ENTITY);
 	}
-	//TODO: do we want to actually store haustor here?
+	//TODO: do we want to actually store haustor here? Or is it just for bookkeeping?
 }

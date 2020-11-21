@@ -8,6 +8,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import space.bbkr.mycoturgy.Mycoturgy;
 import space.bbkr.mycoturgy.component.HaustorComponent;
+import space.bbkr.mycoturgy.init.MycoturgyComponents;
 
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
@@ -21,7 +22,7 @@ public class MixinSpawnHelper {
 	@Inject(method = "canSpawn(Lnet/minecraft/entity/SpawnRestriction$Location;Lnet/minecraft/world/WorldView;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/entity/EntityType;)Z", at = @At("HEAD"), cancellable = true)
 	private static void blockSpawns(SpawnRestriction.Location location, WorldView world, BlockPos pos, @Nullable EntityType<?> type, CallbackInfoReturnable<Boolean> info) {
 		if (type != null && type.getSpawnGroup() == SpawnGroup.MONSTER) {
-			HaustorComponent component = Mycoturgy.HAUSTOR_COMPONENT.get(world.getChunk(pos));
+			HaustorComponent component = MycoturgyComponents.HAUSTOR_COMPONENT.get(world.getChunk(pos));
 			if (component.getLamella() >= 64) {
 				info.setReturnValue(false);
 			}

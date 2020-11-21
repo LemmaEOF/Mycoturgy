@@ -28,7 +28,13 @@ public class MixinCampfireBlock {
 			CampfireBlockEntity campfire = (CampfireBlockEntity)be;
 			for (ItemStack stack : campfire.getItemsBeingCooked()) {
 				if (stack.getItem() == MycoturgyItems.SPORE_BUNDLE) {
-					world.addParticle(ParticleTypes.WITCH, (double)pos.getX() + 0.5D + random.nextDouble() / 3.0D * (double)(random.nextBoolean() ? 1 : -1), (double)pos.getY() + random.nextDouble() + random.nextDouble(), (double)pos.getZ() + 0.5D + random.nextDouble() / 3.0D * (double)(random.nextBoolean() ? 1 : -1), 0.0D, 0.07D, 0.0D);
+					world.addParticle(ParticleTypes.WITCH,
+							(double)pos.getX() + 0.5D + random.nextDouble() / 3.0D * (double)(random.nextBoolean() ? 1 : -1),
+							(double)pos.getY() + random.nextDouble() + random.nextDouble(),
+							(double)pos.getZ() + 0.5D + random.nextDouble() / 3.0D * (double)(random.nextBoolean() ? 1 : -1),
+							0.0D,
+							0.07D,
+							0.0D);
 				}
 			}
 		}

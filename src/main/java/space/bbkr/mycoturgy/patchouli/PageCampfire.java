@@ -8,7 +8,6 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.CampfireCookingRecipe;
 import net.minecraft.recipe.RecipeType;
-import net.minecraft.text.StringRenderable;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -24,7 +23,7 @@ public class PageCampfire extends PageDoubleRecipeRegistry<CampfireCookingRecipe
 		this.mc.getTextureManager().bindTexture(this.book.craftingTexture);
 		RenderSystem.enableBlend();
 		DrawableHelper.drawTexture(ms, recipeX, recipeY, 11.0F, 71.0F, 96, 24, 128, 128);
-		this.parent.drawCenteredStringNoShadow(ms, this.getTitle(second), 58, recipeY - 10, this.book.headerColor);
+		this.parent.drawCenteredStringNoShadow(ms, this.getTitle(second).asOrderedText(), 58, recipeY - 10, this.book.headerColor);
 		this.parent.renderIngredient(ms, recipeX + 4, recipeY + 4, mouseX, mouseY, recipe.getPreviewInputs().get(0));
 		this.parent.renderItemStack(ms, recipeX + 76, recipeY + 4, mouseX, mouseY, recipe.getOutput());
 	}

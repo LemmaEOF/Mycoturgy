@@ -7,13 +7,13 @@ import java.util.Random;
 import dev.emi.trinkets.api.TrinketsApi;
 import space.bbkr.mycoturgy.Mycoturgy;
 import space.bbkr.mycoturgy.component.HaustorComponent;
+import space.bbkr.mycoturgy.init.MycoturgyComponents;
 import space.bbkr.mycoturgy.init.MycoturgyItems;
 
 import net.minecraft.advancement.Advancement;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.block.MushroomPlantBlock;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -34,7 +34,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
-import net.minecraft.world.gen.feature.DefaultBiomeFeatures;
+import net.minecraft.world.gen.feature.ConfiguredFeatures;
 import net.minecraft.world.gen.feature.Feature;
 
 public class ScatteredAshesBlock extends Block {
@@ -59,7 +59,7 @@ public class ScatteredAshesBlock extends Block {
 			BlockState down = world.getBlockState(pos.down());
 			if (SPELLS.containsKey(down.getBlock())) {
 				Spell spell = SPELLS.get(down.getBlock());
-				if (spell.perform(down, (ServerWorld)world, pos.down(), player, Mycoturgy.HAUSTOR_COMPONENT.get(world.getChunk(pos)))) {
+				if (spell.perform(down, (ServerWorld)world, pos.down(), player, MycoturgyComponents.HAUSTOR_COMPONENT.get(world.getChunk(pos)))) {
 					world.playSound(null, pos, SoundEvents.ITEM_FIRECHARGE_USE, SoundCategory.BLOCKS, 1f, 1f);
 					if (world.getBlockState(pos).equals(state)) world.breakBlock(pos, false);
 					MinecraftServer server = player.world.getServer();
@@ -95,8 +95,8 @@ public class ScatteredAshesBlock extends Block {
 				BlockState upState = world.getBlockState(upPos);
 				world.setBlockState(upPos, Blocks.AIR.getDefaultState());
 				System.out.println(world.getBlockState(upPos));
-				ConfiguredFeature<?, ?> feature = random.nextBoolean()? Feature.HUGE_BROWN_MUSHROOM.configure(DefaultBiomeFeatures.HUGE_BROWN_MUSHROOM_CONFIG) : Feature.HUGE_RED_MUSHROOM.configure(DefaultBiomeFeatures.HUGE_RED_MUSHROOM_CONFIG);
-				if (feature.generate(world, world.getStructureAccessor(), world.getChunkManager().getChunkGenerator(), random, upPos)) {
+				ConfiguredFeature<?, ?> feature = random.nextBoolean()? ConfiguredFeatures.HUGE_BROWN_MUSHROOM : ConfiguredFeatures.HUGE_RED_MUSHROOM;
+				if (feature.generate(world, world.getChunkManager().getChunkGenerator(), random, upPos)) {
 					world.setBlockState(pos, Blocks.MYCELIUM.getDefaultState());
 					for (int i = -2; i <=2; i++) {
 						for (int j = -2; j <= 2; j++) {

@@ -8,6 +8,7 @@ import dev.emi.trinkets.api.TrinketsApi;
 import org.lwjgl.opengl.GL11;
 import space.bbkr.mycoturgy.Mycoturgy;
 import space.bbkr.mycoturgy.component.HaustorComponent;
+import space.bbkr.mycoturgy.init.MycoturgyComponents;
 import space.bbkr.mycoturgy.init.MycoturgyItems;
 
 import net.minecraft.client.MinecraftClient;
@@ -33,7 +34,7 @@ public class HaustorBandHud {
 	public static void render(MatrixStack matrices, float tickDelta) {
 		if (TrinketsApi.getTrinketComponent(client.player).getStack("hand:ring").getItem() == MycoturgyItems.HAUSTORAL_BAND) {
 			matrices.push();
-			Optional<HaustorComponent> componentOpt = Mycoturgy.HAUSTOR_COMPONENT.maybeGet(client.player.world.getChunk(client.player.getBlockPos()));
+			Optional<HaustorComponent> componentOpt = MycoturgyComponents.HAUSTOR_COMPONENT.maybeGet(client.player.world.getChunk(client.player.getBlockPos()));
 			//TODO: real colors - these are just the trion ones right now
 			if (componentOpt.isPresent()) {
 				HaustorComponent component = componentOpt.get();
