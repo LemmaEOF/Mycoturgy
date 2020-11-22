@@ -17,6 +17,9 @@
     ],
     "client": [
       "space.bbkr.mycoturgy.MycoturgyClient"
+    ],
+    "cardinal-components-chunk": [
+      "space.bbkr.mycoturgy.init.MycoturgyComponents"
     ]
   },
   "mixins": [

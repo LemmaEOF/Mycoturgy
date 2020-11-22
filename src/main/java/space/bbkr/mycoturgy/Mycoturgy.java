@@ -8,6 +8,7 @@ import org.apache.logging.log4j.Logger;
 import space.bbkr.mycoturgy.init.MycoturgyBlocks;
 import space.bbkr.mycoturgy.init.MycoturgyItems;
 import space.bbkr.mycoturgy.init.MycoturgyRecipes;
+import space.bbkr.mycoturgy.init.MycoturgyEffects;
 
 import net.minecraft.loot.condition.RandomChanceLootCondition;
 import net.minecraft.loot.entry.ItemEntry;
@@ -31,6 +32,7 @@ public class Mycoturgy implements ModInitializer {
 		MycoturgyBlocks.init();
 		MycoturgyItems.init();
 		MycoturgyRecipes.init();
+		MycoturgyEffects.init();
 		TrinketSlots.addSlot(SlotGroups.HAND, Slots.RING, new Identifier("trinkets",
 				"textures/item/empty_trinket_slot_ring.png"));
 

@@ -13,7 +13,7 @@
       "item": "mycoturgy:glimmering_spores",
       "title": "Glimmering Spores",
       "link_recipe": false,
-      "text": "I must $(key)plant$() these as soon as I can. These might grow well in $(item)mycelium$() or $(item)podzol$()..."
+      "text": "I must $(key)plant$() these as soon as I can. These might grow well in $(key)places mushrooms can sprout$()..."
     }
   ]
 }

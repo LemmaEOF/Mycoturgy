@@ -11,6 +11,7 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.state.property.Properties;
+import net.minecraft.tag.BlockTags;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
@@ -64,7 +65,7 @@ public class CustomCropBlock extends CropBlock {
 
 	@Override
 	protected boolean canPlantOnTop(BlockState floor, BlockView world, BlockPos pos) {
-		return floor.isOf(Blocks.MYCELIUM) || floor.isOf(Blocks.PODZOL);
+		return floor.isIn(BlockTags.MUSHROOM_GROW_BLOCK);
 	}
 
 }
