@@ -4,7 +4,9 @@ import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import space.bbkr.mycoturgy.Mycoturgy;
 import space.bbkr.mycoturgy.init.MycoturgyEffects;
 
@@ -28,6 +30,22 @@ public abstract class MixinInGameHud extends DrawableHelper {
 	@Shadow protected abstract PlayerEntity getCameraPlayer();
 
 	@Shadow @Final private MinecraftClient client;
+
+	@Shadow public abstract int getTicks();
+
+	private int currentFrame;
+	private int drawnFrame;
+	private int lastTick;
+
+	@Inject(method = "renderStatusBars", at = @At("HEAD"))
+	private void updateTicks(MatrixStack matrices, CallbackInfo info) {
+		if (lastTick < getTicks() && getTicks() % 2 == 0) {
+			lastTick = getTicks();
+			currentFrame++;
+			currentFrame %= 7;
+		}
+		drawnFrame = currentFrame;
+	}
 
 	/**
 	 * @author LemmaEOF
@@ -57,8 +75,10 @@ public abstract class MixinInGameHud extends DrawableHelper {
 		PlayerEntity player = this.getCameraPlayer(); //already checked non-null because we're a mixin
 		if (player.hasStatusEffect(MycoturgyEffects.GRIEF)) {
 			this.client.getTextureManager().bindTexture(MYCOTURGY_ICONS_TEXTURE);
-			this.drawTexture(matrices, x, y - 3, 0, 0, 9, 13);
+			this.drawTexture(matrices, x, y - 3, 9 * drawnFrame, 0, 9, 13);
 			this.client.getTextureManager().bindTexture(GUI_ICONS_TEXTURE);
+			drawnFrame += 4;
+			drawnFrame %= 7;
 		} else {
 			this.drawTexture(matrices, x, y, u, v, width, height);
 		}
