@@ -27,15 +27,19 @@ import net.fabricmc.api.Environment;
 public abstract class MixinInGameHud extends DrawableHelper {
 	private static final Identifier MYCOTURGY_ICONS_TEXTURE = new Identifier(Mycoturgy.MODID, "textures/gui/icons.png");
 
+	private static final int[] fuckery = new int[]{4, 2, 3, 4, 5, 3, 6}; //used for making there not be waves in the fire
+
 	@Shadow protected abstract PlayerEntity getCameraPlayer();
 
 	@Shadow @Final private MinecraftClient client;
 
 	@Shadow public abstract int getTicks();
 
+	@Shadow private int scaledWidth;
 	private int currentFrame;
 	private int drawnFrame;
 	private int lastTick;
+	private int currentHeart;
 
 	@Inject(method = "renderStatusBars", at = @At("HEAD"))
 	private void updateTicks(MatrixStack matrices, CallbackInfo info) {
@@ -45,6 +49,7 @@ public abstract class MixinInGameHud extends DrawableHelper {
 			currentFrame %= 7;
 		}
 		drawnFrame = currentFrame;
+		currentHeart = 0;
 	}
 
 	/**
@@ -76,8 +81,10 @@ public abstract class MixinInGameHud extends DrawableHelper {
 		if (player.hasStatusEffect(MycoturgyEffects.GRIEF)) {
 			this.client.getTextureManager().bindTexture(MYCOTURGY_ICONS_TEXTURE);
 			this.drawTexture(matrices, x, y - 3, 9 * drawnFrame, 0, 9, 13);
+//			this.drawTexture(matrices, x, y - 3, 9 * ((lastTick / 2 % x + currentFrame) % 7), 0, 9, 13);
 			this.client.getTextureManager().bindTexture(GUI_ICONS_TEXTURE);
-			drawnFrame += 4;
+			drawnFrame += fuckery[currentHeart % 7];
+			currentHeart++;
 			drawnFrame %= 7;
 		} else {
 			this.drawTexture(matrices, x, y, u, v, width, height);

@@ -12,7 +12,7 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
 
 public class GriefStatusEffect extends StatusEffect {
-	private static final Identifier FEEL_CORRUPTION = new Identifier(Mycoturgy.MODID, "research/feel_corruption");
+	private static final Identifier FEEL_CORRUPTION = new Identifier(Mycoturgy.MODID, "research/feel_grief");
 
 	public GriefStatusEffect(StatusEffectType type, int color) {
 		super(type, color);
@@ -26,17 +26,17 @@ public class GriefStatusEffect extends StatusEffect {
 	@Override
 	public void applyUpdateEffect(LivingEntity player, int amplifier) {
 		if (player instanceof ServerPlayerEntity) {
-			player.damage(CorruptionDamageSource.INSTANCE, 1f);
+			player.damage(GriefDamageSource.INSTANCE, 1f);
 			MinecraftServer server = player.world.getServer();
 			Advancement advancement = server.getAdvancementLoader().get(FEEL_CORRUPTION);
-			server.getPlayerManager().getAdvancementTracker((ServerPlayerEntity) player).grantCriterion(advancement, "feel_corruption");
+			server.getPlayerManager().getAdvancementTracker((ServerPlayerEntity) player).grantCriterion(advancement, "feel_grief");
 		}
 	}
 
-	public static class CorruptionDamageSource extends DamageSource {
-		public static final CorruptionDamageSource INSTANCE = new CorruptionDamageSource();
+	public static class GriefDamageSource extends DamageSource {
+		public static final GriefDamageSource INSTANCE = new GriefDamageSource();
 
-		private CorruptionDamageSource() {
+		private GriefDamageSource() {
 			super("mycoturgy.grief");
 			this.setBypassesArmor();
 			this.setUnblockable();

@@ -1,6 +1,6 @@
 {
   "criteria": {
-    "feel_corruption": {
+    "feel_grief": {
       "trigger": "minecraft:impossible"
     }
   },
@@ -10,7 +10,7 @@
   },
   "requirements": [
     [
-      "feel_corruption"
+      "feel_grief"
     ]
   ]
 }
