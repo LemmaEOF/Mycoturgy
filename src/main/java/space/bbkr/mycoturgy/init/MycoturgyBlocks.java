@@ -9,6 +9,7 @@ import space.bbkr.mycoturgy.block.CustomCropBlock;
 import space.bbkr.mycoturgy.block.HaustorSequesterBlock;
 import space.bbkr.mycoturgy.block.MasonJarBlock;
 import space.bbkr.mycoturgy.block.ScatteredAshesBlock;
+import space.bbkr.mycoturgy.block.entity.CookingPotBlockEntity;
 import space.bbkr.mycoturgy.block.entity.HaustorSequesterBlockEntity;
 import space.bbkr.mycoturgy.block.entity.MasonJarBlockEntity;
 
@@ -38,6 +39,7 @@ public class MycoturgyBlocks {
 
 	public static BlockEntityType<HaustorSequesterBlockEntity> HAUSTOR_SEQUESTER_BLOCK_ENTITY;
 	public static BlockEntityType<MasonJarBlockEntity> MASON_JAR_BLOCK_ENTITY;
+	public static BlockEntityType<CookingPotBlockEntity> COOKING_POT_BLOCK_ENTITY;
 
 	public static Tag<Block> SPELL_CASTABLE;
 
@@ -51,6 +53,7 @@ public class MycoturgyBlocks {
 
 		HAUSTOR_SEQUESTER_BLOCK_ENTITY = register("haustor_sequester", HaustorSequesterBlockEntity::new, HAUSTOR_SEQUESTER);
 		MASON_JAR_BLOCK_ENTITY = register("mason_jar", MasonJarBlockEntity::new, MASON_JAR);
+		COOKING_POT_BLOCK_ENTITY = register("cooking_pot", CookingPotBlockEntity::new, COOKING_POT);
 
 		SPELL_CASTABLE = TagRegistry.block(new Identifier(Mycoturgy.MODID, "spell_castable"));
 	}

@@ -7,7 +7,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 
 public class MasonJarInventory extends SimpleInventory {
-	private MasonJarBlockEntity parent;
+	private final MasonJarBlockEntity parent;
 
 	public MasonJarInventory(MasonJarBlockEntity parent) {
 		super(1);
