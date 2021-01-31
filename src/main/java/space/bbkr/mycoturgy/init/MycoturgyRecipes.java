@@ -3,6 +3,7 @@ package space.bbkr.mycoturgy.init;
 
 import space.bbkr.mycoturgy.Mycoturgy;
 import space.bbkr.mycoturgy.recipe.JarInfusingRecipe;
+import space.bbkr.mycoturgy.recipe.NetheriteCleaningRecipe;
 import space.bbkr.mycoturgy.recipe.PatchouliBookRecipe;
 import space.bbkr.mycoturgy.recipe.PotCookingRecipe;
 
@@ -16,12 +17,16 @@ public class MycoturgyRecipes {
 	public static RecipeType<JarInfusingRecipe> MASON_JAR_RECIPE;
 	public static RecipeType<PotCookingRecipe> POT_COOKING_RECIPE;
 	public static RecipeSerializer<JarInfusingRecipe> MASON_JAR_SERIALIZER;
-	public static RecipeSerializer<PatchouliBookRecipe> PATCHOULI_BOOK_SERIALZIER;
+	public static RecipeSerializer<PotCookingRecipe> POT_COOKING_SERIALIZER;
+	public static RecipeSerializer<NetheriteCleaningRecipe> NETHERITE_CLEANING_SERIALIZER;
+	public static RecipeSerializer<PatchouliBookRecipe> PATCHOULI_BOOK_SERIALZIER; //TODO: custom item instead of NBT fucekry
 
 	public static void init() {
 		MASON_JAR_RECIPE = register("jar_infusing");
 		POT_COOKING_RECIPE = register("pot_cooking");
 		MASON_JAR_SERIALIZER = register("jar_infusing", new JarInfusingRecipe.Serializer());
+		POT_COOKING_SERIALIZER = register("pot_cooking", new PotCookingRecipe.Serializer());
+		NETHERITE_CLEANING_SERIALIZER = register("netherite_cleaning", new NetheriteCleaningRecipe.Serializer());
 		PATCHOULI_BOOK_SERIALZIER = Registry.register(Registry.RECIPE_SERIALIZER, new Identifier(Mycoturgy.MODID, "patchouli_book"), new PatchouliBookRecipe.Serializer());
 	}
 

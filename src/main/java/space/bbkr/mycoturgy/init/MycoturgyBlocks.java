@@ -36,6 +36,7 @@ public class MycoturgyBlocks {
 	public static Block SCATTERED_ASHES;
 	public static Block TEST_BOUNCE_PAD;
 	public static Block COOKING_POT;
+	public static Block PADDLE_RHIZOME;
 
 	public static BlockEntityType<HaustorSequesterBlockEntity> HAUSTOR_SEQUESTER_BLOCK_ENTITY;
 	public static BlockEntityType<MasonJarBlockEntity> MASON_JAR_BLOCK_ENTITY;
@@ -49,7 +50,9 @@ public class MycoturgyBlocks {
 		MASON_JAR = register("mason_jar", new MasonJarBlock(FabricBlockSettings.of(Material.GLASS).breakByTool(FabricToolTags.PICKAXES).nonOpaque()), new Item.Settings().group(MycoturgyItems.MYCOTURGY_GROUP));
 		SCATTERED_ASHES = register("scattered_ashes", new ScatteredAshesBlock(FabricBlockSettings.of(Material.SUPPORTED).breakByHand(true).breakInstantly().nonOpaque().noCollision().sounds(BlockSoundGroup.SAND)));
 		TEST_BOUNCE_PAD = register("test_bounce_pad", new BouncePadBlock(1.5, FabricBlockSettings.of(Material.ORGANIC_PRODUCT)), new Item.Settings().group(MycoturgyItems.MYCOTURGY_GROUP));
-		COOKING_POT = register("cooking_pot", new CookingPotBlock(FabricBlockSettings.of(Material.METAL)), new Item.Settings().group(MycoturgyItems.MYCOTURGY_GROUP));
+		COOKING_POT = register("cooking_pot", new CookingPotBlock(FabricBlockSettings.of(Material.METAL).strength(0.5F).breakByTool(FabricToolTags.PICKAXES).nonOpaque()), new Item.Settings().group(MycoturgyItems.MYCOTURGY_GROUP));
+		//thanks lovelymimic for the request!
+		PADDLE_RHIZOME = register("paddle_rhizome", new Block(FabricBlockSettings.of(Material.ORGANIC_PRODUCT)), new Item.Settings().group(MycoturgyItems.MYCOTURGY_GROUP));
 
 		HAUSTOR_SEQUESTER_BLOCK_ENTITY = register("haustor_sequester", HaustorSequesterBlockEntity::new, HAUSTOR_SEQUESTER);
 		MASON_JAR_BLOCK_ENTITY = register("mason_jar", MasonJarBlockEntity::new, MASON_JAR);

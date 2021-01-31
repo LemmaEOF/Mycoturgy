@@ -8,6 +8,7 @@
   "mixins": [
     "MixinCampfireBlock",
     "MixinCampfireBlockEntity",
+    "MixinFlowableFluid",
     "MixinServerWorld",
     "MixinSpawnHelper"
   ],

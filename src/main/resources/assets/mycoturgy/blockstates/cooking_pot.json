@@ -1,5 +1,6 @@
 {
   "variants": {
-    "": { "model": "mycoturgy:block/cooking_pot" }
+    "filled=false": { "model": "mycoturgy:block/cooking_pot" },
+    "filled=true": { "model": "mycoturgy:block/cooking_pot_full" }
   }
 }

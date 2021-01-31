@@ -1,6 +1,7 @@
 package space.bbkr.mycoturgy;
 
 import space.bbkr.mycoturgy.client.hud.HaustorBandHud;
+import space.bbkr.mycoturgy.client.render.CookingPotBlockEntityRenderer;
 import space.bbkr.mycoturgy.client.render.MasonJarBlockEntityRenderer;
 import space.bbkr.mycoturgy.init.MycoturgyBlocks;
 import space.bbkr.mycoturgy.patchouli.JarInfusingPage;
@@ -25,11 +26,12 @@ public class MycoturgyClient implements ClientModInitializer {
 	@Override
 	public void onInitializeClient() {
 		BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(), MycoturgyBlocks.SPOREBRUSH_CROP, MycoturgyBlocks.HAUSTOR_SEQUESTER, MycoturgyBlocks.SCATTERED_ASHES);
-		BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getTranslucent(), MycoturgyBlocks.MASON_JAR);
+		BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getTranslucent(), MycoturgyBlocks.MASON_JAR, MycoturgyBlocks.COOKING_POT);
 		//TODO: change color if ashes in jar?
-		ColorProviderRegistry.BLOCK.register((state, world, pos, index) -> FluidRenderHandlerRegistry.INSTANCE.get(Fluids.WATER).getFluidColor(world, pos, Fluids.WATER.getDefaultState()), MycoturgyBlocks.MASON_JAR);
+		ColorProviderRegistry.BLOCK.register((state, world, pos, index) -> FluidRenderHandlerRegistry.INSTANCE.get(Fluids.WATER).getFluidColor(world, pos, Fluids.WATER.getDefaultState()), MycoturgyBlocks.MASON_JAR, MycoturgyBlocks.COOKING_POT);
 		HudRenderCallback.EVENT.register(HaustorBandHud::render);
 		ClientBookRegistry.INSTANCE.pageTypes.put(new Identifier(Mycoturgy.MODID, "jar_infusing"), JarInfusingPage.class);
 		BlockEntityRendererRegistry.INSTANCE.register(MycoturgyBlocks.MASON_JAR_BLOCK_ENTITY, MasonJarBlockEntityRenderer::new);
+		BlockEntityRendererRegistry.INSTANCE.register(MycoturgyBlocks.COOKING_POT_BLOCK_ENTITY, CookingPotBlockEntityRenderer::new);
 	}
 }

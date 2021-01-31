@@ -1,11 +1,10 @@
 package space.bbkr.mycoturgy.recipe;
 
 import com.google.gson.JsonObject;
-import space.bbkr.mycoturgy.Mycoturgy;
 import space.bbkr.mycoturgy.component.HaustorComponent;
 import space.bbkr.mycoturgy.init.MycoturgyComponents;
 import space.bbkr.mycoturgy.init.MycoturgyRecipes;
-import space.bbkr.mycoturgy.inventory.MasonJarInventory;
+import space.bbkr.mycoturgy.inventory.SingleStackSyncedInventory;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
@@ -20,7 +19,7 @@ import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
 
 //TODO: any other costs? put ash in the jar maybe?
-public class JarInfusingRecipe implements Recipe<MasonJarInventory> {
+public class JarInfusingRecipe implements Recipe<SingleStackSyncedInventory> {
 	private final Identifier id;
 	private final Ingredient input;
 	private final ItemStack output;
@@ -50,13 +49,13 @@ public class JarInfusingRecipe implements Recipe<MasonJarInventory> {
 	}
 
 	@Override
-	public boolean matches(MasonJarInventory inv, World world) {
+	public boolean matches(SingleStackSyncedInventory inv, World world) {
 		HaustorComponent component = MycoturgyComponents.HAUSTOR_COMPONENT.get(world.getChunk(inv.getPos()));
 		return input.test(inv.getStack()) && component.getHypha() >= hyphaCost && component.getLamella() >= lamellaCost;
 	}
 
 	@Override
-	public ItemStack craft(MasonJarInventory inv) {
+	public ItemStack craft(SingleStackSyncedInventory inv) {
 		return getOutput().copy();
 	}
 

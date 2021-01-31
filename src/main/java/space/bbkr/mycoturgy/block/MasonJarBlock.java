@@ -4,6 +4,7 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
+import space.bbkr.mycoturgy.block.entity.CookingPotBlockEntity;
 import space.bbkr.mycoturgy.block.entity.MasonJarBlockEntity;
 import space.bbkr.mycoturgy.init.MycoturgyItems;
 
@@ -48,7 +49,6 @@ public class MasonJarBlock extends Block implements BlockEntityProvider {
 		this.setDefaultState(this.getStateManager().getDefaultState().with(FILLED, false));
 	}
 
-	//TODO: sounds
 	@Override
 	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
 		ItemStack stack = player.getStackInHand(hand);
@@ -115,12 +115,14 @@ public class MasonJarBlock extends Block implements BlockEntityProvider {
 	}
 
 	@Override
-	public void onStacksDropped(BlockState state, ServerWorld world, BlockPos pos, ItemStack stack) {
-		super.onStacksDropped(state, world, pos, stack);
-		BlockEntity be = world.getBlockEntity(pos);
-		if (be instanceof MasonJarBlockEntity && !world.isClient) {
-			MasonJarBlockEntity jar = (MasonJarBlockEntity)be;
-			ItemScatterer.spawn(world, pos, jar.getInventory());
+	public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
+		if (!state.isOf(newState.getBlock())) {
+			BlockEntity be = world.getBlockEntity(pos);
+			if (be instanceof MasonJarBlockEntity && !world.isClient) {
+				MasonJarBlockEntity pot = (MasonJarBlockEntity)be;
+				ItemScatterer.spawn(world, pos, pot.getInventory());
+			}
+			super.onStateReplaced(state, world, pos, newState, moved);
 		}
 	}
 

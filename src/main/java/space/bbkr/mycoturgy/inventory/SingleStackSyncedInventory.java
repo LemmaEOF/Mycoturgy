@@ -1,15 +1,17 @@
 package space.bbkr.mycoturgy.inventory;
 
 import space.bbkr.mycoturgy.block.entity.MasonJarBlockEntity;
+import space.bbkr.mycoturgy.block.entity.SyncingBlockEntity;
 
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 
-public class MasonJarInventory extends SimpleInventory {
-	private final MasonJarBlockEntity parent;
+public class SingleStackSyncedInventory extends SimpleInventory {
+	private final SyncingBlockEntity parent;
 
-	public MasonJarInventory(MasonJarBlockEntity parent) {
+	public SingleStackSyncedInventory(SyncingBlockEntity parent) {
 		super(1);
 		this.parent = parent;
 	}
