@@ -4,7 +4,6 @@ import java.util.stream.Stream;
 
 import org.jetbrains.annotations.Nullable;
 import space.bbkr.mycoturgy.block.entity.CookingPotBlockEntity;
-import space.bbkr.mycoturgy.block.entity.MasonJarBlockEntity;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockEntityProvider;
@@ -19,7 +18,6 @@ import net.minecraft.item.Items;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionUtil;
 import net.minecraft.potion.Potions;
-import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;

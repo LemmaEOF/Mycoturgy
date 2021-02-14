@@ -90,8 +90,18 @@ public class PotCookingRecipe implements Recipe<CookingPotInventory> {
 	}
 
 	@Override
+	public DefaultedList<Ingredient> getPreviewInputs() {
+		return input;
+	}
+
+	@Override
 	public ItemStack getOutput() {
 		return output;
+	}
+
+	@Override
+	public boolean isIgnoredInRecipeBook() {
+		return true;
 	}
 
 	public List<ItemStack> getBonusOutputs(ServerWorld world, BlockEntity be) {

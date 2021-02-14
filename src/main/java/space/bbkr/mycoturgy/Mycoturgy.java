@@ -10,10 +10,12 @@ import space.bbkr.mycoturgy.component.HaustorComponent;
 import space.bbkr.mycoturgy.init.MycoturgyBlocks;
 import space.bbkr.mycoturgy.init.MycoturgyComponents;
 import space.bbkr.mycoturgy.init.MycoturgyItems;
+import space.bbkr.mycoturgy.init.MycoturgyNetworking;
 import space.bbkr.mycoturgy.init.MycoturgyRecipes;
 import space.bbkr.mycoturgy.init.MycoturgyEffects;
 import space.bbkr.mycoturgy.spell.BouncePadSpell;
 import space.bbkr.mycoturgy.spell.GrowMushroomSpell;
+import space.bbkr.mycoturgy.spell.PaddleRhizomeSpell;
 import space.bbkr.mycoturgy.spell.Spell;
 
 import net.minecraft.advancement.Advancement;
@@ -51,6 +53,7 @@ public class Mycoturgy implements ModInitializer {
 		MycoturgyItems.init();
 		MycoturgyRecipes.init();
 		MycoturgyEffects.init();
+		MycoturgyNetworking.init();
 		TrinketSlots.addSlot(SlotGroups.HAND, Slots.RING, new Identifier("trinkets",
 				"textures/item/empty_trinket_slot_ring.png"));
 
@@ -72,6 +75,7 @@ public class Mycoturgy implements ModInitializer {
 
 		Spell.SPELLS.add(new BouncePadSpell());
 		Spell.SPELLS.add(new GrowMushroomSpell());
+		Spell.SPELLS.add(new PaddleRhizomeSpell());
 
 		UseBlockCallback.EVENT.register((player, world, hand, hit) -> {
 			if (

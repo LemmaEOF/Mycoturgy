@@ -1,13 +1,12 @@
 package space.bbkr.mycoturgy.inventory;
 
-import space.bbkr.mycoturgy.block.entity.MasonJarBlockEntity;
 import space.bbkr.mycoturgy.block.entity.SyncingBlockEntity;
 
-import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 
+//TODO: yes I know this is a mojang-y name, fuck you, give me a better one
 public class SingleStackSyncedInventory extends SimpleInventory {
 	private final SyncingBlockEntity parent;
 

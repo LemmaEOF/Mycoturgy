@@ -34,6 +34,7 @@ public class MycoturgyBlocks {
 	public static Block HAUSTOR_SEQUESTER;
 	public static Block MASON_JAR;
 	public static Block SCATTERED_ASHES;
+	public static Block PADDLE_RHIZOME_SPORES;
 	public static Block TEST_BOUNCE_PAD;
 	public static Block COOKING_POT;
 	public static Block PADDLE_RHIZOME;
@@ -45,18 +46,77 @@ public class MycoturgyBlocks {
 	public static Tag<Block> SPELL_CASTABLE;
 
 	public static void init() {
-		SPOREBRUSH_CROP = register("sporebrush", new CustomCropBlock(FabricBlockSettings.copyOf(Blocks.WHEAT).breakByHand(true)));
-		HAUSTOR_SEQUESTER = register("haustor_sequester", new HaustorSequesterBlock(FabricBlockSettings.copyOf(Blocks.GRASS).breakByHand(true)), new Item.Settings().group(MycoturgyItems.MYCOTURGY_GROUP));
-		MASON_JAR = register("mason_jar", new MasonJarBlock(FabricBlockSettings.of(Material.GLASS).breakByTool(FabricToolTags.PICKAXES).nonOpaque()), new Item.Settings().group(MycoturgyItems.MYCOTURGY_GROUP));
-		SCATTERED_ASHES = register("scattered_ashes", new ScatteredAshesBlock(FabricBlockSettings.of(Material.SUPPORTED).breakByHand(true).breakInstantly().nonOpaque().noCollision().sounds(BlockSoundGroup.SAND)));
-		TEST_BOUNCE_PAD = register("test_bounce_pad", new BouncePadBlock(1.5, FabricBlockSettings.of(Material.ORGANIC_PRODUCT)), new Item.Settings().group(MycoturgyItems.MYCOTURGY_GROUP));
-		COOKING_POT = register("cooking_pot", new CookingPotBlock(FabricBlockSettings.of(Material.METAL).strength(0.5F).breakByTool(FabricToolTags.PICKAXES).nonOpaque()), new Item.Settings().group(MycoturgyItems.MYCOTURGY_GROUP));
+		SPOREBRUSH_CROP = register("sporebrush",
+				new CustomCropBlock(FabricBlockSettings.copyOf(Blocks.WHEAT)
+						.breakByHand(true)
+				)
+		);
+		HAUSTOR_SEQUESTER = register("haustor_sequester",
+				new HaustorSequesterBlock(
+						FabricBlockSettings.copyOf(Blocks.GRASS)
+								.breakByHand(true)
+				), new Item.Settings()
+						.group(MycoturgyItems.MYCOTURGY_GROUP)
+		);
+		MASON_JAR = register("mason_jar",
+				new MasonJarBlock(FabricBlockSettings.of(Material.GLASS)
+						.breakByTool(FabricToolTags.PICKAXES)
+						.nonOpaque()
+				), new Item.Settings()
+						.group(MycoturgyItems.MYCOTURGY_GROUP)
+		);
+		SCATTERED_ASHES = register("scattered_ashes",
+				new ScatteredAshesBlock(FabricBlockSettings.of(Material.SUPPORTED)
+						.breakByHand(true)
+						.breakInstantly()
+						.nonOpaque()
+						.noCollision()
+						.sounds(BlockSoundGroup.SAND)
+				)
+		);
+		PADDLE_RHIZOME_SPORES = register("paddle_rhizome_spores",
+				new ScatteredAshesBlock(FabricBlockSettings.of(Material.SUPPORTED)
+						.breakByHand(true)
+						.breakInstantly()
+						.nonOpaque()
+						.noCollision()
+						.sounds(BlockSoundGroup.LILY_PAD)
+				), new Item.Settings()
+						.group(MycoturgyItems.MYCOTURGY_GROUP)
+		);
+		TEST_BOUNCE_PAD = register("test_bounce_pad",
+				new BouncePadBlock(1.5,
+						FabricBlockSettings.of(Material.ORGANIC_PRODUCT)
+				), new Item.Settings()
+						.group(MycoturgyItems.MYCOTURGY_GROUP)
+		);
+		COOKING_POT = register("cooking_pot",
+				new CookingPotBlock(FabricBlockSettings.of(Material.METAL)
+						.strength(0.5F)
+						.breakByTool(FabricToolTags.PICKAXES)
+						.nonOpaque()
+				), new Item.Settings()
+						.group(MycoturgyItems.MYCOTURGY_GROUP)
+		);
 		//thanks lovelymimic for the request!
-		PADDLE_RHIZOME = register("paddle_rhizome", new Block(FabricBlockSettings.of(Material.ORGANIC_PRODUCT)), new Item.Settings().group(MycoturgyItems.MYCOTURGY_GROUP));
+		PADDLE_RHIZOME = register("paddle_rhizome",
+				new Block(FabricBlockSettings.of(Material.ORGANIC_PRODUCT)
+				), new Item.Settings()
+						.group(MycoturgyItems.MYCOTURGY_GROUP)
+		);
 
-		HAUSTOR_SEQUESTER_BLOCK_ENTITY = register("haustor_sequester", HaustorSequesterBlockEntity::new, HAUSTOR_SEQUESTER);
-		MASON_JAR_BLOCK_ENTITY = register("mason_jar", MasonJarBlockEntity::new, MASON_JAR);
-		COOKING_POT_BLOCK_ENTITY = register("cooking_pot", CookingPotBlockEntity::new, COOKING_POT);
+		HAUSTOR_SEQUESTER_BLOCK_ENTITY = register("haustor_sequester",
+				HaustorSequesterBlockEntity::new,
+				HAUSTOR_SEQUESTER
+		);
+		MASON_JAR_BLOCK_ENTITY = register("mason_jar",
+				MasonJarBlockEntity::new,
+				MASON_JAR
+		);
+		COOKING_POT_BLOCK_ENTITY = register("cooking_pot",
+				CookingPotBlockEntity::new,
+				COOKING_POT
+		);
 
 		SPELL_CASTABLE = TagRegistry.block(new Identifier(Mycoturgy.MODID, "spell_castable"));
 	}

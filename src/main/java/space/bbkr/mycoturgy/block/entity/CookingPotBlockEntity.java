@@ -15,8 +15,6 @@ import space.bbkr.mycoturgy.inventory.SingleStackSyncedInventory;
 import space.bbkr.mycoturgy.recipe.PotCookingRecipe;
 
 import net.minecraft.block.BlockState;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.ItemEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.particle.ParticleTypes;

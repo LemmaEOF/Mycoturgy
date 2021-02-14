@@ -1,0 +1,10 @@
+{
+  "type": "mycoturgy:netherite_cleaning",
+  "ingredients": [
+    { "item": "minecraft:netherite_shovel" },
+    { "item": "mycoturgy:sporebrush_ash" }
+  ],
+  "result": { "item": "minecraft:diamond_shovel" },
+  "bonus": "mycoturgy:netherite_return",
+  "cookingtime": 200
+}

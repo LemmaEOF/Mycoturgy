@@ -1,0 +1,10 @@
+{
+  "type": "mycoturgy:netherite_cleaning",
+  "ingredients": [
+    { "item": "minecraft:netherite_boots" },
+    { "item": "mycoturgy:sporebrush_ash" }
+  ],
+  "result": { "item": "minecraft:diamond_boots" },
+  "bonus": "mycoturgy:netherite_return",
+  "cookingtime": 200
+}

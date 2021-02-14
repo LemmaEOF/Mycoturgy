@@ -1,5 +1,5 @@
 {
-  "type": "mycoturgy:patchouli_book",
+  "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
       "item": "minecraft:book"
@@ -8,5 +8,7 @@
       "item": "mycoturgy:glimmering_spores"
     }
   ],
-  "book": "mycoturgy:mycoturge_journal"
+  "result": {
+    "item": "mycoturgy:mycoturge_journal"
+  }
 }

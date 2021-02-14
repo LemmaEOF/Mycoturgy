@@ -9,10 +9,12 @@
     "MixinCampfireBlock",
     "MixinCampfireBlockEntity",
     "MixinFlowableFluid",
+    "MixinLivingEntity",
     "MixinServerWorld",
     "MixinSpawnHelper"
   ],
   "client": [
-    "MixinInGameHud"
+    "client.MixinInGameHud",
+    "client.MixinMouse"
   ]
 }

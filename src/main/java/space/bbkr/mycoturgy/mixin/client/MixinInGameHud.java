@@ -1,4 +1,4 @@
-package space.bbkr.mycoturgy.mixin;
+package space.bbkr.mycoturgy.mixin.client;
 
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;

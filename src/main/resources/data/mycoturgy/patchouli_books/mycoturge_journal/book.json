@@ -5,6 +5,10 @@
   "book_texture": "patchouli:textures/gui/book_purple.png",
   "model": "patchouli:book_purple",
   "creative_tab": "mycoturgy.mycoturgy",
+  "show_progress": false,
+  "dont_generate_book": true,
+  "use_blocky_font": false,
+  "custom_book_item": "mycoturgy:mycoturge_journal",
   "macros": {
     "$(key)": "$(#20b)",
     "$(h)": "$(k)$(#0c5)h$()$(#0c5)",
