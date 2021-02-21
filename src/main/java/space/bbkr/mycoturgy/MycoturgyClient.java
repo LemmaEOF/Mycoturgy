@@ -1,6 +1,7 @@
 package space.bbkr.mycoturgy;
 
 import space.bbkr.mycoturgy.client.hud.HaustorBandHud;
+import space.bbkr.mycoturgy.client.journal.JournalChapters;
 import space.bbkr.mycoturgy.client.render.CookingPotBlockEntityRenderer;
 import space.bbkr.mycoturgy.client.render.MasonJarBlockEntityRenderer;
 import space.bbkr.mycoturgy.init.MycoturgyBlocks;
@@ -10,6 +11,7 @@ import vazkii.patchouli.client.book.ClientBookRegistry;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.Registry;
 
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
@@ -19,6 +21,8 @@ import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandlerRegistry
 import net.fabricmc.fabric.api.client.rendereregistry.v1.BlockEntityRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
+import net.fabricmc.fabric.api.client.screen.ScreenProviderRegistry;
+import net.fabricmc.fabric.api.client.screenhandler.v1.ScreenRegistry;
 
 @Environment(EnvType.CLIENT)
 public class MycoturgyClient implements ClientModInitializer {
@@ -33,5 +37,6 @@ public class MycoturgyClient implements ClientModInitializer {
 		ClientBookRegistry.INSTANCE.pageTypes.put(new Identifier(Mycoturgy.MODID, "jar_infusing"), JarInfusingPage.class);
 		BlockEntityRendererRegistry.INSTANCE.register(MycoturgyBlocks.MASON_JAR_BLOCK_ENTITY, MasonJarBlockEntityRenderer::new);
 		BlockEntityRendererRegistry.INSTANCE.register(MycoturgyBlocks.COOKING_POT_BLOCK_ENTITY, CookingPotBlockEntityRenderer::new);
+		JournalChapters.init();
 	}
 }

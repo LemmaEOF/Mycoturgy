@@ -14,6 +14,7 @@
     "MixinSpawnHelper"
   ],
   "client": [
+    "client.ClientAdvancementManagerAccessor",
     "client.MixinInGameHud",
     "client.MixinMouse"
   ]
