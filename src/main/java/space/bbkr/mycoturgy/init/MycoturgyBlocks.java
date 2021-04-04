@@ -8,6 +8,7 @@ import space.bbkr.mycoturgy.block.CookingPotBlock;
 import space.bbkr.mycoturgy.block.CustomCropBlock;
 import space.bbkr.mycoturgy.block.HaustorSequesterBlock;
 import space.bbkr.mycoturgy.block.MasonJarBlock;
+import space.bbkr.mycoturgy.block.MushrooomLampBlock;
 import space.bbkr.mycoturgy.block.ScatteredAshesBlock;
 import space.bbkr.mycoturgy.block.entity.CookingPotBlockEntity;
 import space.bbkr.mycoturgy.block.entity.HaustorSequesterBlockEntity;
@@ -38,6 +39,7 @@ public class MycoturgyBlocks {
 	public static Block TEST_BOUNCE_PAD;
 	public static Block COOKING_POT;
 	public static Block PADDLE_RHIZOME;
+	public static Block LIGHTSHROOM;
 
 	public static BlockEntityType<HaustorSequesterBlockEntity> HAUSTOR_SEQUESTER_BLOCK_ENTITY;
 	public static BlockEntityType<MasonJarBlockEntity> MASON_JAR_BLOCK_ENTITY;
@@ -101,6 +103,13 @@ public class MycoturgyBlocks {
 		//thanks lovelymimic for the request!
 		PADDLE_RHIZOME = register("paddle_rhizome",
 				new Block(FabricBlockSettings.of(Material.ORGANIC_PRODUCT)
+				), new Item.Settings()
+						.group(MycoturgyItems.MYCOTURGY_GROUP)
+		);
+		LIGHTSHROOM = register("lightshroom",
+				new MushrooomLampBlock(FabricBlockSettings.of(Material.ORGANIC_PRODUCT)
+						.luminance(12)
+						.ticksRandomly()
 				), new Item.Settings()
 						.group(MycoturgyItems.MYCOTURGY_GROUP)
 		);
