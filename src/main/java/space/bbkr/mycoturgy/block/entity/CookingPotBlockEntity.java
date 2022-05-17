@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.nbt.NbtElement;
+import net.minecraft.util.math.BlockPos;
 import space.bbkr.mycoturgy.block.CookingPotBlock;
 import space.bbkr.mycoturgy.block.MasonJarBlock;
 import space.bbkr.mycoturgy.component.HaustorComponent;
@@ -16,7 +19,6 @@ import space.bbkr.mycoturgy.recipe.PotCookingRecipe;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.server.world.ServerWorld;
@@ -24,20 +26,17 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.ItemScatterer;
-import net.minecraft.util.Tickable;
 import net.minecraft.util.math.Vec3d;
 
-import net.fabricmc.fabric.api.util.NbtType;
-
-public class CookingPotBlockEntity extends SyncingBlockEntity implements Tickable {
+public class CookingPotBlockEntity extends SyncingBlockEntity {
 	public int ticks = 0;
 	private final CookingPotInventory inv = new CookingPotInventory(this);
 	private final SingleStackSyncedInventory outInv = new SingleStackSyncedInventory(this);
 	private int processTime = 0;
 	private PotCookingRecipe currentRecipe;
 
-	public CookingPotBlockEntity() {
-		super(MycoturgyBlocks.COOKING_POT_BLOCK_ENTITY);
+	public CookingPotBlockEntity(BlockPos pos, BlockState state) {
+		super(MycoturgyBlocks.COOKING_POT_BLOCK_ENTITY, pos, state);
 	}
 
 	public CookingPotInventory getInventory() {
@@ -48,7 +47,6 @@ public class CookingPotBlockEntity extends SyncingBlockEntity implements Tickabl
 		return outInv;
 	}
 
-	@Override
 	public void tick() {
 		ticks++;
 		if (world == null || world.isClient || !getCachedState().get(CookingPotBlock.FILLED)) return;
@@ -76,7 +74,7 @@ public class CookingPotBlockEntity extends SyncingBlockEntity implements Tickabl
 					processTime = 0;
 					currentRecipe = null;
 					world.playSound(null, pos, SoundEvents.ENTITY_WITCH_DRINK, SoundCategory.BLOCKS, 1f, 1f);
-					((ServerWorld)world).spawnParticles(ParticleTypes.SPLASH, potPos.x + random.nextDouble() * (3/16D) * (double)(random.nextBoolean() ? 1 : -1), potPos.y + random.nextDouble() * (1/2D), potPos.z + random.nextDouble() * (3/16D) * (double)(random.nextBoolean() ? 1 : -1), 30, 0.0, 0.7, 0.0, 0.7);
+					((ServerWorld)world).spawnParticles(ParticleTypes.WATER_SPLASH, potPos.x + random.nextDouble() * (3/16D) * (double)(random.nextBoolean() ? 1 : -1), potPos.y + random.nextDouble() * (1/2D), potPos.z + random.nextDouble() * (3/16D) * (double)(random.nextBoolean() ? 1 : -1), 30, 0.0, 0.7, 0.0, 0.7);
 					world.setBlockState(pos, getCachedState().with(MasonJarBlock.FILLED, false));
 				}
 				markDirty();
@@ -89,14 +87,14 @@ public class CookingPotBlockEntity extends SyncingBlockEntity implements Tickabl
 	}
 
 	@Override
-	public void fromTag(BlockState state, CompoundTag tag) {
-		super.fromTag(state, tag);
+	public void readNbt(NbtCompound tag) {
+		super.readNbt(tag);
 		this.processTime = tag.getInt("ProcessTime");
 		this.inv.clear();
 		this.outInv.clear();
-		this.inv.readTags(tag.getList("Items", NbtType.COMPOUND));
-		this.outInv.readTags(tag.getList("Output", NbtType.COMPOUND));
-		if (tag.contains("Recipe", NbtType.STRING)) {
+		this.inv.readNbtList(tag.getList("Items", NbtElement.COMPOUND_TYPE));
+		this.outInv.readNbtList(tag.getList("Output", NbtElement.COMPOUND_TYPE));
+		if (tag.contains("Recipe", NbtElement.STRING_TYPE)) {
 			Optional<? extends Recipe<?>> recipeOpt = this.world.getRecipeManager().get(new Identifier(tag.getString("Recipe")));
 			if (recipeOpt.isPresent() && recipeOpt.get() instanceof PotCookingRecipe) {
 				this.currentRecipe = (PotCookingRecipe)recipeOpt.get();
@@ -109,15 +107,14 @@ public class CookingPotBlockEntity extends SyncingBlockEntity implements Tickabl
 	}
 
 	@Override
-	public CompoundTag toTag(CompoundTag tag) {
-		super.toTag(tag);
+	public void writeNbt(NbtCompound tag) {
+		super.writeNbt(tag);
 		tag.putInt("ProcessTime", processTime);
-		tag.put("Items", inv.getTags());
-		tag.put("Output", outInv.getTags());
+		tag.put("Items", inv.toNbtList());
+		tag.put("Output", outInv.toNbtList());
 		if (currentRecipe != null) {
 			tag.putString("Recipe", currentRecipe.getId().toString());
 		}
-		return tag;
 	}
 
 }

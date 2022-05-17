@@ -1,11 +1,10 @@
 package space.bbkr.mycoturgy;
 
-import dev.emi.trinkets.api.SlotGroups;
-import dev.emi.trinkets.api.Slots;
-import dev.emi.trinkets.api.TrinketSlots;
 import dev.emi.trinkets.api.TrinketsApi;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.quiltmc.loader.api.ModContainer;
+import org.quiltmc.qsl.base.api.entrypoint.ModInitializer;
 import space.bbkr.mycoturgy.component.HaustorComponent;
 import space.bbkr.mycoturgy.init.MycoturgyBlocks;
 import space.bbkr.mycoturgy.init.MycoturgyComponents;
@@ -31,7 +30,6 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 
-import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.player.UseBlockCallback;
 import net.fabricmc.fabric.api.loot.v1.FabricLootPoolBuilder;
 import net.fabricmc.fabric.api.loot.v1.event.LootTableLoadingCallback;
@@ -48,14 +46,12 @@ public class Mycoturgy implements ModInitializer {
 	public static final Identifier CAST_SPELL = new Identifier(Mycoturgy.MODID, "research/cast_spell");
 
 	@Override
-	public void onInitialize() {
+	public void onInitialize(ModContainer container) {
 		MycoturgyBlocks.init();
 		MycoturgyItems.init();
 		MycoturgyRecipes.init();
 		MycoturgyEffects.init();
 		MycoturgyNetworking.init();
-		TrinketSlots.addSlot(SlotGroups.HAND, Slots.RING, new Identifier("trinkets",
-				"textures/item/empty_trinket_slot_ring.png"));
 
 		LootTableLoadingCallback.EVENT.register((resourceManager, lootManager, id, builder, table) -> {
 			if (id.equals(new Identifier("blocks/grass"))) {
@@ -82,7 +78,7 @@ public class Mycoturgy implements ModInitializer {
 					!world.isClient()
 					&& world.getBlockState(hit.getBlockPos()).isIn(MycoturgyBlocks.SPELL_CASTABLE)
 					&& player.getStackInHand(hand).isEmpty()
-					&& TrinketsApi.getTrinketComponent(player).getStack("hand", "ring").getItem() == MycoturgyItems.HAUSTORAL_BAND
+					&& TrinketsApi.getTrinketComponent(player).get().isEquipped(MycoturgyItems.HAUSTORAL_BAND)
 			) {
 				for (Spell spell : Spell.SPELLS) {
 					ServerWorld sworld = (ServerWorld) world;

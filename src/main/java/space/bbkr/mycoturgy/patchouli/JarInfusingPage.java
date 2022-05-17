@@ -12,10 +12,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
 
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-
-@Environment(EnvType.CLIENT)
 public class JarInfusingPage extends PageDoubleRecipeRegistry<JarInfusingRecipe> {
 	private static final Identifier CUSTOM_CRAFTING_TEXTURE = new Identifier(Mycoturgy.MODID, "textures/gui/custom_crafting.png");
 
@@ -30,7 +26,7 @@ public class JarInfusingPage extends PageDoubleRecipeRegistry<JarInfusingRecipe>
 		RenderSystem.enableBlend();
 		DrawableHelper.drawTexture(ms, recipeX, recipeY, 11.0F, 71.0F, 96, 24, 128, 128);
 		this.parent.drawCenteredStringNoShadow(ms, this.getTitle(second).asOrderedText(), 58, recipeY - 10, this.book.headerColor);
-		this.parent.renderIngredient(ms, recipeX + 4, recipeY + 4, mouseX, mouseY, recipe.getPreviewInputs().get(0));
+		this.parent.renderIngredient(ms, recipeX + 4, recipeY + 4, mouseX, mouseY, recipe.getIngredients().get(0));
 		this.parent.renderItemStack(ms, recipeX + 76, recipeY + 4, mouseX, mouseY, recipe.getOutput());
 		if (recipe.getHyphaCost() > 0) {
 			this.parent.drawCenteredStringNoShadow(ms, "" + recipe.getHyphaCost(), recipeX + 31, recipeY + 12, this.book.textColor);

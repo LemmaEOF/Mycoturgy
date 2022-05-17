@@ -20,7 +20,7 @@ public class SporePouchItem extends Item {
 	@Override
 	public ActionResult useOnBlock(ItemUsageContext context) {
 		if (context.getWorld().isClient) return super.useOnBlock(context);
-		int slot = context.getStack().getOrCreateTag().getInt("CurrentSlot");
+		int slot = context.getStack().getOrCreateNbt().getInt("CurrentSlot");
 		SporePouchInventory inv = new SporePouchInventory();
 		inv.readFromItem(context.getStack());
 		ItemStack stack = inv.getStack(slot);
@@ -34,11 +34,11 @@ public class SporePouchItem extends Item {
 	}
 
 	public void shift(ItemStack stack, int direction) {
-		int current = stack.getOrCreateTag().getInt("CurrentSlot");
+		int current = stack.getOrCreateNbt().getInt("CurrentSlot");
 		current += direction;
 		if (current == -1) current = 8;
 		current = current % 9;
-		stack.getTag().putInt("CurrentSlot", current);
+		stack.getNbt().putInt("CurrentSlot", current);
 		System.out.println("Scrolled stack " + stack + " in direction " + direction + " to slot " + current + "!");
 	}
 

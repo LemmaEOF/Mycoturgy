@@ -1,5 +1,6 @@
 package space.bbkr.mycoturgy.block;
 
+import net.minecraft.block.BlockState;
 import net.minecraft.block.SlimeBlock;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -17,11 +18,10 @@ public class BouncePadBlock extends SlimeBlock {
 	}
 
 	@Override
-	public void onLandedUpon(World world, BlockPos pos, Entity entity, float distance) {
+	public void onLandedUpon(World world, BlockState state, BlockPos pos, Entity entity, float fallDistance) {
 		if (entity.bypassesLandingEffects()) {
-			super.onLandedUpon(world, pos, entity, distance);
+			super.onLandedUpon(world, state, pos, entity, fallDistance);
 		}
-
 	}
 
 	@Override

@@ -26,8 +26,8 @@ public class NetheriteCleaningRecipe extends PotCookingRecipe {
 		for (int i = 0; i < inv.size(); i++) {
 			ItemStack stack = inv.getStack(i);
 			System.out.println(stack);
-			if (stack.getItem().isIn(MycoturgyItems.NETHERITE_COMPOSED)) { //TODO: better heuristic maybe? Make this whole recipe dynamic?
-				ret.setTag(stack.getTag());
+			if (stack.isIn(MycoturgyItems.NETHERITE_COMPOSED)) { //TODO: better heuristic maybe? Make this whole recipe dynamic?
+				ret.setNbt(stack.getNbt());
 				System.out.println("Netherite cleaned!");
 				break;
 			}
@@ -58,7 +58,7 @@ public class NetheriteCleaningRecipe extends PotCookingRecipe {
 		@Override
 		public NetheriteCleaningRecipe read(Identifier id, JsonObject json) {
 			DefaultedList<Ingredient> ingredients = getIngredients(JsonHelper.getArray(json, "ingredients"));
-			ItemStack result = ShapedRecipe.getItemStack(JsonHelper.getObject(json, "result"));
+			ItemStack result = ShapedRecipe.outputFromJson(JsonHelper.getObject(json, "result"));
 			Identifier bonus = new Identifier(JsonHelper.getString(json, "bonus", "empty"));
 			int cookingTime = JsonHelper.getInt(json, "cookingtime", 200);
 			int hyphaCost = JsonHelper.getInt(json, "hyphacost", 0);

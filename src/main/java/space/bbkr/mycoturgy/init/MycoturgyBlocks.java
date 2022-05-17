@@ -1,7 +1,8 @@
 package space.bbkr.mycoturgy.init;
 
-import java.util.function.Supplier;
-
+import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
+import net.minecraft.tag.TagKey;
+import org.quiltmc.qsl.block.extensions.api.QuiltBlockSettings;
 import space.bbkr.mycoturgy.Mycoturgy;
 import space.bbkr.mycoturgy.block.BouncePadBlock;
 import space.bbkr.mycoturgy.block.CookingPotBlock;
@@ -22,13 +23,8 @@ import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.sound.BlockSoundGroup;
-import net.minecraft.tag.Tag;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
-
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-import net.fabricmc.fabric.api.tag.TagRegistry;
-import net.fabricmc.fabric.api.tool.attribute.v1.FabricToolTags;
 
 public class MycoturgyBlocks {
 	public static Block SPOREBRUSH_CROP;
@@ -45,31 +41,28 @@ public class MycoturgyBlocks {
 	public static BlockEntityType<MasonJarBlockEntity> MASON_JAR_BLOCK_ENTITY;
 	public static BlockEntityType<CookingPotBlockEntity> COOKING_POT_BLOCK_ENTITY;
 
-	public static Tag<Block> SPELL_CASTABLE;
+	public static TagKey<Block> SPELL_CASTABLE;
 
 	public static void init() {
 		SPOREBRUSH_CROP = register("sporebrush",
-				new CustomCropBlock(FabricBlockSettings.copyOf(Blocks.WHEAT)
-						.breakByHand(true)
+				new CustomCropBlock(QuiltBlockSettings.copyOf(Blocks.WHEAT)
 				)
 		);
 		HAUSTOR_SEQUESTER = register("haustor_sequester",
 				new HaustorSequesterBlock(
-						FabricBlockSettings.copyOf(Blocks.GRASS)
-								.breakByHand(true)
+						QuiltBlockSettings.copyOf(Blocks.GRASS)
 				), new Item.Settings()
 						.group(MycoturgyItems.MYCOTURGY_GROUP)
 		);
 		MASON_JAR = register("mason_jar",
-				new MasonJarBlock(FabricBlockSettings.of(Material.GLASS)
-						.breakByTool(FabricToolTags.PICKAXES)
+				//break by pickaxes
+				new MasonJarBlock(QuiltBlockSettings.of(Material.GLASS)
 						.nonOpaque()
 				), new Item.Settings()
 						.group(MycoturgyItems.MYCOTURGY_GROUP)
 		);
 		SCATTERED_ASHES = register("scattered_ashes",
-				new ScatteredAshesBlock(FabricBlockSettings.of(Material.SUPPORTED)
-						.breakByHand(true)
+				new ScatteredAshesBlock(QuiltBlockSettings.of(Material.DECORATION)
 						.breakInstantly()
 						.nonOpaque()
 						.noCollision()
@@ -77,8 +70,7 @@ public class MycoturgyBlocks {
 				)
 		);
 		PADDLE_RHIZOME_SPORES = register("paddle_rhizome_spores",
-				new ScatteredAshesBlock(FabricBlockSettings.of(Material.SUPPORTED)
-						.breakByHand(true)
+				new ScatteredAshesBlock(QuiltBlockSettings.of(Material.DECORATION)
 						.breakInstantly()
 						.nonOpaque()
 						.noCollision()
@@ -88,26 +80,26 @@ public class MycoturgyBlocks {
 		);
 		TEST_BOUNCE_PAD = register("test_bounce_pad",
 				new BouncePadBlock(1.5,
-						FabricBlockSettings.of(Material.ORGANIC_PRODUCT)
+						QuiltBlockSettings.of(Material.ORGANIC_PRODUCT)
 				), new Item.Settings()
 						.group(MycoturgyItems.MYCOTURGY_GROUP)
 		);
 		COOKING_POT = register("cooking_pot",
-				new CookingPotBlock(FabricBlockSettings.of(Material.METAL)
+				//break by pickaxes
+				new CookingPotBlock(QuiltBlockSettings.of(Material.METAL)
 						.strength(0.5F)
-						.breakByTool(FabricToolTags.PICKAXES)
 						.nonOpaque()
 				), new Item.Settings()
 						.group(MycoturgyItems.MYCOTURGY_GROUP)
 		);
 		//thanks lovelymimic for the request!
 		PADDLE_RHIZOME = register("paddle_rhizome",
-				new Block(FabricBlockSettings.of(Material.ORGANIC_PRODUCT)
+				new Block(QuiltBlockSettings.of(Material.ORGANIC_PRODUCT)
 				), new Item.Settings()
 						.group(MycoturgyItems.MYCOTURGY_GROUP)
 		);
 		LIGHTSHROOM = register("lightshroom",
-				new MushrooomLampBlock(FabricBlockSettings.of(Material.ORGANIC_PRODUCT)
+				new MushrooomLampBlock(QuiltBlockSettings.of(Material.ORGANIC_PRODUCT)
 						.luminance(12)
 						.ticksRandomly()
 				), new Item.Settings()
@@ -127,7 +119,7 @@ public class MycoturgyBlocks {
 				COOKING_POT
 		);
 
-		SPELL_CASTABLE = TagRegistry.block(new Identifier(Mycoturgy.MODID, "spell_castable"));
+		SPELL_CASTABLE = TagKey.of(Registry.BLOCK_KEY, new Identifier(Mycoturgy.MODID, "spell_castable"));
 	}
 
 	private static Block register(String name, Block block, Item.Settings settings) {
@@ -140,7 +132,7 @@ public class MycoturgyBlocks {
 		return Registry.register(Registry.BLOCK, new Identifier(Mycoturgy.MODID, name), block);
 	}
 
-	public static <T extends BlockEntity> BlockEntityType<T> register(String name, Supplier<T> be, Block...blocks) {
-		return Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(Mycoturgy.MODID, name), BlockEntityType.Builder.create(be, blocks).build(null));
+	public static <T extends BlockEntity> BlockEntityType<T> register(String name, FabricBlockEntityTypeBuilder.Factory<T> be, Block...blocks) {
+		return Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(Mycoturgy.MODID, name), FabricBlockEntityTypeBuilder.create(be, blocks).build(null));
 	}
 }

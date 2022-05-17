@@ -1,5 +1,8 @@
 package space.bbkr.mycoturgy.mixin;
 
+import net.minecraft.block.BlockState;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -23,15 +26,15 @@ public abstract class MixinCampfireBlockEntity extends BlockEntity {
 
 	@Shadow @Final private int[] cookingTimes;
 
-	public MixinCampfireBlockEntity(BlockEntityType<?> type) {
-		super(type);
+	public MixinCampfireBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
+		super(type, pos, state);
 	}
 
-	@Inject(method = "tick", at = @At("TAIL"))
-	private void tickMycoturgy(CallbackInfo info) {
-		for (int i = 0; i < itemsBeingCooked.size(); i++) {
-			if (cookingTimes[i] % 100 == 0 && itemsBeingCooked.get(i).getItem() == MycoturgyItems.SPORE_BUNDLE) {
-				HaustorComponent component = MycoturgyComponents.HAUSTOR_COMPONENT.get(this.world.getChunk(this.getPos()));
+	@Inject(method = "litServerTick", at = @At("TAIL"))
+	private static void tickMycoturgy(World world, BlockPos pos, BlockState state, CampfireBlockEntity campfire, CallbackInfo info) {
+		for (int i = 0; i < campfire.getItemsBeingCooked().size(); i++) {
+			if (((MixinCampfireBlockEntity) (Object) campfire).cookingTimes[i] % 100 == 0 && ((MixinCampfireBlockEntity) (Object) campfire).itemsBeingCooked.get(i).getItem() == MycoturgyItems.SPORE_BUNDLE) {
+				HaustorComponent component = MycoturgyComponents.HAUSTOR_COMPONENT.get(campfire.getWorld().getChunk(campfire.getPos()));
 				if (component.getPrimordia() > 2) {
 					//TODO: different effect four soul campfire?
 					component.changePrimordia(-2);

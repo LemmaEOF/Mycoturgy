@@ -1,5 +1,8 @@
 package space.bbkr.mycoturgy.client.journal;
 
+import net.minecraft.client.font.TextRenderer;
+import net.minecraft.client.gui.widget.ClickableWidget;
+import net.minecraft.client.render.item.ItemRenderer;
 import org.lwjgl.glfw.GLFW;
 import space.bbkr.mycoturgy.Mycoturgy;
 
@@ -12,6 +15,8 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
 
+import java.util.List;
+
 public class JournalGui extends Screen {
 	public static final JournalGui DUMMY = new JournalGui();
 	public static final Identifier CODEX_BACKGROUND = new Identifier(Mycoturgy.MODID, "textures/gui/journal_bg.png");
@@ -19,6 +24,11 @@ public class JournalGui extends Screen {
 
 	Chapter currentChapter;
 	int currentPage = 0;
+
+	@Override
+	public List<ClickableWidget> getButtons() {
+		return null;
+	}
 
 	static JournalGui INSTANCE = null;
 	public static JournalGui getInstance() {
@@ -133,5 +143,20 @@ public class JournalGui extends Screen {
 	@Override
 	public void renderTooltip(MatrixStack mStack, ItemStack stack, int x, int y) {
 		if (!stack.isEmpty()) super.renderTooltip(mStack, stack, x, y);
+	}
+
+	@Override
+	public ItemRenderer getItemRenderer() {
+		return MinecraftClient.getInstance().getItemRenderer();
+	}
+
+	@Override
+	public TextRenderer getTextRenderer() {
+		return MinecraftClient.getInstance().textRenderer;
+	}
+
+	@Override
+	public MinecraftClient getClient() {
+		return MinecraftClient.getInstance();
 	}
 }

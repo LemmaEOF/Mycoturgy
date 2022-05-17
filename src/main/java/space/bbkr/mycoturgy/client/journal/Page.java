@@ -10,9 +10,6 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
 
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-
 public abstract class Page {
 	Identifier bg;
 
@@ -24,7 +21,6 @@ public abstract class Page {
 		//
 	}
 
-	@Environment(EnvType.CLIENT)
 	public static void drawItem(JournalGui gui, MatrixStack mStack, ItemStack stack, int x, int y, int mouseX, int mouseY) {
 		ItemRenderer ir = MinecraftClient.getInstance().getItemRenderer();
 		ir.renderGuiItemIcon(stack, x, y);
@@ -34,7 +30,6 @@ public abstract class Page {
 		}
 	}
 
-	@Environment(EnvType.CLIENT)
 	public static void drawText(JournalGui gui, MatrixStack mStack, String text, int x, int y) {
 		TextRenderer font = MinecraftClient.getInstance().textRenderer;
 		font.draw(mStack, text, x, y - 1, ColorUtil.packColor(128, 255, 255, 255));
@@ -44,7 +39,6 @@ public abstract class Page {
 		font.draw(mStack, text, x, y, ColorUtil.packColor(255, 79, 59, 47));
 	}
 
-	@Environment(EnvType.CLIENT)
 	public static void drawWrappingText(JournalGui gui, MatrixStack mStack, String text, int x, int y, int w) {
 		TextRenderer font = MinecraftClient.getInstance().textRenderer;
 		List<String> lines = new ArrayList<>();
@@ -63,7 +57,6 @@ public abstract class Page {
 		}
 	}
 
-	@Environment(EnvType.CLIENT)
 	public void fullRender(JournalGui gui, MatrixStack mStack, int x, int y, int mouseX, int mouseY) {
 		MinecraftClient.getInstance().getTextureManager().bindTexture(bg);
 		renderBackground(gui, mStack, x, y, mouseX, mouseY);
@@ -71,20 +64,16 @@ public abstract class Page {
 		renderIngredients(gui, mStack, x, y, mouseX, mouseY);
 	}
 
-	@Environment(EnvType.CLIENT)
 	public void renderBackground(JournalGui gui, MatrixStack mStack, int x, int y, int mouseX, int mouseY) {
 		MinecraftClient.getInstance().getTextureManager().bindTexture(bg);
 		gui.drawTexture(mStack, x, y, 0, 0, 128, 160);
 	}
 
-	@Environment(EnvType.CLIENT)
 	public boolean click(JournalGui gui, int x, int y, int mouseX, int mouseY) {
 		return false;
 	}
 
-	@Environment(EnvType.CLIENT)
 	public void render(JournalGui gui, MatrixStack mStack, int x, int y, int mouseX, int mouseY) {}
 
-	@Environment(EnvType.CLIENT)
 	public void renderIngredients(JournalGui gui, MatrixStack mStack, int x, int y, int mouseX, int mouseY) {}
 }

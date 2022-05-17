@@ -5,7 +5,7 @@ import java.util.Optional;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 import dev.emi.trinkets.api.TrinketsApi;
-import org.lwjgl.opengl.GL11;
+import net.minecraft.client.render.VertexFormat;
 import space.bbkr.mycoturgy.Mycoturgy;
 import space.bbkr.mycoturgy.component.HaustorComponent;
 import space.bbkr.mycoturgy.init.MycoturgyComponents;
@@ -18,11 +18,7 @@ import net.minecraft.client.render.VertexFormats;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-
 //TODO: *really* gotta make a lib for this, so that this doesn't overlap with CRPG or Trion
-@Environment(EnvType.CLIENT)
 public class HaustorBandHud {
 	private static MinecraftClient client = MinecraftClient.getInstance();
 
@@ -32,7 +28,7 @@ public class HaustorBandHud {
 	private static final Identifier LAMELLA_TEX = new Identifier(Mycoturgy.MODID, "textures/icons/lamella.png");
 
 	public static void render(MatrixStack matrices, float tickDelta) {
-		if (TrinketsApi.getTrinketComponent(client.player).getStack("hand:ring").getItem() == MycoturgyItems.HAUSTORAL_BAND) {
+		if (TrinketsApi.getTrinketComponent(client.player).get().isEquipped(MycoturgyItems.HAUSTORAL_BAND)) {
 			matrices.push();
 			Optional<HaustorComponent> componentOpt = MycoturgyComponents.HAUSTOR_COMPONENT.maybeGet(client.player.world.getChunk(client.player.getBlockPos()));
 			//TODO: real colors - these are just the trion ones right now
@@ -50,10 +46,10 @@ public class HaustorBandHud {
 		//draw icon
 		client.getTextureManager().bindTexture(icon);
 		RenderSystem.enableBlend();
-		RenderSystem.blendFuncSeparate(GlStateManager.SrcFactor.SRC_ALPHA, GlStateManager.DstFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SrcFactor.ONE, GlStateManager.DstFactor.ZERO);
+		RenderSystem.blendFuncSeparate(GlStateManager.class_4535.SRC_ALPHA, GlStateManager.class_4534.ONE_MINUS_SRC_ALPHA, GlStateManager.class_4535.ONE, GlStateManager.class_4534.ZERO);
 //		RenderSystem.enableAlphaTest();
 		//TODO: how does color work now? does this need any change?
-		RenderSystem.color4f(1f, 1f, 1f, 1f);
+		RenderSystem.setShaderColor(1f, 1f, 1f, 1f);
 		blit(left, top, 9, 9);
 
 		left += 10;
@@ -68,14 +64,14 @@ public class HaustorBandHud {
 		blit(left + 1, top, 62, 9, texUV(1), texUV(20), texUV(63), texUV(29));
 		blit(left + 63, top, 1, 9, texUV(63), texUV(20), texUV(64), texUV(29));
 
-		RenderSystem.color4f(r, g, b, 1f);
+		RenderSystem.setShaderColor(r, g, b, 1f);
 		int fgLength = (int)((amount / max) * 62f);
 		//bar FG: left edge, middle, right edge
 		blit(left, top, 1, 9, texUV(0), texUV(29), texUV(1), texUV(38));
 		blit(left + 1, top, fgLength, 9, texUV(1), texUV(29), texUV(fgLength + 1), texUV(38));
 		blit(left + fgLength + 1, top, 1, 9, texUV(63), texUV(29), texUV(64), texUV(38));
 
-		RenderSystem.color4f(1f, 1f, 1f, 1f);
+		RenderSystem.setShaderColor(1f, 1f, 1f, 1f);
 
 		if (client.player.isSneaking()) {
 			MinecraftClient.getInstance().textRenderer.drawWithShadow(matrices, "" + (int) amount, left + 66, top, 0xFFFFFF);
@@ -95,7 +91,7 @@ public class HaustorBandHud {
 	private static void innerBlit(double x1, double y1, double x2, double y2, double z, float u1, float v1, float u2, float v2) {
 		Tessellator tess = Tessellator.getInstance();
 		BufferBuilder buffer = tess.getBuffer();
-		buffer.begin(GL11.GL_QUADS, VertexFormats.POSITION_TEXTURE);
+		buffer.begin(VertexFormat.DrawMode.QUADS, VertexFormats.POSITION_TEXTURE);
 		buffer.vertex(x1, y2, z).texture(u1, v2).next();
 		buffer.vertex(x2, y2, z).texture(u2, v2).next();
 		buffer.vertex(x2, y1, z).texture(u2, v1).next();

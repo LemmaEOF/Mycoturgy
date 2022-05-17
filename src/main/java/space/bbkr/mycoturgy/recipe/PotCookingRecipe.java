@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import net.minecraft.recipe.*;
 import space.bbkr.mycoturgy.init.MycoturgyRecipes;
 import space.bbkr.mycoturgy.inventory.CookingPotInventory;
 
@@ -13,12 +14,6 @@ import net.minecraft.loot.context.LootContext;
 import net.minecraft.loot.context.LootContextParameters;
 import net.minecraft.loot.context.LootContextType;
 import net.minecraft.network.PacketByteBuf;
-import net.minecraft.recipe.Ingredient;
-import net.minecraft.recipe.Recipe;
-import net.minecraft.recipe.RecipeFinder;
-import net.minecraft.recipe.RecipeSerializer;
-import net.minecraft.recipe.RecipeType;
-import net.minecraft.recipe.ShapedRecipe;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonHelper;
@@ -65,18 +60,18 @@ public class PotCookingRecipe implements Recipe<CookingPotInventory> {
 
 	@Override
 	public boolean matches(CookingPotInventory inv, World world) {
-		RecipeFinder recipeFinder = new RecipeFinder();
+		RecipeMatcher recipeFinder = new RecipeMatcher();
 		int heldStacks = 0;
 
 		for(int i = 0; i < inv.size(); i++) {
 			ItemStack itemStack = inv.getStack(i);
 			if (!itemStack.isEmpty()) {
 				heldStacks++;
-				recipeFinder.method_20478(itemStack, 1);
+				recipeFinder.addInput(itemStack, 1);
 			}
 		}
 
-		return heldStacks == this.input.size() && recipeFinder.findRecipe(this, null);
+		return heldStacks == this.input.size() && recipeFinder.match(this, null);
 	}
 
 	@Override
@@ -90,7 +85,7 @@ public class PotCookingRecipe implements Recipe<CookingPotInventory> {
 	}
 
 	@Override
-	public DefaultedList<Ingredient> getPreviewInputs() {
+	public DefaultedList<Ingredient> getIngredients() {
 		return input;
 	}
 
@@ -146,7 +141,7 @@ public class PotCookingRecipe implements Recipe<CookingPotInventory> {
 		@Override
 		public PotCookingRecipe read(Identifier id, JsonObject json) {
 			DefaultedList<Ingredient> ingredients = getIngredients(JsonHelper.getArray(json, "ingredients"));
-			ItemStack result = ShapedRecipe.getItemStack(JsonHelper.getObject(json, "result"));
+			ItemStack result = ShapedRecipe.outputFromJson(JsonHelper.getObject(json, "result"));
 			Identifier bonus = new Identifier(JsonHelper.getString(json, "bonus", "empty"));
 			int cookingTime = JsonHelper.getInt(json, "cookingtime", 200);
 			int hyphaCost = JsonHelper.getInt(json, "hyphacost", 0);

@@ -31,6 +31,5 @@ public class SingleStackSyncedInventory extends SimpleInventory {
 	public void markDirty() {
 		super.markDirty();
 		parent.markDirty();
-		if (parent.getWorld() != null && !parent.getWorld().isClient) parent.sync();
 	}
 }

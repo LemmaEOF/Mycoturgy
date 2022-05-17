@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "quilt_loader": {
+    "group": "gay.lemmaeof",
+    "id": "mycoturgy",
+    "version": "${version}",
+    "metadata": {
+      "name": "Mycoturgy",
+      "description": "Fungal witchcraft originally for ModFest 1.16",
+      "authors": [
+        "LemmaEOF"
+      ],
+      "contact": {},
+      "license": "MIT",
+      "icon": "assets/mycoturgy/icon.png"
+    },
+    "environment": "*",
+    "entrypoints": {
+      "init": [
+        "space.bbkr.mycoturgy.Mycoturgy"
+      ],
+      "client_init": [
+        "space.bbkr.mycoturgy.MycoturgyClient"
+      ],
+      "cardinal-components-chunk": [
+        "space.bbkr.mycoturgy.init.MycoturgyComponents"
+      ]
+    },
+    "intermediate_mappings": "net.fabricmc:intermediary",
+    "depends": [
+      {
+        "id": "quilt_loader"
+      },
+      {
+        "id": "cardinal-components-base"
+      },
+      {
+        "id": "cardinal-components-chunk"
+      }
+    ]
+  },
+  "mixin": [
+    "mixins.mycoturgy.json"
+  ],
+  "cardinal-components": [
+    "mycoturgy:haustor"
+  ],
+  "access_widener": [
+    "mycoturgy.accesswidener"
+  ]
+}

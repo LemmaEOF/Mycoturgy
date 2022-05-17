@@ -4,8 +4,10 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
-import space.bbkr.mycoturgy.block.entity.CookingPotBlockEntity;
+import net.minecraft.block.entity.BlockEntityTicker;
+import net.minecraft.block.entity.BlockEntityType;
 import space.bbkr.mycoturgy.block.entity.MasonJarBlockEntity;
+import space.bbkr.mycoturgy.init.MycoturgyBlocks;
 import space.bbkr.mycoturgy.init.MycoturgyItems;
 
 import net.minecraft.block.Block;
@@ -21,7 +23,6 @@ import net.minecraft.particle.ParticleTypes;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionUtil;
 import net.minecraft.potion.Potions;
-import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
@@ -36,9 +37,6 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
-
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 
 public class MasonJarBlock extends Block implements BlockEntityProvider {
 	public static final BooleanProperty FILLED = BooleanProperty.of("filled");
@@ -66,7 +64,7 @@ public class MasonJarBlock extends Block implements BlockEntityProvider {
 		} else if (stack.getItem() == Items.GLASS_BOTTLE && state.get(FILLED)) {
 			world.setBlockState(pos, state.with(FILLED, false), 2);
 			world.playSound(null, pos, SoundEvents.ITEM_BOTTLE_FILL, SoundCategory.BLOCKS, 1f, 1f);
-			ItemUsage.method_30012(stack, player, PotionUtil.setPotion(new ItemStack(Items.POTION), Potions.WATER));
+			ItemUsage.exchangeStack(stack, player, PotionUtil.setPotion(new ItemStack(Items.POTION), Potions.WATER));
 			return ActionResult.SUCCESS;
 		} else if (stack.getItem() == MycoturgyItems.SPOREBRUSH_ASH) {
 			BlockEntity be = world.getBlockEntity(pos);
@@ -104,7 +102,7 @@ public class MasonJarBlock extends Block implements BlockEntityProvider {
 				if (player.isSneaking()) {
 					player.sendMessage(new TranslatableText("msg.mycoturgy.ashes", jar.getAshes()), true);
 				} else if (!jar.getInventory().getStack().isEmpty()) {
-					player.inventory.insertStack(jar.getInventory().getStack());
+					player.getInventory().insertStack(jar.getInventory().getStack());
 					jar.getInventory().clear();
 					return ActionResult.SUCCESS;
 				}
@@ -133,8 +131,14 @@ public class MasonJarBlock extends Block implements BlockEntityProvider {
 
 	@Nullable
 	@Override
-	public BlockEntity createBlockEntity(BlockView world) {
-		return new MasonJarBlockEntity();
+	public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
+		return new MasonJarBlockEntity(pos, state);
+	}
+
+	@org.jetbrains.annotations.Nullable
+	@Override
+	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
+		return world.isClient || type != MycoturgyBlocks.MASON_JAR_BLOCK_ENTITY ? null : (w, p, s, be) -> ((MasonJarBlockEntity) be).tick();
 	}
 
 	@Override
@@ -149,7 +153,6 @@ public class MasonJarBlock extends Block implements BlockEntityProvider {
 	}
 
 	//TODO: custom particles?
-	@Environment(EnvType.CLIENT)
 	@Override
 	public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
 		Vec3d jarPos = new Vec3d(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5).add(state.getModelOffset(world, pos));

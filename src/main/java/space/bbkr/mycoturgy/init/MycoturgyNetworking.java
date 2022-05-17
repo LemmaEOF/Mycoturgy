@@ -1,5 +1,7 @@
 package space.bbkr.mycoturgy.init;
 
+import org.quiltmc.qsl.networking.api.PacketSender;
+import org.quiltmc.qsl.networking.api.ServerPlayNetworking;
 import space.bbkr.mycoturgy.Mycoturgy;
 import space.bbkr.mycoturgy.item.SporePouchItem;
 
@@ -9,9 +11,6 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayNetworkHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
-
-import net.fabricmc.fabric.api.networking.v1.PacketSender;
-import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 
 public class MycoturgyNetworking {
 	public static final Identifier SCROLL = new Identifier(Mycoturgy.MODID, "scroll");

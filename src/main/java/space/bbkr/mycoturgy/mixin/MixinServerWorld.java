@@ -2,6 +2,7 @@ package space.bbkr.mycoturgy.mixin;
 
 import java.util.function.Supplier;
 
+import net.minecraft.util.Holder;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -33,7 +34,7 @@ public abstract class MixinServerWorld extends World {
 
 	@Shadow public abstract void updateNeighbors(BlockPos pos, Block block);
 
-	protected MixinServerWorld(MutableWorldProperties properties, RegistryKey<World> registryRef, DimensionType dimensionType, Supplier<Profiler> profiler, boolean isClient, boolean debugWorld, long seed) {
+	protected MixinServerWorld(MutableWorldProperties properties, RegistryKey<World> registryRef, Holder<DimensionType> dimensionType, Supplier<Profiler> profiler, boolean isClient, boolean debugWorld, long seed) {
 		super(properties, registryRef, dimensionType, profiler, isClient, debugWorld, seed);
 	}
 

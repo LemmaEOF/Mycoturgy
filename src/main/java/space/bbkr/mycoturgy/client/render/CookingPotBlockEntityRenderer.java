@@ -1,27 +1,23 @@
 package space.bbkr.mycoturgy.client.render;
 
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.render.VertexConsumerProvider;
+import net.minecraft.client.render.block.entity.BlockEntityRenderer;
+import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
+import net.minecraft.client.render.model.json.ModelTransformation;
+import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.Vec3f;
+import space.bbkr.mycoturgy.block.entity.CookingPotBlockEntity;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
-import space.bbkr.mycoturgy.block.entity.CookingPotBlockEntity;
-
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.render.VertexConsumerProvider;
-import net.minecraft.client.render.block.entity.BlockEntityRenderDispatcher;
-import net.minecraft.client.render.block.entity.BlockEntityRenderer;
-import net.minecraft.client.render.model.json.ModelTransformation;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.client.util.math.Vector3f;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.Vec3d;
-
-public class CookingPotBlockEntityRenderer extends BlockEntityRenderer<CookingPotBlockEntity> {
+public class CookingPotBlockEntityRenderer implements BlockEntityRenderer<CookingPotBlockEntity> {
 	private static final List<Vec3d> OFFSETS = new ArrayList<>();
 
-	public CookingPotBlockEntityRenderer(BlockEntityRenderDispatcher dispatcher) {
-		super(dispatcher);
-	}
+	public CookingPotBlockEntityRenderer(BlockEntityRendererFactory.Context dispatcher) {}
 
 	@Override
 	public void render(CookingPotBlockEntity entity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
@@ -36,9 +32,9 @@ public class CookingPotBlockEntityRenderer extends BlockEntityRenderer<CookingPo
 			matrices.push();
 			matrices.translate(0.5D, -0.2D, 0.5D);
 			matrices.translate(offset.x, offset.y + (Math.sin((tickDelta + entity.ticks) / 8) * 0.05), offset.z);
-			matrices.multiply(Vector3f.POSITIVE_Y.getDegreesQuaternion((tickDelta + entity.ticks) / 1.5f));
+			matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion((tickDelta + entity.ticks) / 1.5f));
 			matrices.scale(0.35f, 0.35f, 0.35f);
-			MinecraftClient.getInstance().getItemRenderer().renderItem(stack, ModelTransformation.Mode.FIXED, light, overlay, matrices, vertexConsumers);
+			MinecraftClient.getInstance().getItemRenderer().renderItem(stack, ModelTransformation.Mode.FIXED, light, overlay, matrices, vertexConsumers, 0);
 			matrices.pop();
 		}
 	}

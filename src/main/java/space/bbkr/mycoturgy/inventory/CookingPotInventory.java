@@ -39,6 +39,6 @@ public class CookingPotInventory extends SimpleInventory {
 	public void markDirty() {
 		super.markDirty();
 		parent.markDirty();
-		if (parent.getWorld() != null && !parent.getWorld().isClient) parent.sync();
+		if (parent.getWorld() != null && !parent.getWorld().isClient) parent.markDirty();
 	}
 }

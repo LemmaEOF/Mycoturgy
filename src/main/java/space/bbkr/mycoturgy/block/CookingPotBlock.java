@@ -2,6 +2,8 @@ package space.bbkr.mycoturgy.block;
 
 import java.util.stream.Stream;
 
+import net.minecraft.block.entity.BlockEntityTicker;
+import net.minecraft.block.entity.BlockEntityType;
 import org.jetbrains.annotations.Nullable;
 import space.bbkr.mycoturgy.block.entity.CookingPotBlockEntity;
 
@@ -36,6 +38,7 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
+import space.bbkr.mycoturgy.init.MycoturgyBlocks;
 
 public class CookingPotBlock extends Block implements BlockEntityProvider {
 	public static final BooleanProperty FILLED = BooleanProperty.of("filled");
@@ -77,7 +80,7 @@ public class CookingPotBlock extends Block implements BlockEntityProvider {
 		} else if (stack.getItem() == Items.GLASS_BOTTLE && state.get(FILLED)) {
 			world.setBlockState(pos, state.with(FILLED, false), 2);
 			world.playSound(null, pos, SoundEvents.ITEM_BOTTLE_FILL, SoundCategory.BLOCKS, 1f, 1f);
-			ItemUsage.method_30012(stack, player, PotionUtil.setPotion(new ItemStack(Items.POTION), Potions.WATER));
+			ItemUsage.exchangeStack(stack, player, PotionUtil.setPotion(new ItemStack(Items.POTION), Potions.WATER));
 			return ActionResult.SUCCESS;
 		} else if (!stack.isEmpty()) {
 			BlockEntity be = world.getBlockEntity(pos);
@@ -96,7 +99,7 @@ public class CookingPotBlock extends Block implements BlockEntityProvider {
 			if (be instanceof CookingPotBlockEntity) {
 				CookingPotBlockEntity jar = (CookingPotBlockEntity) be;
 				if (!jar.getOutputInventory().getStack().isEmpty()) {
-					player.inventory.insertStack(jar.getOutputInventory().getStack());
+					player.getInventory().insertStack(jar.getOutputInventory().getStack());
 					jar.getOutputInventory().clear();
 					return ActionResult.SUCCESS;
 				}
@@ -122,8 +125,14 @@ public class CookingPotBlock extends Block implements BlockEntityProvider {
 
 	@Nullable
 	@Override
-	public BlockEntity createBlockEntity(BlockView world) {
-		return new CookingPotBlockEntity();
+	public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
+		return new CookingPotBlockEntity(pos, state);
+	}
+
+	@Nullable
+	@Override
+	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
+		return world.isClient || type != MycoturgyBlocks.COOKING_POT_BLOCK_ENTITY ? null : (w, p, s, be) -> ((CookingPotBlockEntity) be).tick();
 	}
 
 	@Override

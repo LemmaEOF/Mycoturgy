@@ -1,23 +1,32 @@
 package space.bbkr.mycoturgy.block.entity;
 
+import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
-import net.minecraft.nbt.CompoundTag;
 
-import net.fabricmc.fabric.api.block.entity.BlockEntityClientSerializable;
+import net.minecraft.network.Packet;
+import net.minecraft.network.listener.ClientPlayPacketListener;
+import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
+import net.minecraft.util.math.BlockPos;
+import org.jetbrains.annotations.Nullable;
+import org.quiltmc.qsl.networking.api.PlayerLookup;
 
-public abstract class SyncingBlockEntity extends BlockEntity implements BlockEntityClientSerializable {
-	public SyncingBlockEntity(BlockEntityType<?> type) {
-		super(type);
+public abstract class SyncingBlockEntity extends BlockEntity {
+	public SyncingBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
+		super(type, pos, state);
 	}
 
 	@Override
-	public void fromClientTag(CompoundTag tag) {
-		this.fromTag(getCachedState(), tag);
+	public void markDirty() {
+		super.markDirty();
+		if (!world.isClient) {
+			PlayerLookup.tracking(this).forEach(p -> p.networkHandler.sendPacket(toUpdatePacket()));
+		}
 	}
 
+	@Nullable
 	@Override
-	public CompoundTag toClientTag(CompoundTag tag) {
-		return this.toTag(tag);
+	public Packet<ClientPlayPacketListener> toUpdatePacket() {
+		return BlockEntityUpdateS2CPacket.of(this);
 	}
 }

@@ -1,5 +1,7 @@
 package space.bbkr.mycoturgy.init;
 
+import net.minecraft.tag.TagKey;
+import org.quiltmc.qsl.item.group.api.QuiltItemGroup;
 import space.bbkr.mycoturgy.Mycoturgy;
 import space.bbkr.mycoturgy.item.HaustoralBandItem;
 import space.bbkr.mycoturgy.item.MycoturgeJournalItem;
@@ -9,13 +11,9 @@ import net.minecraft.item.AliasedBlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tag.Tag;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
 import net.minecraft.util.registry.Registry;
-
-import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
-import net.fabricmc.fabric.api.tag.TagRegistry;
 
 public class MycoturgyItems {
 	public static Item SPORE_BUNDLE;
@@ -27,9 +25,9 @@ public class MycoturgyItems {
 	public static Item SPORE_POUCH;
 
 	//items which are made of netherite and impervious to flame - lodestones aren't included
-	public static Tag<Item> NETHERITE_COMPOSED;
+	public static TagKey<Item> NETHERITE_COMPOSED;
 
-	public static final ItemGroup MYCOTURGY_GROUP = FabricItemGroupBuilder.build(new Identifier(Mycoturgy.MODID, Mycoturgy.MODID), () -> new ItemStack(SPORE_BUNDLE));
+	public static final ItemGroup MYCOTURGY_GROUP = QuiltItemGroup.createWithIcon(new Identifier(Mycoturgy.MODID, Mycoturgy.MODID), () -> new ItemStack(SPORE_BUNDLE));
 
 	public static void init() {
 		SPORE_BUNDLE = register("spore_bundle", new Item(new Item.Settings().group(MYCOTURGY_GROUP)));
@@ -40,7 +38,7 @@ public class MycoturgyItems {
 		MYCOTURGE_JOURNAL = register("mycoturge_journal", new MycoturgeJournalItem(new Item.Settings().maxCount(1).group(MYCOTURGY_GROUP)));
 		SPORE_POUCH = register("spore_pouch", new SporePouchItem(new Item.Settings().maxCount(1).group(MYCOTURGY_GROUP)));
 
-		NETHERITE_COMPOSED = TagRegistry.item(new Identifier(Mycoturgy.MODID, "netherite_composed"));
+		NETHERITE_COMPOSED = TagKey.of(Registry.ITEM_KEY, new Identifier(Mycoturgy.MODID, "netherite_composed"));
 	}
 
 	private static Item register(String name, Item item) {

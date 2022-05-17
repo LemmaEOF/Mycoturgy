@@ -27,9 +27,6 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-
 public class MushrooomLampBlock extends Block {
 	public static final EnumProperty<BlockThird> THIRD = EnumProperty.of("third", BlockThird.class);
 	public static final VoxelShape LOWER_SHAPE;
@@ -125,7 +122,6 @@ public class MushrooomLampBlock extends Block {
 		world.setBlockState(pos.up().up(), state.with(THIRD, BlockThird.UPPER), 3);
 	}
 
-	@Environment(EnvType.CLIENT)
 	@Override
 	public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
 		super.randomDisplayTick(state, world, pos, random);

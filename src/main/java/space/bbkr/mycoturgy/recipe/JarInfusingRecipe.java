@@ -65,7 +65,7 @@ public class JarInfusingRecipe implements Recipe<SingleStackSyncedInventory> {
 	}
 
 	@Override
-	public DefaultedList<Ingredient> getPreviewInputs() {
+	public DefaultedList<Ingredient> getIngredients() {
 		return DefaultedList.ofSize(1, input);
 	}
 
@@ -99,7 +99,7 @@ public class JarInfusingRecipe implements Recipe<SingleStackSyncedInventory> {
 		@Override
 		public JarInfusingRecipe read(Identifier id, JsonObject json) {
 			Ingredient ing = Ingredient.fromJson(JsonHelper.getObject(json, "ingredient"));
-			ItemStack res = ShapedRecipe.getItemStack(JsonHelper.getObject(json, "result"));
+			ItemStack res = ShapedRecipe.outputFromJson(JsonHelper.getObject(json, "result"));
 			int time = JsonHelper.getInt(json, "infusingtime", 400);
 			int hypha = JsonHelper.getInt(json, "hyphacost", 0);
 			int lamella = JsonHelper.getInt(json, "lamellacost", 0);

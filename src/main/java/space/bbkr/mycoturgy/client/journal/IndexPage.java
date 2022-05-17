@@ -13,9 +13,6 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Identifier;
 
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-
 public class IndexPage extends Page {
 	public static final Identifier BACKGROUND = new Identifier(Mycoturgy.MODID, "textures/gui/journal_index_page.png");
 	IndexEntry[] entries;
@@ -29,7 +26,6 @@ public class IndexPage extends Page {
 			this.icon = icon;
 		}
 
-		@Environment(EnvType.CLIENT)
 		public boolean isUnlocked() {
 			return true;
 		}
@@ -60,7 +56,6 @@ public class IndexPage extends Page {
 	}
 
 	@Override
-	@Environment(EnvType.CLIENT)
 	public boolean click(JournalGui gui, int x, int y, int mouseX, int mouseY) {
 		for (int i = 0; i < entries.length; i ++) if (entries[i].isUnlocked()) {
 			if (mouseX >= x + 2 && mouseX <= x + 124 && mouseY >= y + 8 + i * 20 && mouseY <= y + 26 + i * 20) {
@@ -73,7 +68,6 @@ public class IndexPage extends Page {
 	}
 
 	@Override
-	@Environment(EnvType.CLIENT)
 	public void render(JournalGui gui, MatrixStack mStack, int x, int y, int mouseX, int mouseY) {
 		MinecraftClient.getInstance().getTextureManager().bindTexture(BACKGROUND);
 		for (int i = 0; i < entries.length; i ++) {

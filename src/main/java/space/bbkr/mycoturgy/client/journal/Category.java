@@ -3,10 +3,7 @@ package space.bbkr.mycoturgy.client.journal;
 import com.mojang.blaze3d.systems.RenderSystem;
 
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.render.BufferBuilder;
-import net.minecraft.client.render.BufferRenderer;
-import net.minecraft.client.render.Tessellator;
-import net.minecraft.client.render.VertexFormats;
+import net.minecraft.client.render.*;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.TranslatableText;
@@ -40,13 +37,13 @@ public class Category {
 				g = ColorUtil.getGreen(color),
 				b = ColorUtil.getBlue(color);
 		BufferBuilder bufferbuilder = Tessellator.getInstance().getBuffer();
-		bufferbuilder.begin(7, VertexFormats.POSITION_TEXTURE_COLOR);
+		bufferbuilder.begin(VertexFormat.DrawMode.QUADS, VertexFormats.POSITION_TEXTURE_COLOR);
 		bufferbuilder.vertex(matrix, (float)x, (float)maxY, 0).texture(minU, maxV).color(r, g, b, 255).next();
 		bufferbuilder.vertex(matrix, (float)maxX, (float)maxY, 0).texture(maxU, maxV).color(r, g, b, 255).next();
 		bufferbuilder.vertex(matrix, (float)maxX, (float)y, 0).texture(maxU, minV).color(r, g, b, 255).next();
 		bufferbuilder.vertex(matrix, (float)x, (float)y, 0).texture(minU, minV).color(r, g, b, 255).next();
 		bufferbuilder.end();
-		RenderSystem.enableAlphaTest();
+//		RenderSystem.enableAlphaTest();
 		BufferRenderer.draw(bufferbuilder);
 	}
 

@@ -12,7 +12,7 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
 
 public class GriefStatusEffect extends StatusEffect {
-	private static final Identifier FEEL_CORRUPTION = new Identifier(Mycoturgy.MODID, "research/feel_grief");
+	private static final Identifier FEEL_GRIEF = new Identifier(Mycoturgy.MODID, "research/feel_grief");
 
 	public GriefStatusEffect(StatusEffectType type, int color) {
 		super(type, color);
@@ -28,7 +28,7 @@ public class GriefStatusEffect extends StatusEffect {
 		if (player instanceof ServerPlayerEntity) {
 			player.damage(GriefDamageSource.INSTANCE, 1f);
 			MinecraftServer server = player.world.getServer();
-			Advancement advancement = server.getAdvancementLoader().get(FEEL_CORRUPTION);
+			Advancement advancement = server.getAdvancementLoader().get(FEEL_GRIEF);
 			server.getPlayerManager().getAdvancementTracker((ServerPlayerEntity) player).grantCriterion(advancement, "feel_grief");
 		}
 	}

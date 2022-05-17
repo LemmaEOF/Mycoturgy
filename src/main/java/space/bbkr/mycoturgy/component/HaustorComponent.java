@@ -4,7 +4,7 @@ import java.util.Random;
 
 import dev.onyxstudios.cca.api.v3.component.sync.AutoSyncedComponent;
 
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.world.chunk.Chunk;
 
 public class HaustorComponent implements AutoSyncedComponent {
@@ -86,14 +86,14 @@ public class HaustorComponent implements AutoSyncedComponent {
 	}
 
 	@Override
-	public void readFromNbt(CompoundTag tag) {
+	public void readFromNbt(NbtCompound tag) {
 		this.primordia = tag.getInt("Primordia");
 		this.hypha = tag.getInt("Hypha");
 		this.lamella = tag.getInt("Lamella");
 	}
 
 	@Override
-	public void writeToNbt(CompoundTag tag) {
+	public void writeToNbt(NbtCompound tag) {
 		tag.putInt("Primordia", primordia);
 		tag.putInt("Hypha", hypha);
 		tag.putInt("Lamella", lamella);
