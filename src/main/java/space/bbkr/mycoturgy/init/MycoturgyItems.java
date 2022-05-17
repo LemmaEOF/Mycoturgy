@@ -3,9 +3,7 @@ package space.bbkr.mycoturgy.init;
 import net.minecraft.tag.TagKey;
 import org.quiltmc.qsl.item.group.api.QuiltItemGroup;
 import space.bbkr.mycoturgy.Mycoturgy;
-import space.bbkr.mycoturgy.item.HaustoralBandItem;
-import space.bbkr.mycoturgy.item.MycoturgeJournalItem;
-import space.bbkr.mycoturgy.item.SporePouchItem;
+import space.bbkr.mycoturgy.item.*;
 
 import net.minecraft.item.AliasedBlockItem;
 import net.minecraft.item.Item;
@@ -23,6 +21,8 @@ public class MycoturgyItems {
 	public static Item HAUSTORAL_BAND;
 	public static Item MYCOTURGE_JOURNAL;
 	public static Item SPORE_POUCH;
+	public static Item SIDE_SWORD;
+	public static Item MUSHROOM_SHIELD;
 
 	//items which are made of netherite and impervious to flame - lodestones aren't included
 	public static TagKey<Item> NETHERITE_COMPOSED;
@@ -37,6 +37,8 @@ public class MycoturgyItems {
 		HAUSTORAL_BAND = register("haustoral_band", new HaustoralBandItem(new Item.Settings().maxCount(1).rarity(Rarity.RARE).group(MYCOTURGY_GROUP)));
 		MYCOTURGE_JOURNAL = register("mycoturge_journal", new MycoturgeJournalItem(new Item.Settings().maxCount(1).group(MYCOTURGY_GROUP)));
 		SPORE_POUCH = register("spore_pouch", new SporePouchItem(new Item.Settings().maxCount(1).group(MYCOTURGY_GROUP)));
+		SIDE_SWORD = register("side_sword", new SideSwordItem(new Item.Settings().maxCount(1).group(MYCOTURGY_GROUP)));
+		MUSHROOM_SHIELD = register("mushroom_shield", new MushroomShieldItem(new Item.Settings().maxCount(1).group(MYCOTURGY_GROUP)));
 
 		NETHERITE_COMPOSED = TagKey.of(Registry.ITEM_KEY, new Identifier(Mycoturgy.MODID, "netherite_composed"));
 	}

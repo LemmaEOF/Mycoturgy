@@ -39,7 +39,7 @@ dependencies {
 		addLayer(quiltMappings.mappings("org.quiltmc:quilt-mappings:${minecraft_version}+build.${project.qm_build}:v2"))
 	})
 	modImplementation "org.quiltmc:quilt-loader:${project.loader_version}"
-	modImplementation "org.quiltmc:qsl:${project.quilt_version}+${project.minecraft_version}"
+	modImplementation("org.quiltmc:qsl:${project.quilt_version}+${project.minecraft_version}") { exclude group: "org.quiltmc.qsl.gui" }
 	modImplementation("org.quiltmc.quilted-fabric-api:quilted-fabric-api:${project.qfapi_version}-${project.minecraft_version}") { exclude group: "org.quiltmc.qsl.command" }
 
 	include modImplementation("dev.onyxstudios.cardinal-components-api:cardinal-components-base:${project.cardinal_version}") { transitive = false }

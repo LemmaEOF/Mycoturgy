@@ -5,16 +5,13 @@ import java.util.Optional;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 import dev.emi.trinkets.api.TrinketsApi;
-import net.minecraft.client.render.VertexFormat;
+import net.minecraft.client.render.*;
 import space.bbkr.mycoturgy.Mycoturgy;
 import space.bbkr.mycoturgy.component.HaustorComponent;
 import space.bbkr.mycoturgy.init.MycoturgyComponents;
 import space.bbkr.mycoturgy.init.MycoturgyItems;
 
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.render.BufferBuilder;
-import net.minecraft.client.render.Tessellator;
-import net.minecraft.client.render.VertexFormats;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 
@@ -28,7 +25,7 @@ public class HaustorBandHud {
 	private static final Identifier LAMELLA_TEX = new Identifier(Mycoturgy.MODID, "textures/icons/lamella.png");
 
 	public static void render(MatrixStack matrices, float tickDelta) {
-		if (TrinketsApi.getTrinketComponent(client.player).get().isEquipped(MycoturgyItems.HAUSTORAL_BAND)) {
+		if (TrinketsApi.getTrinketComponent(client.player).orElseThrow().isEquipped(MycoturgyItems.HAUSTORAL_BAND)) {
 			matrices.push();
 			Optional<HaustorComponent> componentOpt = MycoturgyComponents.HAUSTOR_COMPONENT.maybeGet(client.player.world.getChunk(client.player.getBlockPos()));
 			//TODO: real colors - these are just the trion ones right now
@@ -44,7 +41,8 @@ public class HaustorBandHud {
 
 	private static void drawBar(MatrixStack matrices, Identifier icon, int color, float amount, float max, int left, int top) {
 		//draw icon
-		client.getTextureManager().bindTexture(icon);
+		RenderSystem.enableTexture();
+		RenderSystem.setShaderTexture(0, icon);
 		RenderSystem.enableBlend();
 		RenderSystem.blendFuncSeparate(GlStateManager.class_4535.SRC_ALPHA, GlStateManager.class_4534.ONE_MINUS_SRC_ALPHA, GlStateManager.class_4535.ONE, GlStateManager.class_4534.ZERO);
 //		RenderSystem.enableAlphaTest();
@@ -58,7 +56,7 @@ public class HaustorBandHud {
 		float r = (color >> 16 & 255) / 255f;
 		float g = (color >> 8 & 255) / 255f;
 		float b = (color & 255) / 255f;
-		client.getTextureManager().bindTexture(BAR_TEX);
+		RenderSystem.setShaderTexture(0, BAR_TEX);
 		//bar BG: left edge, middle, right edge
 		blit(left, top, 1, 9, texUV(0), texUV(20), texUV(1), texUV(29));
 		blit(left + 1, top, 62, 9, texUV(1), texUV(20), texUV(63), texUV(29));
@@ -77,6 +75,7 @@ public class HaustorBandHud {
 			MinecraftClient.getInstance().textRenderer.drawWithShadow(matrices, "" + (int) amount, left + 66, top, 0xFFFFFF);
 		}
 		RenderSystem.disableBlend();
+		RenderSystem.disableTexture();
 //		RenderSystem.disableAlphaTest();
 	}
 
@@ -89,6 +88,7 @@ public class HaustorBandHud {
 	}
 
 	private static void innerBlit(double x1, double y1, double x2, double y2, double z, float u1, float v1, float u2, float v2) {
+		RenderSystem.setShader(GameRenderer::getPositionTexShader);
 		Tessellator tess = Tessellator.getInstance();
 		BufferBuilder buffer = tess.getBuffer();
 		buffer.begin(VertexFormat.DrawMode.QUADS, VertexFormats.POSITION_TEXTURE);
@@ -96,7 +96,9 @@ public class HaustorBandHud {
 		buffer.vertex(x2, y2, z).texture(u2, v2).next();
 		buffer.vertex(x2, y1, z).texture(u2, v1).next();
 		buffer.vertex(x1, y1, z).texture(u1, v1).next();
-		tess.draw();
+		buffer.end();
+//		tess.draw();
+		BufferRenderer.draw(buffer);
 	}
 
 	private static float texUV(int orig) {

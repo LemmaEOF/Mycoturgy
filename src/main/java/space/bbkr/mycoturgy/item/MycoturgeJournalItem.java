@@ -23,7 +23,7 @@ public class MycoturgeJournalItem extends Item {
 
 	@Override
 	public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-		if (world.isClient) {
+		if (!world.isClient) {
 			user.playSound(SoundEvents.ITEM_BOOK_PAGE_TURN, SoundCategory.PLAYERS, 1.0f, 1.0f);
 //			MinecraftClient.getInstance().setScreen(JournalGui.getInstance());
 			PatchouliAPI.get().openBookGUI((ServerPlayerEntity) user, new Identifier(Mycoturgy.MODID, "mycoturge_journal"));

@@ -1,5 +1,6 @@
 package space.bbkr.mycoturgy.mixin.client;
 
+import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawableHelper;
 import net.minecraft.client.gui.hud.InGameHud;
@@ -49,10 +50,10 @@ public abstract class MixinInGameHud extends DrawableHelper {
 	private void drawGriefFire(MatrixStack matrices, InGameHud.HeartType type, int x, int y, int v, boolean blinking, boolean halfHeart, CallbackInfo info) {
 		PlayerEntity player = this.getCameraPlayer(); //only called when player exists so we're safe
 		if (player.hasStatusEffect(MycoturgyEffects.GRIEF) && type == InGameHud.HeartType.CONTAINER) {
-			this.client.getTextureManager().bindTexture(MYCOTURGY_ICONS_TEXTURE);
+			RenderSystem.setShaderTexture(0, MYCOTURGY_ICONS_TEXTURE);
 			this.drawTexture(matrices, x, y - 3, 9 * drawnFrame, 0, 9, 13);
 //			this.drawTexture(matrices, x, y - 3, 9 * ((lastTick / 2 % x + currentFrame) % 7), 0, 9, 13);
-			this.client.getTextureManager().bindTexture(GUI_ICONS_TEXTURE);
+			RenderSystem.setShaderTexture(0, GUI_ICONS_TEXTURE);
 			drawnFrame += fuckery[currentHeart % 7];
 			currentHeart++;
 			drawnFrame %= 7;

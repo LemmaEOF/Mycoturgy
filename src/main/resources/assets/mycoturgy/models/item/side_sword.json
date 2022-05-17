@@ -1,0 +1,11 @@
+{
+  "parent": "item/generated",
+  "overrides": [
+    {
+      "predicate": {
+        "blocking": 1
+      },
+      "model": "mycoturgy:item/side_sword_blocking"
+    }
+  ]
+}

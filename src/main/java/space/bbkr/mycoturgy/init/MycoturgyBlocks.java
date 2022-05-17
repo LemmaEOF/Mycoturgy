@@ -58,6 +58,7 @@ public class MycoturgyBlocks {
 				//break by pickaxes
 				new MasonJarBlock(QuiltBlockSettings.of(Material.GLASS)
 						.nonOpaque()
+						.dynamicBounds()
 				), new Item.Settings()
 						.group(MycoturgyItems.MYCOTURGY_GROUP)
 		);
