@@ -20,5 +20,6 @@
   "msg.mycoturgy.ashes": "Current ashes: %s",
   "text.mycoturgy.hypha_cost": "Hypha Cost",
   "text.mycoturgy.journal_intro": "Mycoturgy is the art of working with Sporebrush and Haustor energy.",
-  "text.mycoturgy.lamella_cost": "Lamella Cost"
+  "text.mycoturgy.lamella_cost": "Lamella Cost",
+  "tooltip.mycoturgy.haustoral_band.bound": "Bound tightly to you"
 }
