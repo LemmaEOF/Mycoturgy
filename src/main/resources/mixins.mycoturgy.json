@@ -1,11 +1,12 @@
 {
   "required": true,
-  "package": "space.bbkr.mycoturgy.mixin",
+  "package": "gay.lemmaeof.mycoturgy.mixin",
   "compatibilityLevel": "JAVA_8",
   "injectors": {
     "defaultRequire": 1
   },
   "mixins": [
+    "MixinArrowEntity",
     "MixinCampfireBlock",
     "MixinCampfireBlockEntity",
     "MixinFlowableFluid",

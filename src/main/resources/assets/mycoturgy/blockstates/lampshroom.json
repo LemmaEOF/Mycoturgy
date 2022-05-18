@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "third=upper": {
+      "model": "mycoturgy:block/lampshroom_upper"
+    },
+    "third=middle": {
+      "model": "mycoturgy:block/lampshroom_middle"
+    },
+    "third=lower": {
+      "model": "mycoturgy:block/lampshroom_lower"
+    }
+  }
+}

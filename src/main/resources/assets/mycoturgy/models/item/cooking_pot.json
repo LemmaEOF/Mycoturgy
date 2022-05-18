@@ -1,3 +1,6 @@
 {
-  "parent": "mycoturgy:block/cooking_pot"
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "mycoturgy:item/cooking_pot"
+  }
 }

@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#",
+    "/",
+    "F"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:netherite_scrap"
+    },
+    "/": {
+      "item": "minecraft:stick"
+    },
+    "F": {
+      "item": "mycoturgy:sporebrush"
+    }
+  },
+  "result": {
+    "item": "mycoturgy:grief_arrow",
+    "count": 64
+  }
+}

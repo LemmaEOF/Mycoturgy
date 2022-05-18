@@ -1,3 +1,6 @@
 {
-  "parent": "mycoturgy:item/side_sword"
+  "parent": "mycoturgy:item/side_sword",
+  "textures": {
+    "layer0": "minecraft:item/golden_sword"
+  }
 }

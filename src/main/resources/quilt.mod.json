@@ -12,18 +12,18 @@
       ],
       "contact": {},
       "license": "MIT",
-      "icon": "assets/mycoturgy/icon.png"
+      "icon": "assets/mycoturgy/icon.png"4
     },
     "environment": "*",
     "entrypoints": {
       "init": [
-        "space.bbkr.mycoturgy.Mycoturgy"
+        "gay.lemmaeof.mycoturgy.Mycoturgy"
       ],
       "client_init": [
-        "space.bbkr.mycoturgy.MycoturgyClient"
+        "gay.lemmaeof.mycoturgy.MycoturgyClient"
       ],
       "cardinal-components-chunk": [
-        "space.bbkr.mycoturgy.init.MycoturgyComponents"
+        "gay.lemmaeof.mycoturgy.init.MycoturgyComponents"
       ]
     },
     "intermediate_mappings": "net.fabricmc:intermediary",
@@ -36,6 +36,12 @@
       },
       {
         "id": "cardinal-components-chunk"
+      },
+      {
+        "id": "patchouli"
+      },
+      {
+        "id": "trinkets"
       }
     ]
   },
