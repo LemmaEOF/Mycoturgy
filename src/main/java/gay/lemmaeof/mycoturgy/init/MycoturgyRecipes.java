@@ -13,16 +13,16 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
 public class MycoturgyRecipes {
-	public static RecipeType<JarInfusingRecipe> MASON_JAR_RECIPE;
+	public static RecipeType<JarInfusingRecipe> JAR_INFUSING_RECIPE;
 	public static RecipeType<PotCookingRecipe> POT_COOKING_RECIPE;
-	public static RecipeSerializer<JarInfusingRecipe> MASON_JAR_SERIALIZER;
+	public static RecipeSerializer<JarInfusingRecipe> JAR_INFUSING_SERIALIZER;
 	public static RecipeSerializer<PotCookingRecipe> POT_COOKING_SERIALIZER;
 	public static RecipeSerializer<NetheriteCleaningRecipe> NETHERITE_CLEANING_SERIALIZER;
 
 	public static void init() {
-		MASON_JAR_RECIPE = register("jar_infusing");
+		JAR_INFUSING_RECIPE = register("jar_infusing");
 		POT_COOKING_RECIPE = register("pot_cooking");
-		MASON_JAR_SERIALIZER = register("jar_infusing", new JarInfusingRecipe.Serializer());
+		JAR_INFUSING_SERIALIZER = register("jar_infusing", new JarInfusingRecipe.Serializer());
 		POT_COOKING_SERIALIZER = register("pot_cooking", new PotCookingRecipe.Serializer());
 		NETHERITE_CLEANING_SERIALIZER = register("netherite_cleaning", new NetheriteCleaningRecipe.Serializer());
 	}

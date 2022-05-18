@@ -14,6 +14,8 @@ import net.minecraft.recipe.ShapedRecipe;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonHelper;
 import net.minecraft.util.collection.DefaultedList;
+import net.minecraft.util.registry.Registry;
+import org.quiltmc.qsl.recipe.api.serializer.QuiltRecipeSerializer;
 
 public class NetheriteCleaningRecipe extends PotCookingRecipe {
 	public NetheriteCleaningRecipe(Identifier id, DefaultedList<Ingredient> input, ItemStack output, Identifier bonusOutputs, int time, int hyphaCost, int lamellaCost) {
@@ -38,7 +40,7 @@ public class NetheriteCleaningRecipe extends PotCookingRecipe {
 		return MycoturgyRecipes.NETHERITE_CLEANING_SERIALIZER;
 	}
 
-	public static class Serializer implements RecipeSerializer<NetheriteCleaningRecipe> {
+	public static class Serializer implements QuiltRecipeSerializer<NetheriteCleaningRecipe> {
 
 		protected static DefaultedList<Ingredient> getIngredients(JsonArray json) {
 			DefaultedList<Ingredient> defaultedList = DefaultedList.of();
@@ -92,6 +94,33 @@ public class NetheriteCleaningRecipe extends PotCookingRecipe {
 			buf.writeVarInt(recipe.time);
 			buf.writeVarInt(recipe.hyphaCost);
 			buf.writeVarInt(recipe.lamellaCost);
+		}
+
+		@Override
+		public JsonObject toJson(NetheriteCleaningRecipe recipe) {
+			JsonObject res = new JsonObject();
+
+			res.addProperty("type", Registry.RECIPE_SERIALIZER.getId(MycoturgyRecipes.NETHERITE_CLEANING_SERIALIZER).toString());
+
+			JsonArray ingredients = new JsonArray();
+			for (Ingredient ingredient : recipe.input) {
+				ingredients.add(ingredient.toJson());
+			}
+			res.add("ingredients", ingredients);
+
+			JsonObject output = new JsonObject();
+			output.addProperty("item", Registry.ITEM.getId(recipe.output.getItem()).toString());
+			if (recipe.output.getCount() != 1) {
+				output.addProperty("count", recipe.output.getCount());
+			}
+			res.add("result", output);
+
+			res.addProperty("bonus", recipe.bonusOutputs.toString());
+			res.addProperty("cookingtime", recipe.time);
+			res.addProperty("hyphacost", recipe.hyphaCost);
+			res.addProperty("lamellacost", recipe.lamellaCost);
+
+			return res;
 		}
 	}
 }

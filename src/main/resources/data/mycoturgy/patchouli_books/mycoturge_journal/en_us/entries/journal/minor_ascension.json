@@ -1,5 +1,5 @@
 {
-  "name": "6. Minor Ascension",
+  "name": "6. A Minor Ascension",
   "icon": "mycoturgy:textures/icons/hypha.png",
   "category": "mycoturgy:journal",
   "advancement": "mycoturgy:research/equip_haustoral_band",
@@ -10,15 +10,15 @@
     },
     {
       "type": "text",
-      "text": "This magic is known as $(thing)Haustor$(), and it is the $(key)lifeblood$() of the world as we know it. $(thing)Primordial Haustor$(), or Primordia, is plentiful no matter where you go, but isn't typically noticeable on its own. When $(item)Sporebrush$() is burned, it converts primordia into $(thing)Hypha$(), which is volatile and disperses quickly. Lastly is $(thing)Lamellan Haustor$(), which is still a mystery to me. Perhaps I can come about it by $(key)exploring what I can do with my new capabilities$()."
+      "text": "This magic is known as $(thing)Haustor$(), and it is the $(key)lifeblood$() of the world as we know it. $(thing)Primordial Haustor$(), or Primordia, is plentiful no matter where you go, but isn't noticeable on its own. When $(item)Sporebrush$() is burned, it converts that primordia into $(thing)Hypha$(), which is volatile and disperses quickly. Lastly is $(thing)Lamellan Haustor$(), which is still a mystery to me. Perhaps I can come about it by $(key)exploring what I can do with my new capabilities$()."
     },
     {
       "type": "text",
-      "text": "Since my awareness elevated, I have begun to feel emotions which are not my own. A constant flood, as if they are the soul of $(key)the world itself$(). I have also felt $(h)something$(/h) calling to me once more. Its voice is pained. There is an $(key)imbalance$() with the world. $(thing)Incursions$() from realms not our own, along with an $(item)accursed metal$() undaunted by flame. I can hear the $(thing)cries$() of the world. It's almost $(key)as if $(h)Nature herself$(/h) $(key)is crying$(). I need to help her. What can I do?"
+      "text": "The $(item)ring$() is now tightly bound to my finger. I don't think I can remove it without significant effort. I feel like I hear a faint $(key)whispering$() all around me - from the plants, animals, $(thing)fungi$(), and everything else. It's like $(key)Nature itself is trying to speak to me$(). I wish I could even begin to understand what it was trying to say, but I $(key)don't know nearly enough$() at this point to be able to comprehend its meaning."
     },
     {
       "type": "text",
-      "text": "My mind keeps returning to the $(item)ashes$() left over from burning Sporebrush. They still have so much $(key)potential$() in them, even after being burnt. There must be $(key)remnants of Nature's will$() within them still. Perhaps I can use this to $(key)communicate$() with them. I wonder what would happen if I $(key)scattered ashes across podzol$() and $(key)shared my will to them through the Haustoral Band$()..."
+      "text": "My mind keeps returning to the $(item)ashes$() left over from burning Sporebrush. They still have so much $(key)potential$() in them, even after being burnt. There might be $(key)remnants of Nature's will$() within them still. Perhaps I can use this to $(key)communicate$() with them. I wonder what would happen if I $(key)scattered ashes across podzol$() and $(key)shared my will to them through the Haustoral Band$()..."
     }
   ]
 }

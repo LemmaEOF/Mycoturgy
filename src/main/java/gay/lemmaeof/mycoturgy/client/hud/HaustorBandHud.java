@@ -17,7 +17,7 @@ import net.minecraft.util.Identifier;
 
 //TODO: *really* gotta make a lib for this, so that this doesn't overlap with CRPG or Trion
 public class HaustorBandHud {
-	private static MinecraftClient client = MinecraftClient.getInstance();
+	private static final MinecraftClient client = MinecraftClient.getInstance();
 
 	private static final Identifier BAR_TEX = new Identifier(Mycoturgy.MODID, "textures/gui/bars.png");
 	private static final Identifier PRIMORDIA_TEX = new Identifier(Mycoturgy.MODID, "textures/icons/primordia.png");
@@ -25,10 +25,9 @@ public class HaustorBandHud {
 	private static final Identifier LAMELLA_TEX = new Identifier(Mycoturgy.MODID, "textures/icons/lamella.png");
 
 	public static void render(MatrixStack matrices, float tickDelta) {
-		if (TrinketsApi.getTrinketComponent(client.player).orElseThrow().isEquipped(MycoturgyItems.HAUSTORAL_BAND)) {
+		if (TrinketsApi.getTrinketComponent(client.player).orElseThrow().isEquipped(stack -> stack.isIn(MycoturgyItems.CASTING_BANDS))) {
 			matrices.push();
 			Optional<HaustorComponent> componentOpt = MycoturgyComponents.HAUSTOR_COMPONENT.maybeGet(client.player.world.getChunk(client.player.getBlockPos()));
-			//TODO: real colors - these are just the trion ones right now
 			if (componentOpt.isPresent()) {
 				HaustorComponent component = componentOpt.get();
 				drawBar(matrices, PRIMORDIA_TEX, 0x7ACFA1, (float) component.getPrimordia(), 1024f, 4, 28);
@@ -46,7 +45,6 @@ public class HaustorBandHud {
 		RenderSystem.enableBlend();
 		RenderSystem.blendFuncSeparate(GlStateManager.class_4535.SRC_ALPHA, GlStateManager.class_4534.ONE_MINUS_SRC_ALPHA, GlStateManager.class_4535.ONE, GlStateManager.class_4534.ZERO);
 //		RenderSystem.enableAlphaTest();
-		//TODO: how does color work now? does this need any change?
 		RenderSystem.setShaderColor(1f, 1f, 1f, 1f);
 		blit(left, top, 9, 9);
 
@@ -97,7 +95,6 @@ public class HaustorBandHud {
 		buffer.vertex(x2, y1, z).texture(u2, v1).next();
 		buffer.vertex(x1, y1, z).texture(u1, v1).next();
 		buffer.end();
-//		tess.draw();
 		BufferRenderer.draw(buffer);
 	}
 

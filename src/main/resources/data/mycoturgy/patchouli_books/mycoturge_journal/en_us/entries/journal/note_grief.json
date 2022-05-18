@@ -8,7 +8,7 @@
       "type": "spotlight",
       "item": "minecraft:netherite_ingot",
       "title": "Note: Grief",
-      "text": "I see what $(h)She$(/h) meant about an $(item)accursed metal$() now. Even touching this $(item)Netherite$() burns, the pain centered around my $(item)ring$(). The metal is poison to them; and it is now poison to me too.$(br)I must find a $(thing)cure$() to its corruption, but for now I should $(key)avoid any direct contact with the material$()."
+      "text": "Something is wrong. Very, very wrong. Even touching this $(item)Netherite$() burns, the pain centered around my $(item)ring$(). It is like my $(key)heart itself is aflame with a heavy Grief$().$(br)I must find a $(thing)treatment$() for this pain, but for now I should $(key)avoid any direct contact with the material$()."
     }
   ]
 }

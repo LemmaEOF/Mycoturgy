@@ -1,0 +1,16 @@
+{
+  "criteria": {
+    "investigate_grief": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "recipes": [
+    ]
+  },
+  "requirements": [
+    [
+      "investigate_grief"
+    ]
+  ]
+}

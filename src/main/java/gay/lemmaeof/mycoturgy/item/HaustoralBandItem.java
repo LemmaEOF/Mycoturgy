@@ -1,10 +1,7 @@
 package gay.lemmaeof.mycoturgy.item;
 
 import com.google.common.collect.Multimap;
-import dev.emi.trinkets.api.SlotAttributes;
-import dev.emi.trinkets.api.SlotReference;
-import dev.emi.trinkets.api.TrinketEnums;
-import dev.emi.trinkets.api.TrinketItem;
+import dev.emi.trinkets.api.*;
 import gay.lemmaeof.mycoturgy.Mycoturgy;
 import gay.lemmaeof.mycoturgy.init.MycoturgyEffects;
 import gay.lemmaeof.mycoturgy.init.MycoturgyItems;
@@ -30,6 +27,7 @@ import java.util.UUID;
 public class HaustoralBandItem extends TrinketItem {
 	private static final UUID SLOT_ADD_UUID = UUID.fromString("e51bea70-52a2-496a-abb6-f84d9cadafdb");
 	private static final Identifier EQUIP_BAND = new Identifier(Mycoturgy.MODID, "research/equip_haustoral_band");
+
 	public HaustoralBandItem(Settings settings) {
 		super(settings);
 	}
@@ -44,6 +42,18 @@ public class HaustoralBandItem extends TrinketItem {
 		Multimap<EntityAttribute, EntityAttributeModifier> parent = super.getModifiers(stack, slot, entity, uuid);
 		SlotAttributes.addSlotModifier(parent, "hand/ring", SLOT_ADD_UUID, 1, EntityAttributeModifier.Operation.ADDITION);
 		return parent;
+	}
+
+	@Override
+	public boolean canEquip(ItemStack stack, SlotReference slot, LivingEntity entity) {
+		if (entity instanceof PlayerEntity player) {
+			var compOpt = TrinketsApi.getTrinketComponent(player);
+			if (compOpt.isPresent()) {
+				var comp = compOpt.get();
+				return !comp.isEquipped(s -> s.isIn(MycoturgyItems.CASTING_BANDS));
+			}
+		}
+		return false;
 	}
 
 	@Override

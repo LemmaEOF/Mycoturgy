@@ -16,13 +16,12 @@ public class JarInfusingPage extends PageDoubleRecipeRegistry<JarInfusingRecipe>
 	private static final Identifier CUSTOM_CRAFTING_TEXTURE = new Identifier(Mycoturgy.MODID, "textures/gui/custom_crafting.png");
 
 	public JarInfusingPage() {
-		super(MycoturgyRecipes.MASON_JAR_RECIPE);
+		super(MycoturgyRecipes.JAR_INFUSING_RECIPE);
 	}
-
 
 	@Override
 	protected void drawRecipe(MatrixStack ms, JarInfusingRecipe recipe, int recipeX, int recipeY, int mouseX, int mouseY, boolean second) {
-		this.mc.getTextureManager().bindTexture(CUSTOM_CRAFTING_TEXTURE);
+		RenderSystem.setShaderTexture(0, CUSTOM_CRAFTING_TEXTURE);
 		RenderSystem.enableBlend();
 		DrawableHelper.drawTexture(ms, recipeX, recipeY, 11.0F, 71.0F, 96, 24, 128, 128);
 		this.parent.drawCenteredStringNoShadow(ms, this.getTitle(second).asOrderedText(), 58, recipeY - 10, this.book.headerColor);

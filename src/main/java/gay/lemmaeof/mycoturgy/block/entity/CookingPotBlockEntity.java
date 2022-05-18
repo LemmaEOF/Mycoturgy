@@ -61,10 +61,8 @@ public class CookingPotBlockEntity extends SyncingBlockEntity {
 				if (processTime % 10 == 0) ((ServerWorld)world).spawnParticles(ParticleTypes.BUBBLE, potPos.x + random.nextDouble() * (1/8D) * (double)(random.nextBoolean() ? 1 : -1), potPos.y + random.nextDouble() * (3/8D), potPos.z + random.nextDouble() * (1/8D) * (double)(random.nextBoolean() ? 1 : -1), random.nextInt(5), 0.0, 0.1, 0.0, 0.1);
 				if (processTime >= currentRecipe.getTime()) {
 					HaustorComponent component = MycoturgyComponents.HAUSTOR_COMPONENT.get(world.getChunk(this.pos));
-					component.changeHypha(currentRecipe.getHyphaCost() * -1);
-					component.changePrimordia(currentRecipe.getHyphaCost() * 2);
-					component.changeLamella(currentRecipe.getLamellaCost() * -1);
-					component.changeHypha(currentRecipe.getLamellaCost() * 2);
+					component.spendHypha(currentRecipe.getHyphaCost());
+					component.spendLamella(currentRecipe.getLamellaCost());
 					outInv.setStack(currentRecipe.craft(inv));
 					List<ItemStack> bonuses = currentRecipe.getBonusOutputs((ServerWorld) world, this);
 					inv.clear();
@@ -75,7 +73,7 @@ public class CookingPotBlockEntity extends SyncingBlockEntity {
 					currentRecipe = null;
 					world.playSound(null, pos, SoundEvents.ENTITY_WITCH_DRINK, SoundCategory.BLOCKS, 1f, 1f);
 					((ServerWorld)world).spawnParticles(ParticleTypes.WATER_SPLASH, potPos.x + random.nextDouble() * (3/16D) * (double)(random.nextBoolean() ? 1 : -1), potPos.y + random.nextDouble() * (1/2D), potPos.z + random.nextDouble() * (3/16D) * (double)(random.nextBoolean() ? 1 : -1), 30, 0.0, 0.7, 0.0, 0.7);
-					world.setBlockState(pos, getCachedState().with(MasonJarBlock.FILLED, false));
+					world.setBlockState(pos, getCachedState().with(CookingPotBlock.FILLED, false));
 				}
 				markDirty();
 			} else {

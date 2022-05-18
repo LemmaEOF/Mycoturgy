@@ -53,6 +53,7 @@ public class Mycoturgy implements ModInitializer {
 		MycoturgyEffects.init();
 		MycoturgyNetworking.init();
 
+		//TODO: infested spawner drops
 		LootTableLoadingCallback.EVENT.register((resourceManager, lootManager, id, builder, table) -> {
 			if (id.equals(new Identifier("blocks/grass"))) {
 				builder.withPool(FabricLootPoolBuilder.builder()
@@ -78,7 +79,7 @@ public class Mycoturgy implements ModInitializer {
 					!world.isClient()
 					&& world.getBlockState(hit.getBlockPos()).isIn(MycoturgyBlocks.SPELL_CASTABLE)
 					&& player.getStackInHand(hand).isEmpty()
-					&& TrinketsApi.getTrinketComponent(player).get().isEquipped(MycoturgyItems.HAUSTORAL_BAND)
+					&& TrinketsApi.getTrinketComponent(player).get().isEquipped(stack -> stack.isIn(MycoturgyItems.CASTING_BANDS))
 			) {
 				for (Spell spell : Spell.SPELLS) {
 					ServerWorld sworld = (ServerWorld) world;
@@ -87,7 +88,7 @@ public class Mycoturgy implements ModInitializer {
 					HaustorComponent haustor = MycoturgyComponents.HAUSTOR_COMPONENT.get(world.getChunk(pos));
 					if (spell.canCast(sworld, pos, state, player, haustor)) {
 						spell.cast(sworld, pos, state, player, haustor);
-						//TODO: new sound?
+						//TODO: new sound, particles
 						world.playSound(null, pos, SoundEvents.ITEM_FIRECHARGE_USE, SoundCategory.BLOCKS, 1f, 1f);
 						if (world.getBlockState(pos).equals(state)) world.breakBlock(pos, false);
 						MinecraftServer server = sworld.getServer();

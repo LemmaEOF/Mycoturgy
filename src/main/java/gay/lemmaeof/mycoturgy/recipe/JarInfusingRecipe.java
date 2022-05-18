@@ -5,18 +5,15 @@ import gay.lemmaeof.mycoturgy.component.HaustorComponent;
 import gay.lemmaeof.mycoturgy.init.MycoturgyComponents;
 import gay.lemmaeof.mycoturgy.init.MycoturgyRecipes;
 import gay.lemmaeof.mycoturgy.inventory.SingleStackSyncedInventory;
-
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
-import net.minecraft.recipe.Ingredient;
-import net.minecraft.recipe.Recipe;
-import net.minecraft.recipe.RecipeSerializer;
-import net.minecraft.recipe.RecipeType;
-import net.minecraft.recipe.ShapedRecipe;
+import net.minecraft.recipe.*;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonHelper;
 import net.minecraft.util.collection.DefaultedList;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
+import org.quiltmc.qsl.recipe.api.serializer.QuiltRecipeSerializer;
 
 //TODO: any other costs? put ash in the jar maybe?
 public class JarInfusingRecipe implements Recipe<SingleStackSyncedInventory> {
@@ -86,15 +83,15 @@ public class JarInfusingRecipe implements Recipe<SingleStackSyncedInventory> {
 
 	@Override
 	public RecipeSerializer<JarInfusingRecipe> getSerializer() {
-		return MycoturgyRecipes.MASON_JAR_SERIALIZER;
+		return MycoturgyRecipes.JAR_INFUSING_SERIALIZER;
 	}
 
 	@Override
 	public RecipeType<JarInfusingRecipe> getType() {
-		return MycoturgyRecipes.MASON_JAR_RECIPE;
+		return MycoturgyRecipes.JAR_INFUSING_RECIPE;
 	}
 
-	public static class Serializer implements RecipeSerializer<JarInfusingRecipe> {
+	public static class Serializer implements QuiltRecipeSerializer<JarInfusingRecipe> {
 
 		@Override
 		public JarInfusingRecipe read(Identifier id, JsonObject json) {
@@ -123,6 +120,28 @@ public class JarInfusingRecipe implements Recipe<SingleStackSyncedInventory> {
 			buf.writeVarInt(recipe.time);
 			buf.writeVarInt(recipe.hyphaCost);
 			buf.writeVarInt(recipe.lamellaCost);
+		}
+
+		@Override
+		public JsonObject toJson(JarInfusingRecipe recipe) {
+			JsonObject res = new JsonObject();
+
+			res.addProperty("type", Registry.RECIPE_SERIALIZER.getId(MycoturgyRecipes.JAR_INFUSING_SERIALIZER).toString());
+
+			res.add("ingredient", recipe.input.toJson());
+
+			JsonObject output = new JsonObject();
+			output.addProperty("item", Registry.ITEM.getId(recipe.output.getItem()).toString());
+			if (recipe.output.getCount() != 1) {
+				output.addProperty("count", recipe.output.getCount());
+			}
+			res.add("result", output);
+
+			res.addProperty("infusingtime", recipe.time);
+			res.addProperty("hyphacost", recipe.hyphaCost);
+			res.addProperty("lamellacost", recipe.lamellaCost);
+
+			return res;
 		}
 	}
 }

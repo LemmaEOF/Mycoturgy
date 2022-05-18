@@ -94,7 +94,7 @@ public class MycoturgyBlocks {
 						.group(MycoturgyItems.MYCOTURGY_GROUP)
 		);
 		LAMPSHROOM = register("lampshroom",
-				new MushrooomLampBlock(QuiltBlockSettings.of(Material.ORGANIC_PRODUCT)
+				new LampshroomBlock(QuiltBlockSettings.of(Material.ORGANIC_PRODUCT)
 						.luminance(12)
 						.ticksRandomly()
 				), new Item.Settings()

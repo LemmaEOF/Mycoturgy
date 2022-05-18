@@ -24,7 +24,6 @@ public class SporePouchItem extends Item {
 		SporePouchInventory inv = new SporePouchInventory();
 		inv.readFromItem(context.getStack());
 		ItemStack stack = inv.getStack(slot);
-		System.out.println("Using stack " + stack +  " from slot " + slot);
 		if (!stack.isEmpty()) {
 			BlockHitResult res = new BlockHitResult(context.getHitPos(), context.getSide(), context.getBlockPos(), context.hitsInsideBlock());
 			ItemUsageContext ctx = new FuckYouItemUsageContext(context.getWorld(), context.getPlayer(), context.getHand(), stack, res);
@@ -33,13 +32,13 @@ public class SporePouchItem extends Item {
 		return super.useOnBlock(context);
 	}
 
+	//TODO: trackpad-friendly shift method and not just alt-scroll
 	public void shift(ItemStack stack, int direction) {
 		int current = stack.getOrCreateNbt().getInt("CurrentSlot");
 		current += direction;
 		if (current == -1) current = 8;
 		current = current % 9;
 		stack.getNbt().putInt("CurrentSlot", current);
-		System.out.println("Scrolled stack " + stack + " in direction " + direction + " to slot " + current + "!");
 	}
 
 	private static class FuckYouItemUsageContext extends ItemUsageContext {

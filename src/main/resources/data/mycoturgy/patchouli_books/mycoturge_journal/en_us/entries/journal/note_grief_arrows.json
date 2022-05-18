@@ -1,0 +1,17 @@
+{
+  "name": "Note: Arrows of Grief",
+  "icon": "mycoturgy:grief_arrow",
+  "category": "mycoturgy:journal",
+  "advancement": "mycoturgy:research/investigate_grief",
+  "pages": [
+    {
+      "type": "text",
+      "text": "I have had a horrible idea. This $(key)grief$() could be weaponized against those who would try to harm me. By crafting an arrow with $(item)Netherite$() and $(item)Sporebrush$(), I could inflict Grief upon anyone I choose.$(br)$(br)...Why would I do that to someone else?"
+    },
+    {
+      "type": "crafting",
+      "recipe": "mycoturgy:grief_arrow",
+      "text": "Using these arrows could be $(key)very risky$() - even holding them to prepare to fire will inflict that $(key)grief$() upon me as well. Nevertheless, they are an option if I become desperate."
+    }
+  ]
+}

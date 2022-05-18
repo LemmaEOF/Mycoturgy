@@ -39,7 +39,7 @@ public class MasonJarBlockEntity extends SyncingBlockEntity {
 		ticks++;
 		if (world == null || world.isClient || !getCachedState().get(MasonJarBlock.FILLED) || ashes <= 0) return;
 		if (currentRecipe == null) {
-			Optional<JarInfusingRecipe> potentialRecipe = this.world.getRecipeManager().getFirstMatch(MycoturgyRecipes.MASON_JAR_RECIPE, inv, this.world);
+			Optional<JarInfusingRecipe> potentialRecipe = this.world.getRecipeManager().getFirstMatch(MycoturgyRecipes.JAR_INFUSING_RECIPE, inv, this.world);
 			potentialRecipe.ifPresent(jarBrewingRecipe -> currentRecipe = jarBrewingRecipe);
 		} else {
 			if (currentRecipe.matches(inv, world)) {

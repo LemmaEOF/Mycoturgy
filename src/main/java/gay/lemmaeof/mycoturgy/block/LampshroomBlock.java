@@ -27,13 +27,13 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 
-public class MushrooomLampBlock extends Block {
+public class LampshroomBlock extends Block {
 	public static final EnumProperty<BlockThird> THIRD = EnumProperty.of("third", BlockThird.class);
 	public static final VoxelShape LOWER_SHAPE;
 	public static final VoxelShape MIDDLE_SHAPE;
 	public static final VoxelShape UPPER_SHAPE;
 
-	public MushrooomLampBlock(Settings settings) {
+	public LampshroomBlock(Settings settings) {
 		super(settings);
 		this.setDefaultState(this.getDefaultState().with(THIRD, BlockThird.LOWER));
 	}
