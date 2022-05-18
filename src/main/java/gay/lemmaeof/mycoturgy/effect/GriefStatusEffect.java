@@ -20,7 +20,7 @@ public class GriefStatusEffect extends StatusEffect {
 
 	@Override
 	public boolean canApplyUpdateEffect(int duration, int amplifier) {
-		return duration % 30 == 5;
+		return duration % 60 == 0;
 	}
 
 	@Override

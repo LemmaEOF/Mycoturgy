@@ -1,16 +1,10 @@
 package gay.lemmaeof.mycoturgy.init;
 
+import gay.lemmaeof.mycoturgy.block.*;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.minecraft.tag.TagKey;
 import org.quiltmc.qsl.block.extensions.api.QuiltBlockSettings;
 import gay.lemmaeof.mycoturgy.Mycoturgy;
-import gay.lemmaeof.mycoturgy.block.BouncePadBlock;
-import gay.lemmaeof.mycoturgy.block.CookingPotBlock;
-import gay.lemmaeof.mycoturgy.block.CustomCropBlock;
-import gay.lemmaeof.mycoturgy.block.HaustorSequesterBlock;
-import gay.lemmaeof.mycoturgy.block.MasonJarBlock;
-import gay.lemmaeof.mycoturgy.block.MushrooomLampBlock;
-import gay.lemmaeof.mycoturgy.block.ScatteredAshesBlock;
 import gay.lemmaeof.mycoturgy.block.entity.CookingPotBlockEntity;
 import gay.lemmaeof.mycoturgy.block.entity.HaustorSequesterBlockEntity;
 import gay.lemmaeof.mycoturgy.block.entity.MasonJarBlockEntity;
@@ -36,6 +30,7 @@ public class MycoturgyBlocks {
 	public static Block COOKING_POT;
 	public static Block PADDLE_RHIZOME;
 	public static Block LAMPSHROOM;
+	public static Block INFESTED_MOB_SPAWNER;
 
 	public static BlockEntityType<HaustorSequesterBlockEntity> HAUSTOR_SEQUESTER_BLOCK_ENTITY;
 	public static BlockEntityType<MasonJarBlockEntity> MASON_JAR_BLOCK_ENTITY;
@@ -55,6 +50,7 @@ public class MycoturgyBlocks {
 		);
 		MASON_JAR = register("mason_jar",
 				new MasonJarBlock(QuiltBlockSettings.of(Material.GLASS)
+						.requiresTool()
 						.nonOpaque()
 						.dynamicBounds()
 				), new Item.Settings()
@@ -85,6 +81,7 @@ public class MycoturgyBlocks {
 		);
 		COOKING_POT = register("cooking_pot",
 				new CookingPotBlock(QuiltBlockSettings.of(Material.METAL)
+						.requiresTool()
 						.strength(0.5F)
 						.nonOpaque()
 				), new Item.Settings()
@@ -100,6 +97,11 @@ public class MycoturgyBlocks {
 				new MushrooomLampBlock(QuiltBlockSettings.of(Material.ORGANIC_PRODUCT)
 						.luminance(12)
 						.ticksRandomly()
+				), new Item.Settings()
+						.group(MycoturgyItems.MYCOTURGY_GROUP)
+		);
+		INFESTED_MOB_SPAWNER = register("infested_mob_spawner",
+				new InfestedSpawnerBlock(QuiltBlockSettings.copyOf(Blocks.SPAWNER)
 				), new Item.Settings()
 						.group(MycoturgyItems.MYCOTURGY_GROUP)
 		);

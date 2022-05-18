@@ -12,7 +12,7 @@
       ],
       "contact": {},
       "license": "MIT",
-      "icon": "assets/mycoturgy/icon.png"4
+      "icon": "assets/mycoturgy/icon.png"
     },
     "environment": "*",
     "entrypoints": {
