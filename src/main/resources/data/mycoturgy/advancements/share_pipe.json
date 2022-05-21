@@ -1,0 +1,12 @@
+{
+  "criteria": {
+    "share_pipe": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "requirements": [
+    [
+      "share_pipe"
+    ]
+  ]
+}

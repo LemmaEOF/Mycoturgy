@@ -9,6 +9,7 @@
     "MixinArrowEntity",
     "MixinCampfireBlock",
     "MixinCampfireBlockEntity",
+    "MixinCrossbowItem",
     "MixinFlowableFluid",
     "MixinLivingEntity",
     "MixinPlayerEntity",
@@ -17,6 +18,7 @@
   ],
   "client": [
     "client.ClientAdvancementManagerAccessor",
+    "client.MixinHeldItemRenderer",
     "client.MixinInGameHud",
     "client.MixinInGameHud$MixinHeartType",
     "client.MixinMouse"

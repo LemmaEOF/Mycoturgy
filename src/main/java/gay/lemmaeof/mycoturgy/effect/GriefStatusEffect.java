@@ -25,8 +25,8 @@ public class GriefStatusEffect extends StatusEffect {
 
 	@Override
 	public void applyUpdateEffect(LivingEntity player, int amplifier) {
+		player.damage(GriefDamageSource.INSTANCE, 1f);
 		if (player instanceof ServerPlayerEntity) {
-			player.damage(GriefDamageSource.INSTANCE, 1f);
 			MinecraftServer server = player.world.getServer();
 			Advancement advancement = server.getAdvancementLoader().get(FEEL_GRIEF);
 			server.getPlayerManager().getAdvancementTracker((ServerPlayerEntity) player).grantCriterion(advancement, "feel_grief");

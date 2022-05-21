@@ -1,0 +1,12 @@
+{
+  "criteria": {
+    "big_hit": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "requirements": [
+    [
+      "big_hit"
+    ]
+  ]
+}

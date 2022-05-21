@@ -23,11 +23,14 @@ public class MycoturgyItems {
 	public static Item MUSHROOM_SHIELD;
 	public static Item GRIEF_ARROW;
 	public static Item BAND_OF_ENTERA;
+	public static Item SPOREBRUSH_PIPE;
+	public static Item SPOREBRUSH_LEAVES;
 
 	//items which are made of netherite and impervious to flame - lodestones aren't included
 	public static TagKey<Item> NETHERITE_COMPOSED;
 	public static TagKey<Item> SPORE_POUCH_HOLDABLE;
 	public static TagKey<Item> CASTING_BANDS;
+	public static TagKey<Item> PIPE_LIGHTS;
 
 	public static final ItemGroup MYCOTURGY_GROUP = QuiltItemGroup.createWithIcon(new Identifier(Mycoturgy.MODID, Mycoturgy.MODID), () -> new ItemStack(SPORE_BUNDLE));
 
@@ -43,10 +46,13 @@ public class MycoturgyItems {
 		MUSHROOM_SHIELD = register("mushroom_shield", new MushroomShieldItem(new Item.Settings().maxCount(1).group(MYCOTURGY_GROUP)));
 		GRIEF_ARROW = register("grief_arrow", new ArrowItem(new Item.Settings().group(MYCOTURGY_GROUP)));
 		BAND_OF_ENTERA = register("band_of_entera", new BandOfEnteraItem(new Item.Settings().group(MYCOTURGY_GROUP)));
+		SPOREBRUSH_PIPE = register("sporebrush_pipe", new SporebrushPipeItem(new Item.Settings().maxCount(1).group(MYCOTURGY_GROUP)));
+		SPOREBRUSH_LEAVES = register("sporebrush_leaves", new Item(new Item.Settings().group(MYCOTURGY_GROUP)));
 
 		NETHERITE_COMPOSED = TagKey.of(Registry.ITEM_KEY, new Identifier(Mycoturgy.MODID, "netherite_composed"));
 		SPORE_POUCH_HOLDABLE = TagKey.of(Registry.ITEM_KEY, new Identifier(Mycoturgy.MODID, "spore_pouch_holdable"));
 		CASTING_BANDS = TagKey.of(Registry.ITEM_KEY, new Identifier(Mycoturgy.MODID, "casting_bands"));
+		PIPE_LIGHTS = TagKey.of(Registry.ITEM_KEY, new Identifier(Mycoturgy.MODID, "pipe_lights"));
 	}
 
 	private static Item register(String name, Item item) {

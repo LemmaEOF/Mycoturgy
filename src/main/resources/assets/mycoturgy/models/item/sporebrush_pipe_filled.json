@@ -1,0 +1,6 @@
+{
+  "parent": "mycoturgy:item/sporebrush_pipe",
+  "textures": {
+    "layer0": "mycoturgy:item/sporebrush_pipe_filled"
+  }
+}

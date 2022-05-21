@@ -3,6 +3,8 @@ package gay.lemmaeof.mycoturgy;
 import net.fabricmc.fabric.api.client.rendering.v1.BlockEntityRendererRegistry;
 import net.minecraft.client.item.ModelPredicateProviderRegistry;
 import net.minecraft.client.item.UnclampedModelPredicateProvider;
+
+import gay.lemmaeof.mycoturgy.item.SporebrushPipeItem;
 import org.quiltmc.loader.api.ModContainer;
 import org.quiltmc.qsl.base.api.entrypoint.client.ClientModInitializer;
 import org.quiltmc.qsl.block.extensions.api.client.BlockRenderLayerMap;
@@ -40,5 +42,6 @@ public class MycoturgyClient implements ClientModInitializer {
 		JournalChapters.init();
 		ModelPredicateProviderRegistry.register(MycoturgyItems.SIDE_SWORD, new Identifier("blocking"), blockingPredicate);
 		ModelPredicateProviderRegistry.register(MycoturgyItems.MUSHROOM_SHIELD, new Identifier("blocking"), blockingPredicate);
+		ModelPredicateProviderRegistry.register(MycoturgyItems.SPOREBRUSH_PIPE, new Identifier(Mycoturgy.MODID, "filled"), (stack, world, user, seed) -> stack.getOrCreateNbt().getInt("PipeFill") == 0? 0: 1);
 	}
 }

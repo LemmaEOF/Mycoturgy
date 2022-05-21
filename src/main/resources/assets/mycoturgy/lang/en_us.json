@@ -15,6 +15,8 @@
   "item.mycoturgy.sporebrush": "Sporebrush",
   "item.mycoturgy.sporebrush_ash": "Sporebursh Ash",
   "item.mycoturgy.spore_bundle": "Spore Bundle",
+  "item.mycoturgy.sporebrush_leaves": "Sporebrush Leaves",
+  "item.mycoturgy.sporebrush_pipe": "Sporebrush Pipe",
   "itemGroup.mycoturgy.mycoturgy": "Mycoturgy",
   "mycoturgy.journal.page.splash": "The guidebook on Mycoturgy and handler for the story!",
   "mycoturgy.journal.page.splash.title": "Mycoturge's Journal",
@@ -23,5 +25,6 @@
   "text.mycoturgy.hypha_cost": "Hypha Cost",
   "text.mycoturgy.journal_intro": "Mycoturgy is the art of working with Sporebrush and Haustor energy.",
   "text.mycoturgy.lamella_cost": "Lamella Cost",
-  "tooltip.mycoturgy.haustoral_band.bound": "Bound tightly to you"
+  "tooltip.mycoturgy.haustoral_band.bound": "Bound tightly to you",
+  "tooltip.mycoturgy.pipe_fill": "Current fill: %s/%s"
 }
