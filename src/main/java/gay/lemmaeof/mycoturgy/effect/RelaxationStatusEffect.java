@@ -11,7 +11,9 @@ public class RelaxationStatusEffect extends StatusEffect {
 
 	@Override
 	public boolean canApplyUpdateEffect(int duration, int amplifier) {
-		return duration % 50 == 0;
+		//only *barely* faster than Grief - make it pretty much just cancel out Grief with health returns not suitable for combat
+		//that way you still can't really use netherite for fighting with Grief!
+		return duration % 59 == 0;
 	}
 
 	@Override
