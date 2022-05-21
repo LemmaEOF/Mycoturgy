@@ -54,7 +54,7 @@ public abstract class MixinHeldItemRenderer {
 			int transformFactor = inRightArm ? 1 : -1;
 
 			if (player.isUsingItem() && player.getItemUseTimeLeft() > 0 && player.getActiveHand() == hand) {
-				this.applyEquipOffset(matrices, arm, equipProgress);
+				this.applyEquipOffset(matrices, arm, 0);
 				matrices.translate((float)transformFactor * -0.7 /*-0.4785682F*/, -0.094387F, 0.05731531F);
 				matrices.multiply(Vec3f.POSITIVE_X.getDegreesQuaternion(-11.935F));
 				matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion((float)transformFactor * 65.3F));
@@ -81,7 +81,7 @@ public abstract class MixinHeldItemRenderer {
 				float zOffset = -0.2F * MathHelper.sin(swingProgress * (float) Math.PI);
 				matrices.translate((float)transformFactor * xOffset, yOffset, zOffset);
 				applyEquipOffset(matrices, arm, equipProgress);
-				applySwingOffset(matrices, arm, swingProgress);
+				applySwingOffset(matrices, arm, equipProgress);
 			}
 
 			renderItem(

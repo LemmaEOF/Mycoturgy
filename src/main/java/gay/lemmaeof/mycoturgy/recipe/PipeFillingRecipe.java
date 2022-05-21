@@ -24,8 +24,12 @@ public class PipeFillingRecipe extends SpecialCraftingRecipe {
 			if (stack.getItem() == MycoturgyItems.SPOREBRUSH_PIPE) {
 				if (!pipe.isEmpty()) return false; //only one pipe!
 				pipe = stack;
-			} else if (!stack.isEmpty() && stack.getItem() != MycoturgyItems.SPOREBRUSH_LEAVES) return false;
-			else leavesCount++;
+			} else if (stack.getItem() == MycoturgyItems.SPOREBRUSH_LEAVES) {
+				leavesCount++;
+			}
+			else if (!stack.isEmpty()) {
+				return false;
+			}
 		}
 		return !pipe.isEmpty()
 				&& leavesCount > 0

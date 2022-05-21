@@ -1,4 +1,20 @@
 {
+  "parent": "mycoturgy:root",
+  "display": {
+    "icon": {
+      "item": "mycoturgy:sporebrush_leaves"
+    },
+    "title": {
+      "translate": "advancements.mycoturgy.big_hit.title"
+    },
+    "description": {
+      "translate": "advancements.mycoturgy.big_hit.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": true
+  },
   "criteria": {
     "big_hit": {
       "trigger": "minecraft:impossible"

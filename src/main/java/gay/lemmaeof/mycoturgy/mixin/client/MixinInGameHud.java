@@ -26,8 +26,6 @@ public abstract class MixinInGameHud extends DrawableHelper {
 
 	@Shadow protected abstract PlayerEntity getCameraPlayer();
 
-	@Shadow @Final private MinecraftClient client;
-
 	@Shadow public abstract int getTicks();
 
 	private int currentFrame;
@@ -61,6 +59,7 @@ public abstract class MixinInGameHud extends DrawableHelper {
 		}
 	}
 
+	@SuppressWarnings("unused")
 	@Mixin(InGameHud.HeartType.class)
 	private static class MixinHeartType {
 		@Inject(method = "fromPlayerState", at = @At("HEAD"), cancellable = true)
