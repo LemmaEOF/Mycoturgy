@@ -3,6 +3,7 @@ package gay.lemmaeof.mycoturgy.item;
 import com.google.common.collect.Multimap;
 import dev.emi.trinkets.api.*;
 import gay.lemmaeof.mycoturgy.Mycoturgy;
+import gay.lemmaeof.mycoturgy.init.MycoturgyCriteria;
 import gay.lemmaeof.mycoturgy.init.MycoturgyEffects;
 import gay.lemmaeof.mycoturgy.init.MycoturgyItems;
 import net.minecraft.advancement.Advancement;
@@ -26,7 +27,6 @@ import java.util.UUID;
 
 public class HaustoralBandItem extends TrinketItem {
 	private static final UUID SLOT_ADD_UUID = UUID.fromString("e51bea70-52a2-496a-abb6-f84d9cadafdb");
-	private static final Identifier EQUIP_BAND = new Identifier(Mycoturgy.MODID, "research/equip_haustoral_band");
 
 	public HaustoralBandItem(Settings settings) {
 		super(settings);
@@ -64,9 +64,7 @@ public class HaustoralBandItem extends TrinketItem {
 	@Override
 	public void onEquip(ItemStack stack, SlotReference slot, LivingEntity entity) {
 		if (!entity.world.isClient && entity instanceof ServerPlayerEntity player) {
-			MinecraftServer server = entity.world.getServer();
-			Advancement advancement = server.getAdvancementLoader().get(EQUIP_BAND);
-			server.getPlayerManager().getAdvancementTracker(player).grantCriterion(advancement, "equip_band");
+			MycoturgyCriteria.EQUIP_BAND.trigger(player);
 			stack.getOrCreateNbt().putBoolean("Bound", true);
 		}
 	}

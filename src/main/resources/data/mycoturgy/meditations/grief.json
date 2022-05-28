@@ -1,0 +1,32 @@
+{
+  "icon": "mycoturgy:textures/mob_effect/grief.png",
+  "description": {
+    "text": "The Grief conundrum is so curious..."
+  },
+  "requires": {
+    "advancements": [
+      "mycoturgy:research/feel_grief"
+    ]
+  },
+  "paths": {
+    "pain": {
+      "item": "minecraft:skeleton_skull",
+      "description": "Its pain is strangely unique...",
+      "paths": {
+        "avoid": {
+          "description": "I wonder if I could avoid it...",
+          "destination": "mycoturgy:sporebrush_pipe"
+        },
+        "inflict": {
+          "item": "minecraft:diamond_sword",
+          "description": "I wonder if it could be used against others...",
+          "destination": "mycoturgy:grief_arrow"
+        },
+        "source": {
+          "description": "I wonder where it comes from...",
+          "destination": "mycoturgy:aimless"
+        }
+      }
+    }
+  }
+}

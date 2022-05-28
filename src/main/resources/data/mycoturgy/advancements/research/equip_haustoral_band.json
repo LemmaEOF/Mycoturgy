@@ -1,7 +1,7 @@
 {
   "criteria": {
     "equip_band": {
-      "trigger": "minecraft:impossible"
+      "trigger": "mycoturgy:equip_band"
     }
   },
   "rewards": {

@@ -17,7 +17,7 @@
   },
   "criteria": {
     "big_hit": {
-      "trigger": "minecraft:impossible"
+      "trigger": "mycoturgy:big_hit"
     }
   },
   "requirements": [

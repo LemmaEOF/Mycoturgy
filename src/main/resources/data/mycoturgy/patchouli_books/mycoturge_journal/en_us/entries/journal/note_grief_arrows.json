@@ -2,7 +2,7 @@
   "name": "Note: Arrows of Grief",
   "icon": "mycoturgy:grief_arrow",
   "category": "mycoturgy:journal",
-  "advancement": "mycoturgy:research/investigate_grief",
+  "advancement": "mycoturgy:research/meditate_grief_arrow",
   "pages": [
     {
       "type": "text",

@@ -1,7 +1,10 @@
 {
   "criteria": {
     "investigate_grief": {
-      "trigger": "minecraft:impossible"
+      "trigger": "mycoturgy:meditate",
+      "conditions": {
+        "path": "mycoturgy:grief_arrow"
+      }
     }
   },
   "rewards": {

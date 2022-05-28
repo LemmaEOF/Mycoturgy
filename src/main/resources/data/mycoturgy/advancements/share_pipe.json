@@ -17,7 +17,7 @@
   },
   "criteria": {
     "share_pipe": {
-      "trigger": "minecraft:impossible"
+      "trigger": "mycoturgy:share_pipe"
     }
   },
   "requirements": [

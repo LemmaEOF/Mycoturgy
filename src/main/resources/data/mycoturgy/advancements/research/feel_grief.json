@@ -1,7 +1,7 @@
 {
   "criteria": {
     "feel_grief": {
-      "trigger": "minecraft:impossible"
+      "trigger": "mycoturgy:feel_grief"
     }
   },
   "rewards": {

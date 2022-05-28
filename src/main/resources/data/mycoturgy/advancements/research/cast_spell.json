@@ -1,7 +1,7 @@
 {
   "criteria": {
     "cast_spell": {
-      "trigger": "minecraft:impossible"
+      "trigger": "mycoturgy:cast_spell"
     }
   },
   "rewards": {

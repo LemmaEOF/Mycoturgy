@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Random;
 
 import gay.lemmaeof.mycoturgy.Mycoturgy;
+import gay.lemmaeof.mycoturgy.init.MycoturgyCriteria;
 import gay.lemmaeof.mycoturgy.init.MycoturgyEffects;
 import gay.lemmaeof.mycoturgy.init.MycoturgyItems;
 import net.minecraft.nbt.NbtElement;
@@ -31,8 +32,6 @@ import net.minecraft.text.TranslatableText;
 import net.minecraft.world.World;
 
 public class SporebrushPipeItem extends Item {
-	public static final Identifier BIG_HIT = new Identifier(Mycoturgy.MODID, "big_hit");
-	public static final Identifier SHARE_PIPE = new Identifier(Mycoturgy.MODID, "share_pipe");
 	public static final int MAX_FILL = 200;
 
 	public SporebrushPipeItem(Settings settings) {
@@ -126,9 +125,9 @@ public class SporebrushPipeItem extends Item {
 			if (remainingUseTicks % 20 == 0) {
 				((ServerWorld) world).spawnParticles(
 						ParticleTypes.CAMPFIRE_COSY_SMOKE,
-						user.getX() + Math.cos(degYaw) + random.nextDouble() / 5.0 * (double) (random.nextBoolean() ? 1 : -1),
-						user.getEyeY() - 0.1 + random.nextDouble() / 5.0 * (double) (random.nextBoolean() ? 1 : -1),
-						user.getZ() - Math.sin(degYaw) + random.nextDouble() / 5.0 * (double) (random.nextBoolean() ? 1 : -1),
+						user.getX() - Math.cos(degYaw) + random.nextDouble() / 10.0 * (double) (random.nextBoolean() ? 1 : -1),
+						user.getEyeY() - 0.1 + random.nextDouble() / 10.0 * (double) (random.nextBoolean() ? 1 : -1),
+						user.getZ() - Math.sin(degYaw) + random.nextDouble() / 10.0 * (double) (random.nextBoolean() ? 1 : -1),
 						1,
 						0,
 						0.005,
@@ -147,9 +146,9 @@ public class SporebrushPipeItem extends Item {
 				if (stack.getOrCreateNbt().containsUuid("LastHit")) {
 					MinecraftServer server = world.getServer();
 					ServerPlayerEntity other = world.getServer().getPlayerManager().getPlayer(stack.getNbt().getUuid("LastHit"));
-					Advancement advancement = server.getAdvancementLoader().get(SHARE_PIPE);
-					server.getPlayerManager().getAdvancementTracker(player).grantCriterion(advancement, "share_pipe");
-					server.getPlayerManager().getAdvancementTracker(other).grantCriterion(advancement, "share_pipe");
+					MycoturgyCriteria.SHARE_PIPE.trigger(player);
+					MycoturgyCriteria.SHARE_PIPE.trigger(other);
+
 				}
 				stack.getNbt().putUuid("LastHit", user.getUuid());
 				stack.getNbt().putInt("ShareCountdown", 600);
@@ -162,9 +161,7 @@ public class SporebrushPipeItem extends Item {
 	@Override
 	public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
 		if (user instanceof ServerPlayerEntity player && getPipeFill(stack) == MAX_FILL) {
-			MinecraftServer server = world.getServer();
-			Advancement advancement = server.getAdvancementLoader().get(BIG_HIT);
-			server.getPlayerManager().getAdvancementTracker(player).grantCriterion(advancement, "big_hit");
+			MycoturgyCriteria.BIG_HIT.trigger(player);
 		}
 		addRelaxation(user, getPipeFill(stack) * 10, true);
 		stack.getOrCreateNbt().putInt("PipeFill", 0);

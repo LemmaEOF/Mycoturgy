@@ -1,6 +1,7 @@
 package gay.lemmaeof.mycoturgy.recipe;
 
 import gay.lemmaeof.mycoturgy.init.MycoturgyItems;
+import gay.lemmaeof.mycoturgy.init.MycoturgyRecipes;
 import gay.lemmaeof.mycoturgy.item.SporebrushPipeItem;
 
 import net.minecraft.inventory.CraftingInventory;
@@ -59,6 +60,6 @@ public class PipeFillingRecipe extends SpecialCraftingRecipe {
 
 	@Override
 	public RecipeSerializer<?> getSerializer() {
-		return null;
+		return MycoturgyRecipes.PIPE_FILLING;
 	}
 }
