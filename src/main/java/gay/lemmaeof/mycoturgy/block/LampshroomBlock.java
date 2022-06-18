@@ -2,6 +2,7 @@ package gay.lemmaeof.mycoturgy.block;
 
 import java.util.Random;
 
+import net.minecraft.util.random.RandomGenerator;
 import org.jetbrains.annotations.Nullable;
 import gay.lemmaeof.mycoturgy.block.property.BlockThird;
 import gay.lemmaeof.mycoturgy.component.HaustorComponent;
@@ -123,7 +124,7 @@ public class LampshroomBlock extends Block {
 	}
 
 	@Override
-	public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
+	public void randomDisplayTick(BlockState state, World world, BlockPos pos, RandomGenerator random) {
 		super.randomDisplayTick(state, world, pos, random);
 		if (state.get(THIRD) == BlockThird.UPPER) {
 			for (int i = 0; i < 2; i++) {
@@ -137,7 +138,7 @@ public class LampshroomBlock extends Block {
 	}
 
 	@Override
-	public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
+	public void randomTick(BlockState state, ServerWorld world, BlockPos pos, RandomGenerator random) {
 		super.randomTick(state, world, pos, random);
 		if (random.nextInt(10) == 0) {
 			HaustorComponent component = MycoturgyComponents.HAUSTOR_COMPONENT.get(world.getChunk(pos));

@@ -1,20 +1,15 @@
 package gay.lemmaeof.mycoturgy.block;
 
-import java.util.Random;
-
-import javax.annotation.Nullable;
-
-import net.minecraft.block.entity.BlockEntityTicker;
-import net.minecraft.block.entity.BlockEntityType;
 import gay.lemmaeof.mycoturgy.block.entity.MasonJarBlockEntity;
 import gay.lemmaeof.mycoturgy.init.MycoturgyBlocks;
 import gay.lemmaeof.mycoturgy.init.MycoturgyItems;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockEntityProvider;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BlockEntityTicker;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsage;
@@ -27,16 +22,19 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
-import net.minecraft.text.TranslatableText;
+import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.random.RandomGenerator;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
+
+import javax.annotation.Nullable;
 
 public class MasonJarBlock extends Block implements BlockEntityProvider {
 	public static final BooleanProperty FILLED = BooleanProperty.of("filled");
@@ -100,7 +98,7 @@ public class MasonJarBlock extends Block implements BlockEntityProvider {
 			if (be instanceof MasonJarBlockEntity) {
 				MasonJarBlockEntity jar = (MasonJarBlockEntity)be;
 				if (player.isSneaking()) {
-					player.sendMessage(new TranslatableText("msg.mycoturgy.ashes", jar.getAshes()), true);
+					player.sendMessage(Text.translatable("msg.mycoturgy.ashes", jar.getAshes()), true);
 				} else if (!jar.getInventory().getStack().isEmpty()) {
 					player.getInventory().insertStack(jar.getInventory().getStack());
 					jar.getInventory().clear();
@@ -147,14 +145,9 @@ public class MasonJarBlock extends Block implements BlockEntityProvider {
 		return SHAPE.offset(offset.x, offset.y, offset.z);
 	}
 
-	@Override
-	public OffsetType getOffsetType() {
-		return OffsetType.XZ;
-	}
-
 	//TODO: custom particles?
 	@Override
-	public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
+	public void randomDisplayTick(BlockState state, World world, BlockPos pos, RandomGenerator random) {
 		Vec3d jarPos = new Vec3d(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5).add(state.getModelOffset(world, pos));
 		BlockEntity be = world.getBlockEntity(pos);
 		if (state.get(FILLED) && be instanceof MasonJarBlockEntity) {

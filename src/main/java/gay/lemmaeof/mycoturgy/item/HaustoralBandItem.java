@@ -2,11 +2,9 @@ package gay.lemmaeof.mycoturgy.item;
 
 import com.google.common.collect.Multimap;
 import dev.emi.trinkets.api.*;
-import gay.lemmaeof.mycoturgy.Mycoturgy;
 import gay.lemmaeof.mycoturgy.init.MycoturgyCriteria;
 import gay.lemmaeof.mycoturgy.init.MycoturgyEffects;
 import gay.lemmaeof.mycoturgy.init.MycoturgyItems;
-import net.minecraft.advancement.Advancement;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttribute;
@@ -14,11 +12,8 @@ import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
-import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
@@ -103,7 +98,7 @@ public class HaustoralBandItem extends TrinketItem {
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 		super.appendTooltip(stack, world, tooltip, context);
 		if (stack.getOrCreateNbt().getBoolean("Bound")) {
-			tooltip.add(new TranslatableText("tooltip.mycoturgy.haustoral_band.bound").styled(style -> style.withColor(0x00CC55)));
+			tooltip.add(Text.translatable("tooltip.mycoturgy.haustoral_band.bound").styled(style -> style.withColor(0x00CC55)));
 		}
 	}
 }

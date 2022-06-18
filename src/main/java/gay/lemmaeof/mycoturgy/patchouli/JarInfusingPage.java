@@ -4,12 +4,12 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import gay.lemmaeof.mycoturgy.Mycoturgy;
 import gay.lemmaeof.mycoturgy.init.MycoturgyRecipes;
 import gay.lemmaeof.mycoturgy.recipe.JarInfusingRecipe;
+import net.minecraft.text.Text;
 import vazkii.patchouli.client.book.page.abstr.PageDoubleRecipeRegistry;
 
 import net.minecraft.client.gui.DrawableHelper;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
 
 public class JarInfusingPage extends PageDoubleRecipeRegistry<JarInfusingRecipe> {
@@ -30,13 +30,13 @@ public class JarInfusingPage extends PageDoubleRecipeRegistry<JarInfusingRecipe>
 		if (recipe.getHyphaCost() > 0) {
 			this.parent.drawCenteredStringNoShadow(ms, "" + recipe.getHyphaCost(), recipeX + 31, recipeY + 12, this.book.textColor);
 			if (this.parent.isMouseInRelativeRange(mouseX, mouseY, recipeX + 23, recipeY, 16, 20)) {
-				this.parent.setTooltip(new TranslatableText("text.mycoturgy.hypha_cost"));
+				this.parent.setTooltip(Text.translatable("text.mycoturgy.hypha_cost"));
 			}
 		}
 		if (recipe.getLamellaCost() > 0) {
 			this.parent.drawCenteredStringNoShadow(ms, "" + recipe.getLamellaCost(), recipeX + 65, recipeY + 12, this.book.textColor);
 			if (this.parent.isMouseInRelativeRange(mouseX, mouseY, recipeX + 54, recipeY, 16, 20)) {
-				this.parent.setTooltip(new TranslatableText("text.mycoturgy.lamella_cost"));
+				this.parent.setTooltip(Text.translatable("text.mycoturgy.lamella_cost"));
 			}
 		}
 	}

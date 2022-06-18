@@ -4,7 +4,9 @@ import java.util.Optional;
 
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
+import com.mojang.blaze3d.vertex.*;
 import dev.emi.trinkets.api.TrinketsApi;
+import net.minecraft.client.gui.DrawableHelper;
 import net.minecraft.client.render.*;
 import gay.lemmaeof.mycoturgy.Mycoturgy;
 import gay.lemmaeof.mycoturgy.component.HaustorComponent;
@@ -88,15 +90,16 @@ public class HaustorBandHud {
 	private static void innerBlit(double x1, double y1, double x2, double y2, double z, float u1, float v1, float u2, float v2) {
 		RenderSystem.setShader(GameRenderer::getPositionTexShader);
 		Tessellator tess = Tessellator.getInstance();
-		BufferBuilder buffer = tess.getBuffer();
+		BufferBuilder buffer = tess.getBufferBuilder();
 		buffer.begin(VertexFormat.DrawMode.QUADS, VertexFormats.POSITION_TEXTURE);
-		buffer.vertex(x1, y2, z).texture(u1, v2).next();
-		buffer.vertex(x2, y2, z).texture(u2, v2).next();
-		buffer.vertex(x2, y1, z).texture(u2, v1).next();
-		buffer.vertex(x1, y1, z).texture(u1, v1).next();
-		buffer.end();
-		BufferRenderer.draw(buffer);
+		buffer.vertex(x1, y2, z).uv(u1, v2).next();
+		buffer.vertex(x2, y2, z).uv(u2, v2).next();
+		buffer.vertex(x2, y1, z).uv(u2, v1).next();
+		buffer.vertex(x1, y1, z).uv(u1, v1).next();
+		BufferRenderer.drawWithShader(buffer.end());
+
 	}
+
 
 	private static float texUV(int orig) {
 		return ((float)orig) / 256f;

@@ -1,7 +1,5 @@
 package gay.lemmaeof.mycoturgy.spell;
 
-import java.util.Random;
-
 import net.minecraft.util.Holder;
 import gay.lemmaeof.mycoturgy.component.HaustorComponent;
 import gay.lemmaeof.mycoturgy.init.MycoturgyBlocks;
@@ -11,6 +9,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.random.RandomGenerator;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.Feature;
 
@@ -22,7 +21,7 @@ public class GrowMushroomSpell implements Spell {
 
 	@Override
 	public void cast(ServerWorld world, BlockPos pos, BlockState state, PlayerEntity caster, HaustorComponent haustor) {
-		Random random = new Random();
+		RandomGenerator random = world.getRandom();
 		world.setBlockState(pos, Blocks.AIR.getDefaultState());
 		Feature<?> feature = random.nextBoolean()? Feature.HUGE_BROWN_MUSHROOM : Feature.HUGE_RED_MUSHROOM;
 		if (((ConfiguredFeature<?, ?>)((Holder<?>)feature).value()).generate(world, world.getChunkManager().getChunkGenerator(), random, pos)) {

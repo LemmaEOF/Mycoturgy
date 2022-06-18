@@ -62,7 +62,7 @@ public class InfestedSpawnerBlockEntity extends BlockEntity {
 	}
 
 	public boolean onSyncedBlockEvent(int type, int data) {
-		return this.logic.method_8275(this.world, type) ? true : super.onSyncedBlockEvent(type, data);
+		return this.logic.handleStatus(this.world, type) || super.onSyncedBlockEvent(type, data);
 	}
 
 	public MobSpawnerLogic getLogic() {

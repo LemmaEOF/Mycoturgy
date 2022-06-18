@@ -34,8 +34,8 @@ public abstract class MixinServerWorld extends World {
 
 	@Shadow public abstract void updateNeighbors(BlockPos pos, Block block);
 
-	protected MixinServerWorld(MutableWorldProperties properties, RegistryKey<World> registryRef, Holder<DimensionType> dimensionType, Supplier<Profiler> profiler, boolean isClient, boolean debugWorld, long seed) {
-		super(properties, registryRef, dimensionType, profiler, isClient, debugWorld, seed);
+	protected MixinServerWorld(MutableWorldProperties mutableWorldProperties, RegistryKey<World> registryKey, Holder<DimensionType> holder, Supplier<Profiler> supplier, boolean bl, boolean bl2, long l, int i) {
+		super(mutableWorldProperties, registryKey, holder, supplier, bl, bl2, l, i);
 	}
 
 	//TODO: is it possible to have this *not* be a cellular automoton, or otherwise optimize this further?

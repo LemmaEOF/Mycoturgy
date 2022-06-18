@@ -2,6 +2,7 @@ package gay.lemmaeof.mycoturgy.init;
 
 import gay.lemmaeof.mycoturgy.block.*;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
+import net.minecraft.block.AbstractBlock;
 import net.minecraft.tag.TagKey;
 import org.quiltmc.qsl.block.extensions.api.QuiltBlockSettings;
 import gay.lemmaeof.mycoturgy.Mycoturgy;
@@ -53,6 +54,7 @@ public class MycoturgyBlocks {
 						.requiresTool()
 						.nonOpaque()
 						.dynamicBounds()
+						.offsetType(AbstractBlock.OffsetType.XZ)
 				), new Item.Settings()
 						.group(MycoturgyItems.MYCOTURGY_GROUP)
 		);

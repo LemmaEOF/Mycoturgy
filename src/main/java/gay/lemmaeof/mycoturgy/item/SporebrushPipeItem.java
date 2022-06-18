@@ -1,20 +1,8 @@
 package gay.lemmaeof.mycoturgy.item;
 
-import java.util.List;
-import java.util.Random;
-
-import gay.lemmaeof.mycoturgy.Mycoturgy;
 import gay.lemmaeof.mycoturgy.init.MycoturgyCriteria;
 import gay.lemmaeof.mycoturgy.init.MycoturgyEffects;
 import gay.lemmaeof.mycoturgy.init.MycoturgyItems;
-import net.minecraft.nbt.NbtElement;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.*;
-import net.minecraft.util.math.Vec2f;
-import net.minecraft.util.math.Vec3d;
-import org.jetbrains.annotations.Nullable;
-
-import net.minecraft.advancement.Advancement;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -22,14 +10,23 @@ import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NbtElement;
 import net.minecraft.particle.ParticleTypes;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
+import net.minecraft.util.Formatting;
+import net.minecraft.util.Hand;
+import net.minecraft.util.TypedActionResult;
+import net.minecraft.util.UseAction;
+import net.minecraft.util.random.RandomGenerator;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
+import java.util.UUID;
 
 public class SporebrushPipeItem extends Item {
 	public static final int MAX_FILL = 200;
@@ -106,7 +103,7 @@ public class SporebrushPipeItem extends Item {
 		}
 		if (remainingUseTicks <= getPipeFill(stack)) {
 			stack.getOrCreateNbt().putInt("LiveFill", remainingUseTicks);
-			Random random = world.getRandom();
+			RandomGenerator random = world.getRandom();
 
 			double degPitch = user.getPitch() * Math.PI / 180D;
 			double degYaw = (user.getYaw() + 90D) * Math.PI / 180D;
@@ -122,36 +119,18 @@ public class SporebrushPipeItem extends Item {
 						0,
 						0);
 			}
-			if (remainingUseTicks % 20 == 0) {
-				((ServerWorld) world).spawnParticles(
-						ParticleTypes.CAMPFIRE_COSY_SMOKE,
-						user.getX() - Math.cos(degYaw) + random.nextDouble() / 10.0 * (double) (random.nextBoolean() ? 1 : -1),
-						user.getEyeY() - 0.1 + random.nextDouble() / 10.0 * (double) (random.nextBoolean() ? 1 : -1),
-						user.getZ() - Math.sin(degYaw) + random.nextDouble() / 10.0 * (double) (random.nextBoolean() ? 1 : -1),
-						1,
-						0,
-						0.005,
-						0,
-						0);
-			}
 		}
 	}
 
 	@Override
 	public void onStoppedUsing(ItemStack stack, World world, LivingEntity user, int remainingUseTicks) {
 		if (world.isClient) return;
-		if (remainingUseTicks <= getPipeFill(stack)) {
-			addRelaxation(user, (getPipeFill(stack) - remainingUseTicks) * 10, false);
+		int fill = getPipeFill(stack);
+		if (remainingUseTicks <= fill) {
+			int smoked = fill - remainingUseTicks;
+			addRelaxation(user, smoked * 10, false);
 			if (user instanceof ServerPlayerEntity player) {
-				if (stack.getOrCreateNbt().containsUuid("LastHit")) {
-					MinecraftServer server = world.getServer();
-					ServerPlayerEntity other = world.getServer().getPlayerManager().getPlayer(stack.getNbt().getUuid("LastHit"));
-					MycoturgyCriteria.SHARE_PIPE.trigger(player);
-					MycoturgyCriteria.SHARE_PIPE.trigger(other);
-
-				}
-				stack.getNbt().putUuid("LastHit", user.getUuid());
-				stack.getNbt().putInt("ShareCountdown", 600);
+				puff(stack, smoked, player);
 			}
 			stack.getNbt().remove("LiveFill");
 			setNewFill(stack, remainingUseTicks);
@@ -160,13 +139,44 @@ public class SporebrushPipeItem extends Item {
 
 	@Override
 	public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
-		if (user instanceof ServerPlayerEntity player && getPipeFill(stack) == MAX_FILL) {
-			MycoturgyCriteria.BIG_HIT.trigger(player);
+		int fill = getPipeFill(stack);
+		boolean fullHit = fill == MAX_FILL;
+		if (user instanceof ServerPlayerEntity player) {
+			puff(stack, fill, player);
+			if (fullHit) MycoturgyCriteria.BIG_HIT.trigger(player);
 		}
-		addRelaxation(user, getPipeFill(stack) * 10, true);
+		addRelaxation(user, fill * 10, fullHit);
 		stack.getOrCreateNbt().putInt("PipeFill", 0);
 		stack.getNbt().remove("LiveFill");
 		return stack;
+	}
+
+	private void puff(ItemStack stack, int smoked, ServerPlayerEntity player) {
+		ServerWorld world = (ServerWorld) player.world;
+		RandomGenerator random = world.getRandom();
+		double degPitch = player.getPitch() * Math.PI / 180D;
+		double degYaw = (player.getYaw() + 90D) * Math.PI / 180D;
+		world.spawnParticles(
+				ParticleTypes.CAMPFIRE_COSY_SMOKE,
+				player.getX() - (Math.cos(degYaw) * -Math.cos(degPitch) * 0.5) + random.nextDouble() / 10.0 * (double) (random.nextBoolean() ? 1 : -1),
+				player.getEyeY() - 0.1 - (Math.sin(degPitch) * 0.8) + random.nextDouble() / 10.0 * (double) (random.nextBoolean() ? 1 : -1),
+				player.getZ() - (Math.sin(degYaw) * -Math.cos(degPitch) * 0.5) + random.nextDouble() / 10.0 * (double) (random.nextBoolean() ? 1 : -1),
+				smoked / 10,
+				0,
+				0.05,
+				0,
+				0.05);
+		//try sharing
+		if (stack.getOrCreateNbt().containsUuid("LastHit")) {
+			UUID id = stack.getNbt().getUuid("LastHit");
+			if (!id.equals(player.getUuid())) {
+				ServerPlayerEntity other = player.world.getServer().getPlayerManager().getPlayer(stack.getNbt().getUuid("LastHit"));
+				MycoturgyCriteria.SHARE_PIPE.trigger(player);
+				MycoturgyCriteria.SHARE_PIPE.trigger(other);
+			}
+		}
+		stack.getNbt().putUuid("LastHit", player.getUuid());
+		stack.getNbt().putInt("ShareCountdown", 600);
 	}
 
 	@Override
@@ -193,7 +203,7 @@ public class SporebrushPipeItem extends Item {
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 		super.appendTooltip(stack, world, tooltip, context);
 		if (context.isAdvanced()) {
-			tooltip.add(new TranslatableText("tooltip.mycoturgy.pipe_fill", getPipeFill(stack), MAX_FILL).formatted(Formatting.GRAY));
+			tooltip.add(Text.translatable("tooltip.mycoturgy.pipe_fill", getPipeFill(stack), MAX_FILL).formatted(Formatting.GRAY));
 		}
 	}
 }

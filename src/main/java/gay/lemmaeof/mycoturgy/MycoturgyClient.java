@@ -4,12 +4,10 @@ import net.fabricmc.fabric.api.client.rendering.v1.BlockEntityRendererRegistry;
 import net.minecraft.client.item.ModelPredicateProviderRegistry;
 import net.minecraft.client.item.UnclampedModelPredicateProvider;
 
-import gay.lemmaeof.mycoturgy.item.SporebrushPipeItem;
 import org.quiltmc.loader.api.ModContainer;
 import org.quiltmc.qsl.base.api.entrypoint.client.ClientModInitializer;
 import org.quiltmc.qsl.block.extensions.api.client.BlockRenderLayerMap;
 import gay.lemmaeof.mycoturgy.client.hud.HaustorBandHud;
-import gay.lemmaeof.mycoturgy.client.journal.JournalChapters;
 import gay.lemmaeof.mycoturgy.client.render.CookingPotBlockEntityRenderer;
 import gay.lemmaeof.mycoturgy.client.render.MasonJarBlockEntityRenderer;
 import gay.lemmaeof.mycoturgy.init.MycoturgyBlocks;
@@ -39,7 +37,6 @@ public class MycoturgyClient implements ClientModInitializer {
 		ClientBookRegistry.INSTANCE.pageTypes.put(new Identifier(Mycoturgy.MODID, "jar_infusing"), JarInfusingPage.class);
 		BlockEntityRendererRegistry.register(MycoturgyBlocks.MASON_JAR_BLOCK_ENTITY, MasonJarBlockEntityRenderer::new);
 		BlockEntityRendererRegistry.register(MycoturgyBlocks.COOKING_POT_BLOCK_ENTITY, CookingPotBlockEntityRenderer::new);
-		JournalChapters.init();
 		ModelPredicateProviderRegistry.register(MycoturgyItems.SIDE_SWORD, new Identifier("blocking"), blockingPredicate);
 		ModelPredicateProviderRegistry.register(MycoturgyItems.MUSHROOM_SHIELD, new Identifier("blocking"), blockingPredicate);
 		ModelPredicateProviderRegistry.register(MycoturgyItems.SPOREBRUSH_PIPE, new Identifier(Mycoturgy.MODID, "filled"), (stack, world, user, seed) -> stack.getOrCreateNbt().getInt("PipeFill") == 0? 0: 1);

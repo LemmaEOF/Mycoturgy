@@ -1,7 +1,6 @@
 package gay.lemmaeof.mycoturgy.mixin;
 
-import java.util.Random;
-
+import net.minecraft.util.random.RandomGenerator;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -21,7 +20,7 @@ public class MixinCampfireBlock {
 	//TODO: custom particles?
 	@Inject(method = "spawnSmokeParticle", at = @At("HEAD"))
 	private static void injectParticles(World world, BlockPos pos, boolean isSignal, boolean lotsOfSmoke, CallbackInfo info) {
-		Random random = world.getRandom();
+		RandomGenerator random = world.getRandom();
 		BlockEntity be = world.getBlockEntity(pos);
 		if (be instanceof CampfireBlockEntity) {
 			CampfireBlockEntity campfire = (CampfireBlockEntity)be;

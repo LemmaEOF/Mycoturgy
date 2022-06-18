@@ -11,6 +11,7 @@ import net.minecraft.state.property.IntProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.tag.BlockTags;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.random.RandomGenerator;
 import net.minecraft.world.BlockView;
 
 public class CustomCropBlock extends CropBlock {
@@ -36,7 +37,7 @@ public class CustomCropBlock extends CropBlock {
 	}
 
 	@Override
-	public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
+	public void randomTick(BlockState state, ServerWorld world, BlockPos pos, RandomGenerator random) {
 		if (world.getBaseLightLevel(pos, 0) >= 9) {
 			int age = this.getAge(state);
 			if (age < this.getMaxAge()) {
@@ -48,7 +49,7 @@ public class CustomCropBlock extends CropBlock {
 	}
 
 	@Override
-	public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
+	public void grow(ServerWorld world, RandomGenerator random, BlockPos pos, BlockState state) {
 		if (random.nextBoolean()) {
 			int newAge = this.getAge(state) + 1;
 			int maxAge = this.getMaxAge();
