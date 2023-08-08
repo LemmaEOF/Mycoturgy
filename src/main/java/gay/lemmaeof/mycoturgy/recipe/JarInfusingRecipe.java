@@ -8,10 +8,11 @@ import gay.lemmaeof.mycoturgy.inventory.SingleStackSyncedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.recipe.*;
+import net.minecraft.registry.DynamicRegistryManager;
+import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonHelper;
 import net.minecraft.util.collection.DefaultedList;
-import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import org.quiltmc.qsl.recipe.api.serializer.QuiltRecipeSerializer;
 
@@ -52,8 +53,8 @@ public class JarInfusingRecipe implements Recipe<SingleStackSyncedInventory> {
 	}
 
 	@Override
-	public ItemStack craft(SingleStackSyncedInventory inv) {
-		return getOutput().copy();
+	public ItemStack craft(SingleStackSyncedInventory inv, DynamicRegistryManager manager) {
+		return getResult(manager).copy();
 	}
 
 	@Override
@@ -67,7 +68,7 @@ public class JarInfusingRecipe implements Recipe<SingleStackSyncedInventory> {
 	}
 
 	@Override
-	public ItemStack getOutput() {
+	public ItemStack getResult(DynamicRegistryManager manager) {
 		return output;
 	}
 
@@ -126,12 +127,12 @@ public class JarInfusingRecipe implements Recipe<SingleStackSyncedInventory> {
 		public JsonObject toJson(JarInfusingRecipe recipe) {
 			JsonObject res = new JsonObject();
 
-			res.addProperty("type", Registry.RECIPE_SERIALIZER.getId(MycoturgyRecipes.JAR_INFUSING_SERIALIZER).toString());
+			res.addProperty("type", Registries.RECIPE_SERIALIZER.getId(MycoturgyRecipes.JAR_INFUSING_SERIALIZER).toString());
 
 			res.add("ingredient", recipe.input.toJson());
 
 			JsonObject output = new JsonObject();
-			output.addProperty("item", Registry.ITEM.getId(recipe.output.getItem()).toString());
+			output.addProperty("item", Registries.ITEM.getId(recipe.output.getItem()).toString());
 			if (recipe.output.getCount() != 1) {
 				output.addProperty("count", recipe.output.getCount());
 			}

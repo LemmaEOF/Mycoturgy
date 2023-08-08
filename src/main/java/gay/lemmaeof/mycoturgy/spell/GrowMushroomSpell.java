@@ -1,6 +1,6 @@
 package gay.lemmaeof.mycoturgy.spell;
 
-import net.minecraft.util.Holder;
+import net.minecraft.registry.Holder;
 import gay.lemmaeof.mycoturgy.component.HaustorComponent;
 import gay.lemmaeof.mycoturgy.init.MycoturgyBlocks;
 

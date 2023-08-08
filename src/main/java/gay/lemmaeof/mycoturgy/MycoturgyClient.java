@@ -4,6 +4,7 @@ import net.fabricmc.fabric.api.client.rendering.v1.BlockEntityRendererRegistry;
 import net.minecraft.client.item.ModelPredicateProviderRegistry;
 import net.minecraft.client.item.UnclampedModelPredicateProvider;
 
+import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
 import org.quiltmc.loader.api.ModContainer;
 import org.quiltmc.qsl.base.api.entrypoint.client.ClientModInitializer;
 import org.quiltmc.qsl.block.extensions.api.client.BlockRenderLayerMap;
@@ -35,8 +36,8 @@ public class MycoturgyClient implements ClientModInitializer {
 		ColorProviderRegistry.BLOCK.register((state, world, pos, index) -> FluidRenderHandlerRegistry.INSTANCE.get(Fluids.WATER).getFluidColor(world, pos, Fluids.WATER.getDefaultState()), MycoturgyBlocks.MASON_JAR, MycoturgyBlocks.COOKING_POT);
 		HudRenderCallback.EVENT.register(HaustorBandHud::render);
 		ClientBookRegistry.INSTANCE.pageTypes.put(new Identifier(Mycoturgy.MODID, "jar_infusing"), JarInfusingPage.class);
-		BlockEntityRendererRegistry.register(MycoturgyBlocks.MASON_JAR_BLOCK_ENTITY, MasonJarBlockEntityRenderer::new);
-		BlockEntityRendererRegistry.register(MycoturgyBlocks.COOKING_POT_BLOCK_ENTITY, CookingPotBlockEntityRenderer::new);
+		BlockEntityRendererFactories.register(MycoturgyBlocks.MASON_JAR_BLOCK_ENTITY, MasonJarBlockEntityRenderer::new);
+		BlockEntityRendererFactories.register(MycoturgyBlocks.COOKING_POT_BLOCK_ENTITY, CookingPotBlockEntityRenderer::new);
 		ModelPredicateProviderRegistry.register(MycoturgyItems.SIDE_SWORD, new Identifier("blocking"), blockingPredicate);
 		ModelPredicateProviderRegistry.register(MycoturgyItems.MUSHROOM_SHIELD, new Identifier("blocking"), blockingPredicate);
 		ModelPredicateProviderRegistry.register(MycoturgyItems.SPOREBRUSH_PIPE, new Identifier(Mycoturgy.MODID, "filled"), (stack, world, user, seed) -> stack.getOrCreateNbt().getInt("PipeFill") == 0? 0: 1);

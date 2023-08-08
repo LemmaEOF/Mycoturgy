@@ -1,18 +1,17 @@
 package gay.lemmaeof.mycoturgy.block;
 
-import java.util.Random;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.CropBlock;
+import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.state.property.Properties;
-import net.minecraft.tag.BlockTags;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.random.RandomGenerator;
 import net.minecraft.world.BlockView;
+import net.minecraft.world.World;
 
 public class CustomCropBlock extends CropBlock {
 	public static final IntProperty AGE = Properties.AGE_3;
@@ -49,8 +48,8 @@ public class CustomCropBlock extends CropBlock {
 	}
 
 	@Override
-	public void grow(ServerWorld world, RandomGenerator random, BlockPos pos, BlockState state) {
-		if (random.nextBoolean()) {
+	public void grow(World world,  BlockPos pos, BlockState state) {
+		if (world.random.nextBoolean()) {
 			int newAge = this.getAge(state) + 1;
 			int maxAge = this.getMaxAge();
 			if (newAge > maxAge) {

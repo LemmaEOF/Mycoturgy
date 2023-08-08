@@ -8,6 +8,7 @@ import net.minecraft.advancement.criterion.AbstractCriterionConditions;
 import net.minecraft.predicate.entity.AdvancementEntityPredicateDeserializer;
 import net.minecraft.predicate.entity.EntityPredicate;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.unmapped.C_ctsfmifk;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonHelper;
 
@@ -15,7 +16,7 @@ public class MeditateCriterion extends AbstractCriterion<MeditateCriterion.Condi
 	public static final Identifier ID = new Identifier(Mycoturgy.MODID, "meditate");
 
 	@Override
-	protected Conditions conditionsFromJson(JsonObject obj, EntityPredicate.Extended playerPredicate, AdvancementEntityPredicateDeserializer predicateDeserializer) {
+	protected Conditions conditionsFromJson(JsonObject obj, /*PlayerPredicate*/C_ctsfmifk playerPredicate, AdvancementEntityPredicateDeserializer predicateDeserializer) {
 		Identifier path = new Identifier(JsonHelper.getString(obj, "path", "mycoturgy:aimless"));
 		return new Conditions(path);
 	}
@@ -33,7 +34,7 @@ public class MeditateCriterion extends AbstractCriterion<MeditateCriterion.Condi
 		private final Identifier path;
 
 		public Conditions(Identifier path) {
-			super(ID, EntityPredicate.Extended.EMPTY);
+			super(ID, /*PlayerPredicate*/C_ctsfmifk.field_24388);
 			this.path = path;
 		}
 

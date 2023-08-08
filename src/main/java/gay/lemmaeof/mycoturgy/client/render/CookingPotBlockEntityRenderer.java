@@ -4,11 +4,11 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.block.entity.BlockEntityRenderer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
-import net.minecraft.client.render.model.json.ModelTransformation;
+import net.minecraft.client.render.model.json.ModelTransformationMode;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.Axis;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.math.Vec3f;
 import gay.lemmaeof.mycoturgy.block.entity.CookingPotBlockEntity;
 
 import java.util.ArrayList;
@@ -32,9 +32,9 @@ public class CookingPotBlockEntityRenderer implements BlockEntityRenderer<Cookin
 			matrices.push();
 			matrices.translate(0.5D, -0.2D, 0.5D);
 			matrices.translate(offset.x, offset.y + (Math.sin((tickDelta + entity.ticks) / 8) * 0.05), offset.z);
-			matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion((tickDelta + entity.ticks) / 1.5f));
+			matrices.multiply(Axis.Y_POSITIVE.rotationDegrees((tickDelta + entity.ticks) / 1.5f));
 			matrices.scale(0.35f, 0.35f, 0.35f);
-			MinecraftClient.getInstance().getItemRenderer().renderItem(stack, ModelTransformation.Mode.FIXED, light, overlay, matrices, vertexConsumers, 0);
+			MinecraftClient.getInstance().getItemRenderer().renderItem(stack, ModelTransformationMode.FIXED, light, overlay, matrices, vertexConsumers, null, 0);
 			matrices.pop();
 		}
 	}

@@ -152,7 +152,7 @@ public class SporebrushPipeItem extends Item {
 	}
 
 	private void puff(ItemStack stack, int smoked, ServerPlayerEntity player) {
-		ServerWorld world = (ServerWorld) player.world;
+		ServerWorld world = (ServerWorld) player.getWorld();
 		RandomGenerator random = world.getRandom();
 		double degPitch = player.getPitch() * Math.PI / 180D;
 		double degYaw = (player.getYaw() + 90D) * Math.PI / 180D;
@@ -170,7 +170,7 @@ public class SporebrushPipeItem extends Item {
 		if (stack.getOrCreateNbt().containsUuid("LastHit")) {
 			UUID id = stack.getNbt().getUuid("LastHit");
 			if (!id.equals(player.getUuid())) {
-				ServerPlayerEntity other = player.world.getServer().getPlayerManager().getPlayer(stack.getNbt().getUuid("LastHit"));
+				ServerPlayerEntity other = player.getWorld().getServer().getPlayerManager().getPlayer(stack.getNbt().getUuid("LastHit"));
 				MycoturgyCriteria.SHARE_PIPE.trigger(player);
 				MycoturgyCriteria.SHARE_PIPE.trigger(other);
 			}
@@ -202,7 +202,7 @@ public class SporebrushPipeItem extends Item {
 	@Override
 	public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 		super.appendTooltip(stack, world, tooltip, context);
-		if (context.isAdvanced()) {
+		if (context.shouldShowAdvancedDetails()) {
 			tooltip.add(Text.translatable("tooltip.mycoturgy.pipe_fill", getPipeFill(stack), MAX_FILL).formatted(Formatting.GRAY));
 		}
 	}

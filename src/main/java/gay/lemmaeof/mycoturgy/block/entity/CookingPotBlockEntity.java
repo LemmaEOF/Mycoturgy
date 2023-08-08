@@ -6,9 +6,11 @@ import java.util.Random;
 
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
+import net.minecraft.network.listener.ClientPlayPacketListener;
+import net.minecraft.network.packet.Packet;
+import net.minecraft.registry.DynamicRegistryManager;
 import net.minecraft.util.math.BlockPos;
 import gay.lemmaeof.mycoturgy.block.CookingPotBlock;
-import gay.lemmaeof.mycoturgy.block.MasonJarBlock;
 import gay.lemmaeof.mycoturgy.component.HaustorComponent;
 import gay.lemmaeof.mycoturgy.init.MycoturgyBlocks;
 import gay.lemmaeof.mycoturgy.init.MycoturgyComponents;
@@ -27,6 +29,7 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.math.Vec3d;
+import org.jetbrains.annotations.Nullable;
 
 public class CookingPotBlockEntity extends SyncingBlockEntity {
 	public int ticks = 0;
@@ -63,7 +66,7 @@ public class CookingPotBlockEntity extends SyncingBlockEntity {
 					HaustorComponent component = MycoturgyComponents.HAUSTOR_COMPONENT.get(world.getChunk(this.pos));
 					component.spendHypha(currentRecipe.getHyphaCost());
 					component.spendLamella(currentRecipe.getLamellaCost());
-					outInv.setStack(currentRecipe.craft(inv));
+					outInv.setStack(currentRecipe.craft(inv, DynamicRegistryManager.EMPTY));
 					List<ItemStack> bonuses = currentRecipe.getBonusOutputs((ServerWorld) world, this);
 					inv.clear();
 					for (ItemStack stack : bonuses) {

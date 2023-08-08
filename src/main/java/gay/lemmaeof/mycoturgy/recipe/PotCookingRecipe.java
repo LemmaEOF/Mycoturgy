@@ -4,22 +4,21 @@ import java.util.List;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import net.minecraft.loot.context.*;
 import net.minecraft.recipe.*;
 import gay.lemmaeof.mycoturgy.init.MycoturgyRecipes;
 import gay.lemmaeof.mycoturgy.inventory.CookingPotInventory;
 
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.loot.context.LootContext;
-import net.minecraft.loot.context.LootContextParameters;
-import net.minecraft.loot.context.LootContextType;
 import net.minecraft.network.PacketByteBuf;
+import net.minecraft.registry.DynamicRegistryManager;
+import net.minecraft.registry.Registries;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonHelper;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import org.quiltmc.qsl.recipe.api.serializer.QuiltRecipeSerializer;
 
@@ -77,7 +76,7 @@ public class PotCookingRecipe implements Recipe<CookingPotInventory> {
 	}
 
 	@Override
-	public ItemStack craft(CookingPotInventory inv) {
+	public ItemStack craft(CookingPotInventory inv, DynamicRegistryManager manager) {
 		return output.copy();
 	}
 
@@ -92,7 +91,7 @@ public class PotCookingRecipe implements Recipe<CookingPotInventory> {
 	}
 
 	@Override
-	public ItemStack getOutput() {
+	public ItemStack getResult(DynamicRegistryManager manager) {
 		return output;
 	}
 
@@ -102,12 +101,12 @@ public class PotCookingRecipe implements Recipe<CookingPotInventory> {
 	}
 
 	public List<ItemStack> getBonusOutputs(ServerWorld world, BlockEntity be) {
-		LootContext context = new LootContext.Builder(world)
-				.parameter(LootContextParameters.BLOCK_ENTITY, be)
-				.parameter(LootContextParameters.ORIGIN, Vec3d.of(be.getPos()))
-				.parameter(LootContextParameters.BLOCK_STATE, be.getCachedState())
+		LootContextParameterSet context = new LootContextParameterSet.Builder(world)
+				.add(LootContextParameters.BLOCK_ENTITY, be)
+				.add(LootContextParameters.ORIGIN, Vec3d.of(be.getPos()))
+				.add(LootContextParameters.BLOCK_STATE, be.getCachedState())
 				.build(CRAFTING);
-		return world.getServer().getLootManager().getTable(bonusOutputs).generateLoot(context);
+		return world.getServer().getLootManager().getLootTable(bonusOutputs).generateLoot(context);
 	}
 
 	@Override
@@ -185,7 +184,7 @@ public class PotCookingRecipe implements Recipe<CookingPotInventory> {
 		public JsonObject toJson(PotCookingRecipe recipe) {
 			JsonObject res = new JsonObject();
 
-			res.addProperty("type", Registry.RECIPE_SERIALIZER.getId(MycoturgyRecipes.POT_COOKING_SERIALIZER).toString());
+			res.addProperty("type", Registries.RECIPE_SERIALIZER.getId(MycoturgyRecipes.POT_COOKING_SERIALIZER).toString());
 
 			JsonArray ingredients = new JsonArray();
 			for (Ingredient ingredient : recipe.input) {
@@ -194,7 +193,7 @@ public class PotCookingRecipe implements Recipe<CookingPotInventory> {
 			res.add("ingredients", ingredients);
 
 			JsonObject output = new JsonObject();
-			output.addProperty("item", Registry.ITEM.getId(recipe.output.getItem()).toString());
+			output.addProperty("item", Registries.ITEM.getId(recipe.output.getItem()).toString());
 			if (recipe.output.getCount() != 1) {
 				output.addProperty("count", recipe.output.getCount());
 			}

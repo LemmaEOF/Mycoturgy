@@ -3,9 +3,8 @@ package gay.lemmaeof.mycoturgy.mixin.client;
 import com.mojang.blaze3d.systems.RenderSystem;
 import gay.lemmaeof.mycoturgy.Mycoturgy;
 import gay.lemmaeof.mycoturgy.init.MycoturgyEffects;
-import net.minecraft.client.gui.DrawableHelper;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.hud.InGameHud;
-import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -20,7 +19,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 //yes, I know HudRenderCallback exists. I wanna do MORE
 @Mixin(InGameHud.class)
-public abstract class MixinInGameHud extends DrawableHelper {
+public abstract class MixinInGameHud {
 	private static final Identifier MYCOTURGY_ICONS_TEXTURE = new Identifier(Mycoturgy.MODID, "textures/gui/icons.png");
 
 	private static final int[] fuckery = new int[]{4, 2, 3, 4, 5, 3, 6}; //used for making there not be waves in the fire
@@ -35,7 +34,7 @@ public abstract class MixinInGameHud extends DrawableHelper {
 	private int currentHeart;
 
 	@Inject(method = "renderStatusBars", at = @At("HEAD"))
-	private void updateTicks(MatrixStack matrices, CallbackInfo info) {
+	private void updateTicks(GuiGraphics graphics, CallbackInfo info) {
 		if (lastTick < getTicks() && getTicks() % 2 == 0) {
 			lastTick = getTicks();
 			currentFrame++;
@@ -46,13 +45,11 @@ public abstract class MixinInGameHud extends DrawableHelper {
 	}
 
 	@Inject(method = "drawHeart", at = @At("HEAD"), cancellable = true)
-	private void drawGriefFire(MatrixStack matrices, InGameHud.HeartType type, int x, int y, int v, boolean blinking, boolean halfHeart, CallbackInfo info) {
+	private void drawGriefFire(GuiGraphics graphics, InGameHud.HeartType type, int x, int y, int v, boolean blinking, boolean halfHeart, CallbackInfo info) {
 		PlayerEntity player = this.getCameraPlayer(); //only called when player exists so we're safe
 		if (player.hasStatusEffect(MycoturgyEffects.GRIEF) && type == InGameHud.HeartType.CONTAINER) {
-			RenderSystem.setShaderTexture(0, MYCOTURGY_ICONS_TEXTURE);
-			this.drawTexture(matrices, x, y - 3, 9 * drawnFrame, 0, 9, 13);
+			graphics.drawTexture(MYCOTURGY_ICONS_TEXTURE, x, y - 3, 9 * drawnFrame, 0, 9, 13);
 //			this.drawTexture(matrices, x, y - 3, 9 * ((lastTick / 2 % x + currentFrame) % 7), 0, 9, 13);
-			RenderSystem.setShaderTexture(0, GUI_ICONS_TEXTURE);
 			drawnFrame += fuckery[currentHeart % 7];
 			currentHeart++;
 			drawnFrame %= 7;
@@ -60,8 +57,8 @@ public abstract class MixinInGameHud extends DrawableHelper {
 		}
 	}
 
-	@Inject(method = "renderVignetteOverlay", at = @At(value = "INVOKE", target = "Lcom/mojang/blaze3d/systems/RenderSystem;setShader(Ljava/util/function/Supplier;)V"))
-	private void injectSuperRelaxedVignette(Entity e, CallbackInfo info) {
+	@Inject(method = "renderVignetteOverlay", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;drawTexture(Lnet/minecraft/util/Identifier;IIIFFIIII)V"))
+	private void injectSuperRelaxedVignette(GuiGraphics graphics, Entity e, CallbackInfo info) {
 		if (e instanceof LivingEntity living && living.hasStatusEffect(MycoturgyEffects.RELAXATION)) {
 			StatusEffectInstance relaxation = living.getStatusEffect(MycoturgyEffects.RELAXATION);
 			if (relaxation.getAmplifier() == 1) {

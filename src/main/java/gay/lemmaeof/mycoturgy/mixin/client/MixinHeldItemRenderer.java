@@ -1,6 +1,11 @@
 package gay.lemmaeof.mycoturgy.mixin.client;
 
 import gay.lemmaeof.mycoturgy.init.MycoturgyItems;
+import net.minecraft.client.network.ClientPlayerEntity;
+import net.minecraft.client.render.model.json.ModelTransformationMode;
+import net.minecraft.util.math.Axis;
+import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -20,7 +25,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.Arm;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3f;
 
 @Mixin(HeldItemRenderer.class)
 public abstract class MixinHeldItemRenderer {
@@ -29,9 +33,11 @@ public abstract class MixinHeldItemRenderer {
 
 	@Shadow protected abstract void applySwingOffset(MatrixStack matrices, Arm arm, float swingProgress);
 
-	@Shadow public abstract void renderItem(LivingEntity entity, ItemStack stack, ModelTransformation.Mode renderMode, boolean leftHanded, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light);
 
 	@Shadow @Final private MinecraftClient client;
+
+
+	@Shadow public abstract void renderItem(LivingEntity entity, ItemStack stack, ModelTransformationMode modelTransformationMode, boolean leftHanded, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light);
 
 	//copying in a decent amount of the crossbow first-person render code so the pipe Looks Good in first person!
 	@Inject(method = "renderFirstPersonItem", at = @At("HEAD"), cancellable = true)
@@ -56,9 +62,9 @@ public abstract class MixinHeldItemRenderer {
 			if (player.isUsingItem() && player.getItemUseTimeLeft() > 0 && player.getActiveHand() == hand) {
 				this.applyEquipOffset(matrices, arm, 0);
 				matrices.translate((float)transformFactor * -0.7 /*-0.4785682F*/, -0.094387F, 0.05731531F);
-				matrices.multiply(Vec3f.POSITIVE_X.getDegreesQuaternion(-11.935F));
-				matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion((float)transformFactor * 65.3F));
-				matrices.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion((float)transformFactor * -9.785F));
+				matrices.multiply(Axis.X_POSITIVE.rotationDegrees(-11.935F));
+				matrices.multiply(Axis.Y_POSITIVE.rotationDegrees((float)transformFactor * 65.3F));
+				matrices.multiply(Axis.Z_POSITIVE.rotationDegrees((float)transformFactor * -9.785F));
 				float useTimeLeft = (float)item.getMaxUseTime() - ((float)client.player.getItemUseTimeLeft() - tickDelta + 1.0F);
 				float pullPercent = useTimeLeft / (float) CrossbowItem.getPullTime(item);
 				if (pullPercent > 1.0F) {
@@ -74,7 +80,7 @@ public abstract class MixinHeldItemRenderer {
 
 				matrices.translate(0, 0, pullPercent * 0.04F);
 				matrices.scale(1.0F, 1.0F, 1.0F + pullPercent * 0.2F);
-				matrices.multiply(Vec3f.NEGATIVE_Y.getDegreesQuaternion((float)transformFactor * 45.0F));
+				matrices.multiply(Axis.Y_NEGATIVE.rotationDegrees((float)transformFactor * 45.0F));
 			} else {
 				float xOffset = -0.4F * MathHelper.sin(MathHelper.sqrt(swingProgress) * (float) Math.PI);
 				float yOffset = 0.2F * MathHelper.sin(MathHelper.sqrt(swingProgress) * (float) (Math.PI * 2));
@@ -84,10 +90,11 @@ public abstract class MixinHeldItemRenderer {
 				applySwingOffset(matrices, arm, equipProgress);
 			}
 
+
 			renderItem(
 					player,
 					item,
-					inRightArm ? ModelTransformation.Mode.FIRST_PERSON_RIGHT_HAND : ModelTransformation.Mode.FIRST_PERSON_LEFT_HAND,
+					inRightArm ? ModelTransformationMode.FIRST_PERSON_RIGHT_HAND : ModelTransformationMode.FIRST_PERSON_LEFT_HAND,
 					!inRightArm,
 					matrices,
 					vertexConsumers,

@@ -11,10 +11,11 @@ import net.minecraft.network.PacketByteBuf;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.ShapedRecipe;
+import net.minecraft.registry.DynamicRegistryManager;
+import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonHelper;
 import net.minecraft.util.collection.DefaultedList;
-import net.minecraft.util.registry.Registry;
 import org.quiltmc.qsl.recipe.api.serializer.QuiltRecipeSerializer;
 
 public class NetheriteCleaningRecipe extends PotCookingRecipe {
@@ -23,8 +24,8 @@ public class NetheriteCleaningRecipe extends PotCookingRecipe {
 	}
 
 	@Override
-	public ItemStack craft(CookingPotInventory inv) {
-		ItemStack ret = super.craft(inv);
+	public ItemStack craft(CookingPotInventory inv, DynamicRegistryManager manager) {
+		ItemStack ret = super.craft(inv, manager);
 		for (int i = 0; i < inv.size(); i++) {
 			ItemStack stack = inv.getStack(i);
 			if (stack.isIn(MycoturgyItems.NETHERITE_COMPOSED)) { //TODO: better heuristic maybe? Make this whole recipe dynamic?
@@ -100,7 +101,7 @@ public class NetheriteCleaningRecipe extends PotCookingRecipe {
 		public JsonObject toJson(NetheriteCleaningRecipe recipe) {
 			JsonObject res = new JsonObject();
 
-			res.addProperty("type", Registry.RECIPE_SERIALIZER.getId(MycoturgyRecipes.NETHERITE_CLEANING_SERIALIZER).toString());
+			res.addProperty("type", Registries.RECIPE_SERIALIZER.getId(MycoturgyRecipes.NETHERITE_CLEANING_SERIALIZER).toString());
 
 			JsonArray ingredients = new JsonArray();
 			for (Ingredient ingredient : recipe.input) {
@@ -109,7 +110,7 @@ public class NetheriteCleaningRecipe extends PotCookingRecipe {
 			res.add("ingredients", ingredients);
 
 			JsonObject output = new JsonObject();
-			output.addProperty("item", Registry.ITEM.getId(recipe.output.getItem()).toString());
+			output.addProperty("item", Registries.ITEM.getId(recipe.output.getItem()).toString());
 			if (recipe.output.getCount() != 1) {
 				output.addProperty("count", recipe.output.getCount());
 			}

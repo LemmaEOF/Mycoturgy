@@ -2,6 +2,7 @@ package gay.lemmaeof.mycoturgy.item;
 
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.damage.DamageSources;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.sound.SoundCategory;
@@ -36,8 +37,8 @@ public class SideSwordItem extends CustomBlockingItem {
 			} else {
 				player.swingHand(Hand.OFF_HAND, true);
 			}
-			player.world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_PLAYER_ATTACK_SWEEP, SoundCategory.PLAYERS, 1f, 1f);
-			attacker.damage(DamageSource.player(player), 4);
+			player.getWorld().playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_PLAYER_ATTACK_SWEEP, SoundCategory.PLAYERS, 1f, 1f);
+			attacker.damage(player.getWorld().getDamageSources().playerAttack(player), 4);
 			player.clearActiveItem();
 			player.getItemCooldownManager().set(MycoturgyItems.SIDE_SWORD, 5);
 		}

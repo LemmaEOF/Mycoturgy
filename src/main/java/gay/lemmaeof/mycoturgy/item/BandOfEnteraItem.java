@@ -45,8 +45,8 @@ public class BandOfEnteraItem extends TrinketItem {
 
 	@Override
 	public void onEquip(ItemStack stack, SlotReference slot, LivingEntity entity) {
-		if (!entity.world.isClient && entity instanceof ServerPlayerEntity player) {
-			MinecraftServer server = entity.world.getServer();
+		if (!entity.getWorld().isClient && entity instanceof ServerPlayerEntity player) {
+			MinecraftServer server = entity.getWorld().getServer();
 			Advancement advancement = server.getAdvancementLoader().get(EQUIP_BAND);
 			server.getPlayerManager().getAdvancementTracker(player).grantCriterion(advancement, "equip_band");
 		}

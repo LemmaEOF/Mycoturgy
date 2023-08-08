@@ -53,7 +53,7 @@ public class MasonJarBlockEntity extends SyncingBlockEntity {
 					component.changePrimordia(currentRecipe.getHyphaCost() * 2);
 					component.changeLamella(currentRecipe.getLamellaCost() * -1);
 					component.changeHypha(currentRecipe.getLamellaCost() * 2);
-					inv.setStack(currentRecipe.craft(inv));
+					inv.setStack(currentRecipe.craft(inv, world.getRegistryManager()));
 					processTime = 0;
 					currentRecipe = null;
 					ashes--;

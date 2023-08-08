@@ -8,6 +8,7 @@ import net.minecraft.advancement.criterion.AbstractCriterionConditions;
 import net.minecraft.predicate.entity.AdvancementEntityPredicateDeserializer;
 import net.minecraft.predicate.entity.EntityPredicate;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.unmapped.C_ctsfmifk;
 import net.minecraft.util.Identifier;
 
 public class ManualCriterion extends AbstractCriterion<ManualCriterion.Conditions> {
@@ -18,7 +19,7 @@ public class ManualCriterion extends AbstractCriterion<ManualCriterion.Condition
 	}
 
 	@Override
-	protected Conditions conditionsFromJson(JsonObject obj, EntityPredicate.Extended playerPredicate, AdvancementEntityPredicateDeserializer predicateDeserializer) {
+	protected Conditions conditionsFromJson(JsonObject obj, /*PlayerPredicate*/ C_ctsfmifk playerPredicate, AdvancementEntityPredicateDeserializer predicateDeserializer) {
 		return new Conditions(playerPredicate);
 	}
 
@@ -33,7 +34,7 @@ public class ManualCriterion extends AbstractCriterion<ManualCriterion.Condition
 
 	public class Conditions extends AbstractCriterionConditions {
 
-		public Conditions(EntityPredicate.Extended extended) {
+		public Conditions(/*PlayerPredicate*/ C_ctsfmifk extended) {
 			super(id, extended);
 		}
 	}

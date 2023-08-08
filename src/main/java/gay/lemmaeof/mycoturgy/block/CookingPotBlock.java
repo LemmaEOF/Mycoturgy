@@ -4,6 +4,7 @@ import java.util.stream.Stream;
 
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.registry.tag.BlockTags;
 import org.jetbrains.annotations.Nullable;
 import gay.lemmaeof.mycoturgy.block.entity.CookingPotBlockEntity;
 
@@ -24,7 +25,6 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
-import net.minecraft.tag.BlockTags;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ItemScatterer;

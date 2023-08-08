@@ -6,7 +6,7 @@ import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.*;
 import dev.emi.trinkets.api.TrinketsApi;
-import net.minecraft.client.gui.DrawableHelper;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.render.*;
 import gay.lemmaeof.mycoturgy.Mycoturgy;
 import gay.lemmaeof.mycoturgy.component.HaustorComponent;
@@ -14,7 +14,6 @@ import gay.lemmaeof.mycoturgy.init.MycoturgyComponents;
 import gay.lemmaeof.mycoturgy.init.MycoturgyItems;
 
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 
 //TODO: *really* gotta make a lib for this, so that this doesn't overlap with CRPG or Trion
@@ -26,26 +25,23 @@ public class HaustorBandHud {
 	private static final Identifier HYPHA_TEX = new Identifier(Mycoturgy.MODID, "textures/icons/hypha.png");
 	private static final Identifier LAMELLA_TEX = new Identifier(Mycoturgy.MODID, "textures/icons/lamella.png");
 
-	public static void render(MatrixStack matrices, float tickDelta) {
+	public static void render(GuiGraphics graphics, float tickDelta) {
 		if (TrinketsApi.getTrinketComponent(client.player).orElseThrow().isEquipped(stack -> stack.isIn(MycoturgyItems.CASTING_BANDS))) {
-			matrices.push();
-			Optional<HaustorComponent> componentOpt = MycoturgyComponents.HAUSTOR_COMPONENT.maybeGet(client.player.world.getChunk(client.player.getBlockPos()));
+			Optional<HaustorComponent> componentOpt = MycoturgyComponents.HAUSTOR_COMPONENT.maybeGet(client.player.clientWorld.getChunk(client.player.getBlockPos()));
 			if (componentOpt.isPresent()) {
 				HaustorComponent component = componentOpt.get();
-				drawBar(matrices, PRIMORDIA_TEX, 0x7ACFA1, (float) component.getPrimordia(), 1024f, 4, 28);
-				drawBar(matrices, HYPHA_TEX, 0x4D5BB1, (float) component.getHypha(), 512f, 4, 40);
-				drawBar(matrices, LAMELLA_TEX, 0x8B6ECA, (float) component.getLamella(), 256f, 4, 52);
+				drawBar(graphics, PRIMORDIA_TEX, 0x7ACFA1, (float) component.getPrimordia(), 1024f, 4, 28);
+				drawBar(graphics, HYPHA_TEX, 0x4D5BB1, (float) component.getHypha(), 512f, 4, 40);
+				drawBar(graphics, LAMELLA_TEX, 0x8B6ECA, (float) component.getLamella(), 256f, 4, 52);
 			}
-			matrices.pop();
 		}
 	}
 
-	private static void drawBar(MatrixStack matrices, Identifier icon, int color, float amount, float max, int left, int top) {
+	private static void drawBar(GuiGraphics graphics, Identifier icon, int color, float amount, float max, int left, int top) {
 		//draw icon
-		RenderSystem.enableTexture();
 		RenderSystem.setShaderTexture(0, icon);
 		RenderSystem.enableBlend();
-		RenderSystem.blendFuncSeparate(GlStateManager.class_4535.SRC_ALPHA, GlStateManager.class_4534.ONE_MINUS_SRC_ALPHA, GlStateManager.class_4535.ONE, GlStateManager.class_4534.ZERO);
+		RenderSystem.blendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
 //		RenderSystem.enableAlphaTest();
 		RenderSystem.setShaderColor(1f, 1f, 1f, 1f);
 		blit(left, top, 9, 9);
@@ -72,10 +68,9 @@ public class HaustorBandHud {
 		RenderSystem.setShaderColor(1f, 1f, 1f, 1f);
 
 		if (client.player.isSneaking()) {
-			MinecraftClient.getInstance().textRenderer.drawWithShadow(matrices, "" + (int) amount, left + 66, top, 0xFFFFFF);
+			graphics.drawShadowedText(MinecraftClient.getInstance().textRenderer, "" + (int) amount, left + 66, top, 0xFFFFFF);
 		}
 		RenderSystem.disableBlend();
-		RenderSystem.disableTexture();
 //		RenderSystem.disableAlphaTest();
 	}
 

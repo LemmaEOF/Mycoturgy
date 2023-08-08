@@ -5,19 +5,22 @@ import gay.lemmaeof.mycoturgy.init.MycoturgyRecipes;
 import gay.lemmaeof.mycoturgy.item.SporebrushPipeItem;
 
 import net.minecraft.inventory.CraftingInventory;
+import net.minecraft.inventory.RecipeInputInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.recipe.CraftingCategory;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.SpecialCraftingRecipe;
+import net.minecraft.registry.DynamicRegistryManager;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
 public class PipeFillingRecipe extends SpecialCraftingRecipe {
-	public PipeFillingRecipe(Identifier identifier) {
-		super(identifier);
+	public PipeFillingRecipe(Identifier identifier, CraftingCategory category) {
+		super(identifier, category);
 	}
 
 	@Override
-	public boolean matches(CraftingInventory inventory, World world) {
+	public boolean matches(RecipeInputInventory inventory, World world) {
 		ItemStack pipe = ItemStack.EMPTY;
 		int leavesCount = 0;
 		for (int i = 0; i < inventory.size(); i++) {
@@ -38,7 +41,7 @@ public class PipeFillingRecipe extends SpecialCraftingRecipe {
 	}
 
 	@Override
-	public ItemStack craft(CraftingInventory inventory) {
+	public ItemStack craft(RecipeInputInventory inventory, DynamicRegistryManager manager) {
 		ItemStack pipe = ItemStack.EMPTY;
 		int leavesCount = 0;
 		for (int i = 0; i < inventory.size(); i++) {

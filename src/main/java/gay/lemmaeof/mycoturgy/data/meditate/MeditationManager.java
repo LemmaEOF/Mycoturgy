@@ -15,6 +15,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.mojang.serialization.JsonOps;
 import gay.lemmaeof.mycoturgy.Mycoturgy;
+import net.minecraft.registry.Registries;
 import org.quiltmc.qsl.resource.loader.api.reloader.IdentifiableResourceReloader;
 
 import net.minecraft.advancement.Advancement;
@@ -30,7 +31,6 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.JsonHelper;
 import net.minecraft.util.profiler.Profiler;
-import net.minecraft.util.registry.Registry;
 
 public class MeditationManager extends JsonDataLoader implements IdentifiableResourceReloader {
 	private static final Gson GSON = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
@@ -70,7 +70,7 @@ public class MeditationManager extends JsonDataLoader implements IdentifiableRes
 		Identifier icon = JsonHelper.hasString(json, "icon")? new Identifier(JsonHelper.getString(json, "icon")) : null;
 		ItemStack stack = null;
 		if (JsonHelper.hasString(json, "item")) {
-			stack = new ItemStack(Registry.ITEM.get(new Identifier(JsonHelper.getString(json, "item"))));
+			stack = new ItemStack(Registries.ITEM.get(new Identifier(JsonHelper.getString(json, "item"))));
 		} else if (JsonHelper.hasJsonObject(json, "item")) {
 			JsonObject itemObj = JsonHelper.getObject(json, "item");
 			if (JsonHelper.hasJsonObject(itemObj, "data")) {

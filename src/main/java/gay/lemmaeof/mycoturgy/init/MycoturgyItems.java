@@ -1,15 +1,20 @@
 package gay.lemmaeof.mycoturgy.init;
 
+import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
+import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroupEntries;
+import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.item.*;
-import net.minecraft.tag.TagKey;
-import org.lwjgl.system.CallbackI;
-import org.quiltmc.qsl.item.group.api.QuiltItemGroup;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
+import net.minecraft.registry.tag.TagKey;
+import net.minecraft.text.Text;
 import gay.lemmaeof.mycoturgy.Mycoturgy;
 import gay.lemmaeof.mycoturgy.item.*;
 
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
-import net.minecraft.util.registry.Registry;
 
 public class MycoturgyItems {
 	public static Item SPORE_BUNDLE;
@@ -32,30 +37,59 @@ public class MycoturgyItems {
 	public static TagKey<Item> CASTING_BANDS;
 	public static TagKey<Item> PIPE_LIGHTS;
 
-	public static final ItemGroup MYCOTURGY_GROUP = QuiltItemGroup.createWithIcon(new Identifier(Mycoturgy.MODID, Mycoturgy.MODID), () -> new ItemStack(SPORE_BUNDLE));
+	public static final ItemGroup MYCOTURGY_GROUP = FabricItemGroup.builder()
+			.name(Text.translatable("group.mycoturgy.mycoturgy"))
+			.icon(() -> new ItemStack(SPORE_BUNDLE))
+			.build();
+	public static final RegistryKey<ItemGroup> MYCOTURGY_GROUP_KEY = RegistryKey.of(RegistryKeys.ITEM_GROUP, new Identifier(Mycoturgy.MODID, Mycoturgy.MODID));
 
 	public static void init() {
-		SPORE_BUNDLE = register("spore_bundle", new Item(new Item.Settings().group(MYCOTURGY_GROUP)));
-		SPOREBRUSH = register("sporebrush", new Item(new Item.Settings().group(MYCOTURGY_GROUP)));
-		GLITTERING_SPORES = register("glimmering_spores", new AliasedBlockItem(MycoturgyBlocks.SPOREBRUSH_CROP, new Item.Settings().group(MYCOTURGY_GROUP)));
-		SPOREBRUSH_ASH = register("sporebrush_ash", new AliasedBlockItem(MycoturgyBlocks.SCATTERED_ASHES, new Item.Settings().group(MYCOTURGY_GROUP)));
-		HAUSTORAL_BAND = register("haustoral_band", new HaustoralBandItem(new Item.Settings().maxCount(1).rarity(Rarity.RARE).group(MYCOTURGY_GROUP)));
-		MYCOTURGE_JOURNAL = register("mycoturge_journal", new MycoturgeJournalItem(new Item.Settings().maxCount(1).group(MYCOTURGY_GROUP)));
-		SPORE_POUCH = register("spore_pouch", new SporePouchItem(new Item.Settings().maxCount(1).group(MYCOTURGY_GROUP)));
-		SIDE_SWORD = register("side_sword", new SideSwordItem(new Item.Settings().maxCount(1).group(MYCOTURGY_GROUP)));
-		MUSHROOM_SHIELD = register("mushroom_shield", new MushroomShieldItem(new Item.Settings().maxCount(1).group(MYCOTURGY_GROUP)));
-		GRIEF_ARROW = register("grief_arrow", new ArrowItem(new Item.Settings().group(MYCOTURGY_GROUP)));
-		BAND_OF_ENTERA = register("band_of_entera", new BandOfEnteraItem(new Item.Settings().group(MYCOTURGY_GROUP)));
-		SPOREBRUSH_PIPE = register("sporebrush_pipe", new SporebrushPipeItem(new Item.Settings().maxCount(1).group(MYCOTURGY_GROUP)));
-		SPOREBRUSH_LEAVES = register("sporebrush_leaves", new Item(new Item.Settings().group(MYCOTURGY_GROUP)));
+		SPORE_BUNDLE = register("spore_bundle", new Item(new Item.Settings()));
+		SPOREBRUSH = register("sporebrush", new Item(new Item.Settings()));
+		GLITTERING_SPORES = register("glimmering_spores", new AliasedBlockItem(MycoturgyBlocks.SPOREBRUSH_CROP, new Item.Settings()));
+		SPOREBRUSH_ASH = register("sporebrush_ash", new AliasedBlockItem(MycoturgyBlocks.SCATTERED_ASHES, new Item.Settings()));
+		HAUSTORAL_BAND = register("haustoral_band", new HaustoralBandItem(new Item.Settings().maxCount(1).rarity(Rarity.RARE)));
+		MYCOTURGE_JOURNAL = register("mycoturge_journal", new MycoturgeJournalItem(new Item.Settings().maxCount(1)));
+		SPORE_POUCH = register("spore_pouch", new SporePouchItem(new Item.Settings().maxCount(1)));
+		SIDE_SWORD = register("side_sword", new SideSwordItem(new Item.Settings().maxCount(1)));
+		MUSHROOM_SHIELD = register("mushroom_shield", new MushroomShieldItem(new Item.Settings().maxCount(1)));
+		GRIEF_ARROW = register("grief_arrow", new ArrowItem(new Item.Settings()));
+		BAND_OF_ENTERA = register("band_of_entera", new BandOfEnteraItem(new Item.Settings()));
+		SPOREBRUSH_PIPE = register("sporebrush_pipe", new SporebrushPipeItem(new Item.Settings().maxCount(1)));
+		SPOREBRUSH_LEAVES = register("sporebrush_leaves", new Item(new Item.Settings()));
 
-		NETHERITE_COMPOSED = TagKey.of(Registry.ITEM_KEY, new Identifier(Mycoturgy.MODID, "netherite_composed"));
-		SPORE_POUCH_HOLDABLE = TagKey.of(Registry.ITEM_KEY, new Identifier(Mycoturgy.MODID, "spore_pouch_holdable"));
-		CASTING_BANDS = TagKey.of(Registry.ITEM_KEY, new Identifier(Mycoturgy.MODID, "casting_bands"));
-		PIPE_LIGHTS = TagKey.of(Registry.ITEM_KEY, new Identifier(Mycoturgy.MODID, "pipe_lights"));
+		NETHERITE_COMPOSED = TagKey.of(Registries.ITEM.getKey(), new Identifier(Mycoturgy.MODID, "netherite_composed"));
+		SPORE_POUCH_HOLDABLE = TagKey.of(Registries.ITEM.getKey(), new Identifier(Mycoturgy.MODID, "spore_pouch_holdable"));
+		CASTING_BANDS = TagKey.of(Registries.ITEM.getKey(), new Identifier(Mycoturgy.MODID, "casting_bands"));
+		PIPE_LIGHTS = TagKey.of(Registries.ITEM.getKey(), new Identifier(Mycoturgy.MODID, "pipe_lights"));
+
+		ItemGroupEvents.modifyEntriesEvent(MYCOTURGY_GROUP_KEY).register(entries -> {
+			//TODO: re-order eventually, this is quick and dirty for modfest
+			entries.addItem(MycoturgyBlocks.HAUSTOR_SEQUESTER);
+			entries.addItem(MycoturgyBlocks.MASON_JAR);
+			entries.addItem(MycoturgyBlocks.PADDLE_RHIZOME_SPORES);
+			entries.addItem(MycoturgyBlocks.TEST_BOUNCE_PAD);
+			entries.addItem(MycoturgyBlocks.COOKING_POT);
+			entries.addItem(MycoturgyBlocks.PADDLE_RHIZOME);
+			entries.addItem(MycoturgyBlocks.LAMPSHROOM);
+			entries.addItem(MycoturgyBlocks.INFESTED_MOB_SPAWNER);
+			entries.addItem(SPORE_BUNDLE);
+			entries.addItem(SPOREBRUSH);
+			entries.addItem(GLITTERING_SPORES);
+			entries.addItem(SPOREBRUSH_ASH);
+			entries.addItem(HAUSTORAL_BAND);
+			entries.addItem(MYCOTURGE_JOURNAL);
+			entries.addItem(SPORE_POUCH);
+			entries.addItem(SIDE_SWORD);
+			entries.addItem(MUSHROOM_SHIELD);
+			entries.addItem(GRIEF_ARROW);
+			entries.addItem(BAND_OF_ENTERA);
+			entries.addItem(SPOREBRUSH_PIPE);
+			entries.addItem(SPOREBRUSH_LEAVES);
+		});
 	}
 
 	private static Item register(String name, Item item) {
-		return Registry.register(Registry.ITEM, new Identifier(Mycoturgy.MODID, name), item);
+		return Registry.register(Registries.ITEM, new Identifier(Mycoturgy.MODID, name), item);
 	}
 }

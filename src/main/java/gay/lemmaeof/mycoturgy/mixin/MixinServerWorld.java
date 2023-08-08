@@ -2,7 +2,9 @@ package gay.lemmaeof.mycoturgy.mixin;
 
 import java.util.function.Supplier;
 
-import net.minecraft.util.Holder;
+import net.minecraft.registry.DynamicRegistryManager;
+import net.minecraft.registry.Holder;
+import net.minecraft.registry.RegistryKey;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -20,7 +22,6 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.profiler.Profiler;
-import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.MutableWorldProperties;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.WorldChunk;
@@ -34,8 +35,8 @@ public abstract class MixinServerWorld extends World {
 
 	@Shadow public abstract void updateNeighbors(BlockPos pos, Block block);
 
-	protected MixinServerWorld(MutableWorldProperties mutableWorldProperties, RegistryKey<World> registryKey, Holder<DimensionType> holder, Supplier<Profiler> supplier, boolean bl, boolean bl2, long l, int i) {
-		super(mutableWorldProperties, registryKey, holder, supplier, bl, bl2, l, i);
+	protected MixinServerWorld(MutableWorldProperties worldProperties, RegistryKey<World> registryKey, DynamicRegistryManager registryManager, Holder<DimensionType> dimension, Supplier<Profiler> profiler, boolean client, boolean debug, long seed, int maxChainedNeighborUpdates) {
+		super(worldProperties, registryKey, registryManager, dimension, profiler, client, debug, seed, maxChainedNeighborUpdates);
 	}
 
 	//TODO: is it possible to have this *not* be a cellular automoton, or otherwise optimize this further?

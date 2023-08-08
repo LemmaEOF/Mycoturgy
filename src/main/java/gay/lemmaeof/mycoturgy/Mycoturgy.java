@@ -11,7 +11,6 @@ import gay.lemmaeof.mycoturgy.spell.PaddleRhizomeSpell;
 import gay.lemmaeof.mycoturgy.spell.Spell;
 import net.fabricmc.fabric.api.event.player.UseBlockCallback;
 import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
-import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
 import net.minecraft.block.BlockState;
 import net.minecraft.loot.LootPool;
 import net.minecraft.loot.condition.RandomChanceLootCondition;
@@ -35,6 +34,7 @@ import org.apache.logging.log4j.Logger;
 import org.quiltmc.loader.api.ModContainer;
 import org.quiltmc.qsl.base.api.entrypoint.ModInitializer;
 import org.quiltmc.qsl.command.api.CommandRegistrationCallback;
+import org.quiltmc.qsl.item.content.registry.api.ItemContentRegistries;
 import org.quiltmc.qsl.resource.loader.api.ResourceLoader;
 
 import java.util.Map;
@@ -71,9 +71,9 @@ public class Mycoturgy implements ModInitializer {
 			}
 		});
 
-		CompostingChanceRegistry.INSTANCE.add(MycoturgyItems.GLITTERING_SPORES, 0.3f);
-		CompostingChanceRegistry.INSTANCE.add(MycoturgyItems.SPOREBRUSH, 0.65f);
-		CompostingChanceRegistry.INSTANCE.add(MycoturgyItems.SPORE_BUNDLE, 0.85f);
+		ItemContentRegistries.COMPOST_CHANCES.put(MycoturgyItems.GLITTERING_SPORES, 0.3f);
+		ItemContentRegistries.COMPOST_CHANCES.put(MycoturgyItems.SPOREBRUSH, 0.65f);
+		ItemContentRegistries.COMPOST_CHANCES.put(MycoturgyItems.SPORE_BUNDLE, 0.85f);
 
 		Spell.SPELLS.add(new BouncePadSpell());
 		Spell.SPELLS.add(new GrowMushroomSpell());
@@ -121,20 +121,20 @@ public class Mycoturgy implements ModInitializer {
 	private LiteralCommandNode<ServerCommandSource> getNodeFor(String name, MeditationManager.MeditationStep step) {
 		LiteralCommandNode<ServerCommandSource> node = CommandManager.literal(name).executes(context -> {
 			if (step.description() != null) {
-				context.getSource().sendFeedback(step.description(), false);
+				context.getSource().sendFeedback(step::description, false);
 			}
 			if (step.destination() != null) {
-				context.getSource().sendFeedback(Text.literal("Reached destination " + step.destination()), false);
+				context.getSource().sendFeedback(() -> Text.literal("Reached destination " + step.destination()), false);
 				MycoturgyCriteria.MEDITATE.trigger(context.getSource().getPlayer(), step.destination());
 			}
 			if (step.paths().size() > 0) {
-				context.getSource().sendFeedback(Text.literal("Options:"), false);
+				context.getSource().sendFeedback(() -> Text.literal("Options:"), false);
 			}
 			for (String path : step.paths().keySet()) {
 				MutableText text = Text.literal("  - " + path);
 				ClickEvent event = new ClickEvent(ClickEvent.Action.RUN_COMMAND, context.getInput() + " " + path);
 				text.styled(style -> style.withClickEvent(event).withColor(Formatting.GREEN));
-				context.getSource().sendFeedback(text, false);
+				context.getSource().sendFeedback(() -> text, false);
 			}
 			return 1;
 		}).build();

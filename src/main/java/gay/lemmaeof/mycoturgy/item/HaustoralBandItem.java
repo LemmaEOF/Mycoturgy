@@ -58,7 +58,7 @@ public class HaustoralBandItem extends TrinketItem {
 
 	@Override
 	public void onEquip(ItemStack stack, SlotReference slot, LivingEntity entity) {
-		if (!entity.world.isClient && entity instanceof ServerPlayerEntity player) {
+		if (!entity.getWorld().isClient && entity instanceof ServerPlayerEntity player) {
 			MycoturgyCriteria.EQUIP_BAND.trigger(player);
 			stack.getOrCreateNbt().putBoolean("Bound", true);
 		}
@@ -74,7 +74,7 @@ public class HaustoralBandItem extends TrinketItem {
 	@Override
 	public void tick(ItemStack stack, SlotReference slot, LivingEntity entity) {
 		if (entity instanceof PlayerEntity player) {
-			if (player.world.isClient) return;
+			if (player.getWorld().isClient) return;
 			//TODO: way to resist this
 			for (int i = 0; i < player.getInventory().size(); i++) {
 				ItemStack invStack = player.getInventory().getStack(i);

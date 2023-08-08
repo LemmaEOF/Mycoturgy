@@ -14,7 +14,6 @@
       "license": "MIT",
       "icon": "assets/mycoturgy/icon.png"
     },
-    "environment": "*",
     "entrypoints": {
       "init": [
         "gay.lemmaeof.mycoturgy.Mycoturgy"
