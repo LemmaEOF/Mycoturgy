@@ -45,6 +45,7 @@ public class MycoturgyBlocks {
 		);
 		HAUSTOR_SEQUESTER = register("haustor_sequester",
 				new HaustorSequesterBlock(QuiltBlockSettings.copyOf(Blocks.GRASS)
+						.offsetType(AbstractBlock.OffsetType.NONE)
 						.breakInstantly()
 				), new Item.Settings()
 		);

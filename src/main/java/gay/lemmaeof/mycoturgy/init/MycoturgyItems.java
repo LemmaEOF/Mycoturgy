@@ -1,7 +1,6 @@
 package gay.lemmaeof.mycoturgy.init;
 
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
-import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroupEntries;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.item.*;
 import net.minecraft.registry.Registries;
@@ -62,6 +61,8 @@ public class MycoturgyItems {
 		SPORE_POUCH_HOLDABLE = TagKey.of(Registries.ITEM.getKey(), new Identifier(Mycoturgy.MODID, "spore_pouch_holdable"));
 		CASTING_BANDS = TagKey.of(Registries.ITEM.getKey(), new Identifier(Mycoturgy.MODID, "casting_bands"));
 		PIPE_LIGHTS = TagKey.of(Registries.ITEM.getKey(), new Identifier(Mycoturgy.MODID, "pipe_lights"));
+
+		Registry.register(Registries.ITEM_GROUP, MYCOTURGY_GROUP_KEY, MYCOTURGY_GROUP);
 
 		ItemGroupEvents.modifyEntriesEvent(MYCOTURGY_GROUP_KEY).register(entries -> {
 			//TODO: re-order eventually, this is quick and dirty for modfest

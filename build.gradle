@@ -35,13 +35,13 @@ dependencies {
 	mappings "org.quiltmc:quilt-mappings:${minecraft_version}+build.${project.qm_build}:intermediary-v2"
 	modImplementation "org.quiltmc:quilt-loader:${project.loader_version}"
 	modImplementation "org.quiltmc.quilted-fabric-api:quilted-fabric-api:${project.qfapi_version}-${project.minecraft_version}"
+	modImplementation "org.quiltmc.quilted-fabric-api:quilted-fabric-api-deprecated:${project.qfapi_version}-${project.minecraft_version}"
 
 	include modImplementation("dev.onyxstudios.cardinal-components-api:cardinal-components-base:${project.cardinal_version}") { transitive = false }
 	include modImplementation("dev.onyxstudios.cardinal-components-api:cardinal-components-chunk:${project.cardinal_version}") { transitive = false }
 	include modImplementation("dev.onyxstudios.cardinal-components-api:cardinal-components-item:${project.cardinal_version}") { transitive = false }
 	include modImplementation("dev.onyxstudios.cardinal-components-api:cardinal-components-entity:${project.cardinal_version}") { transitive = false }
 	include modImplementation("dev.emi:trinkets:${project.trinkets_version}") { transitive = false }
-	//waaa modelloadingregistry no longer exists
 	include modImplementation("vazkii.patchouli:Patchouli:${project.patchouli_version}") { exclude group: "net.fabricmc.fabric-api" exclude group: "net.fabricmc" }
 }
 
