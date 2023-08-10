@@ -13,7 +13,6 @@
     "MixinFlowableFluid",
     "MixinLivingEntity",
     "MixinPlayerEntity",
-    "MixinServerWorld",
     "MixinSpawnHelper"
   ],
   "client": [

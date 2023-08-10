@@ -5,6 +5,7 @@ import dev.onyxstudios.cca.api.v3.chunk.ChunkComponentInitializer;
 import dev.onyxstudios.cca.api.v3.component.ComponentKey;
 import dev.onyxstudios.cca.api.v3.component.ComponentRegistryV3;
 import gay.lemmaeof.mycoturgy.Mycoturgy;
+import gay.lemmaeof.mycoturgy.component.BlanketConHaustorComponent;
 import gay.lemmaeof.mycoturgy.component.HaustorComponent;
 
 import net.minecraft.util.Identifier;
@@ -17,6 +18,6 @@ public class MycoturgyComponents implements ChunkComponentInitializer {
 
 	@Override
 	public void registerChunkComponentFactories(ChunkComponentFactoryRegistry registry) {
-		registry.register(HAUSTOR_COMPONENT, HaustorComponent::new);
+		registry.register(HAUSTOR_COMPONENT, BlanketConHaustorComponent::new);
 	}
 }
