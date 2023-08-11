@@ -176,7 +176,7 @@ public class SporebrushPipeItem extends Item {
 			}
 		}
 		stack.getNbt().putUuid("LastHit", player.getUuid());
-		stack.getNbt().putInt("ShareCountdown", 600);
+		stack.getNbt().putInt("ShareCooldown", 600);
 	}
 
 	@Override

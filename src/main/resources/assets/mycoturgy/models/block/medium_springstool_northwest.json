@@ -1,0 +1,67 @@
+{
+	"credit": "Made by Cart3r using Blockbench.",
+	"texture_size": [128, 128],
+	"textures": {
+		"0": "mycoturgy:block/springstool",
+		"particle": "mycoturgy:block/springstool"
+	},
+	"elements": [
+		{
+			"from": [1, 4, 1],
+			"to": [16, 12, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [-8, 0, -8]},
+			"faces": {
+				"north": {"uv": [8.254, 3.879, 10.121, 4.871], "texture": "#0"},
+				"west": {"uv": [6.379, 3.879, 8.246, 4.871], "texture": "#0"},
+				"up": {"uv": [6.379, 0, 8.246, 1.867], "texture": "#0"},
+				"down": {"uv": [6.379, 6.879, 8.246, 8.746], "texture": "#0"}
+			}
+		},
+		{
+			"from": [9, 0, 9],
+			"to": [16, 4, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [-8, 0, -8]},
+			"faces": {
+				"north": {"uv": [5.254, 10.379, 6.129, 10.879], "texture": "#0"},
+				"west": {"uv": [5.254, 10.379, 6.121, 10.871], "texture": "#0"},
+				"down": {"uv": [5.254, 11.879, 6.121, 12.746], "texture": "#0"}
+			}
+		}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [6, 45, 0],
+			"translation": [0, 3, 0],
+			"scale": [0.375, 0.375, 0.375]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [6, 45, 0],
+			"translation": [0, 3, 0],
+			"scale": [0.375, 0.375, 0.375]
+		},
+		"firstperson_righthand": {
+			"rotation": [0, 45, 0],
+			"translation": [0, 2.5, -2.75],
+			"scale": [0.4, 0.4, 0.4]
+		},
+		"firstperson_lefthand": {
+			"rotation": [0, 45, 0],
+			"translation": [0, 2.5, -2.75],
+			"scale": [0.4, 0.4, 0.4]
+		},
+		"ground": {
+			"translation": [0, 3, 0],
+			"scale": [0.25, 0.25, 0.25]
+		},
+		"gui": {
+			"rotation": [30, 225, 0],
+			"scale": [0.36719, 0.36719, 0.36719]
+		},
+		"head": {
+			"translation": [0, 13.75, 0]
+		},
+		"fixed": {
+			"scale": [0.5, 0.5, 0.5]
+		}
+	}
+}

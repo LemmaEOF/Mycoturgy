@@ -5,7 +5,7 @@ import dev.emi.trinkets.api.TrinketsApi;
 import gay.lemmaeof.mycoturgy.component.HaustorComponent;
 import gay.lemmaeof.mycoturgy.data.meditate.MeditationManager;
 import gay.lemmaeof.mycoturgy.init.*;
-import gay.lemmaeof.mycoturgy.spell.BouncePadSpell;
+import gay.lemmaeof.mycoturgy.spell.SpringstoolSpell;
 import gay.lemmaeof.mycoturgy.spell.GrowMushroomSpell;
 import gay.lemmaeof.mycoturgy.spell.PaddleRhizomeSpell;
 import gay.lemmaeof.mycoturgy.spell.Spell;
@@ -55,6 +55,7 @@ public class Mycoturgy implements ModInitializer {
 		MycoturgyEffects.init();
 		MycoturgyNetworking.init();
 		MycoturgyCriteria.init();
+		MycoturgySounds.init();
 
 		ResourceLoader.get(ResourceType.SERVER_DATA).registerReloader(MeditationManager.INSTANCE);
 
@@ -75,7 +76,7 @@ public class Mycoturgy implements ModInitializer {
 		ItemContentRegistries.COMPOST_CHANCES.put(MycoturgyItems.SPOREBRUSH, 0.65f);
 		ItemContentRegistries.COMPOST_CHANCES.put(MycoturgyItems.SPORE_BUNDLE, 0.85f);
 
-		Spell.SPELLS.add(new BouncePadSpell());
+		Spell.SPELLS.add(new SpringstoolSpell());
 		Spell.SPELLS.add(new GrowMushroomSpell());
 		Spell.SPELLS.add(new PaddleRhizomeSpell());
 

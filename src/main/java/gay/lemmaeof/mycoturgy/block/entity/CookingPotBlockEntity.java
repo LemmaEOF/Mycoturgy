@@ -1,15 +1,5 @@
 package gay.lemmaeof.mycoturgy.block.entity;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.Random;
-
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtElement;
-import net.minecraft.network.listener.ClientPlayPacketListener;
-import net.minecraft.network.packet.Packet;
-import net.minecraft.registry.DynamicRegistryManager;
-import net.minecraft.util.math.BlockPos;
 import gay.lemmaeof.mycoturgy.block.CookingPotBlock;
 import gay.lemmaeof.mycoturgy.component.HaustorComponent;
 import gay.lemmaeof.mycoturgy.init.MycoturgyBlocks;
@@ -18,18 +8,24 @@ import gay.lemmaeof.mycoturgy.init.MycoturgyRecipes;
 import gay.lemmaeof.mycoturgy.inventory.CookingPotInventory;
 import gay.lemmaeof.mycoturgy.inventory.SingleStackSyncedInventory;
 import gay.lemmaeof.mycoturgy.recipe.PotCookingRecipe;
-
 import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.nbt.NbtElement;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.recipe.Recipe;
+import net.minecraft.registry.DynamicRegistryManager;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.ItemScatterer;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
-import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.Random;
 
 public class CookingPotBlockEntity extends SyncingBlockEntity {
 	public int ticks = 0;

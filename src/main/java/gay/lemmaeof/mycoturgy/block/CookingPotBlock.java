@@ -132,7 +132,7 @@ public class CookingPotBlock extends Block implements BlockEntityProvider {
 	@Nullable
 	@Override
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-		return world.isClient || type != MycoturgyBlocks.COOKING_POT_BLOCK_ENTITY ? null : (w, p, s, be) -> ((CookingPotBlockEntity) be).tick();
+		return type != MycoturgyBlocks.COOKING_POT_BLOCK_ENTITY ? null : (w, p, s, be) -> ((CookingPotBlockEntity) be).tick();
 	}
 
 	@Override

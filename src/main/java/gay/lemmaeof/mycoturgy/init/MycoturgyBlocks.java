@@ -1,5 +1,7 @@
 package gay.lemmaeof.mycoturgy.init;
 
+import com.unascribed.lib39.weld.api.BigBlock;
+import com.unascribed.lib39.weld.api.BigBlockItem;
 import gay.lemmaeof.mycoturgy.Mycoturgy;
 import gay.lemmaeof.mycoturgy.block.*;
 import gay.lemmaeof.mycoturgy.block.entity.CookingPotBlockEntity;
@@ -27,7 +29,9 @@ public class MycoturgyBlocks {
 	public static Block MASON_JAR;
 	public static Block SCATTERED_ASHES;
 	public static Block PADDLE_RHIZOME_SPORES;
-	public static Block TEST_BOUNCE_PAD;
+	public static Block SMALL_SPRINGSTOOL;
+	public static Block MEDIUM_SPRINGSTOOL;
+	public static Block LARGE_SPRINGSTOOL;
 	public static Block COOKING_POT;
 	public static Block PADDLE_RHIZOME;
 	public static Block LAMPSHROOM;
@@ -86,9 +90,25 @@ public class MycoturgyBlocks {
 						.sounds(BlockSoundGroup.LILY_PAD)
 				), new Item.Settings()
 		);
-		TEST_BOUNCE_PAD = register("test_bounce_pad",
-				new BouncePadBlock(1.5,
+		SMALL_SPRINGSTOOL = register("small_springstool",
+				new SpringstoolBlock(0.75,
+						null,
+						null,
 						QuiltBlockSettings.create()
+								.sounds(BlockSoundGroup.FUNGUS)
+								.nonOpaque()
+				), new Item.Settings()
+		);
+		MEDIUM_SPRINGSTOOL = register("medium_springstool",
+				new MediumSpringstoolBlock(QuiltBlockSettings.create()
+						.sounds(BlockSoundGroup.FUNGUS)
+						.nonOpaque()
+				), new Item.Settings()
+		);
+		LARGE_SPRINGSTOOL = register("large_springstool",
+				new LargeSpringstoolBlock(QuiltBlockSettings.create()
+						.sounds(BlockSoundGroup.FUNGUS)
+						.nonOpaque()
 				), new Item.Settings()
 		);
 		COOKING_POT = register("cooking_pot",
@@ -147,6 +167,12 @@ public class MycoturgyBlocks {
 	private static Block register(String name, Block block, Item.Settings settings) {
 		Registry.register(Registries.BLOCK, new Identifier(Mycoturgy.MODID, name), block);
 		Registry.register(Registries.ITEM, new Identifier(Mycoturgy.MODID, name), new BlockItem(block, settings));
+		return block;
+	}
+
+	private static Block register(String name, BigBlock block, Item.Settings settings) {
+		Registry.register(Registries.BLOCK, new Identifier(Mycoturgy.MODID, name), block);
+		Registry.register(Registries.ITEM, new Identifier(Mycoturgy.MODID, name), new BigBlockItem(block, settings));
 		return block;
 	}
 

@@ -86,6 +86,7 @@ public class MasonJarBlock extends Block implements BlockEntityProvider {
 					ItemStack previous = stack.copy();
 					ItemStack toInsert = stack.split(1);
 					jar.getInventory().setStack(toInsert);
+					jar.markDirty();
 					if (player.isCreative()) {
 						player.setStackInHand(hand, previous);
 					}
@@ -102,6 +103,7 @@ public class MasonJarBlock extends Block implements BlockEntityProvider {
 				} else if (!jar.getInventory().getStack().isEmpty()) {
 					player.getInventory().insertStack(jar.getInventory().getStack());
 					jar.getInventory().clear();
+					jar.markDirty();
 					return ActionResult.SUCCESS;
 				}
 				return ActionResult.PASS;
@@ -136,7 +138,7 @@ public class MasonJarBlock extends Block implements BlockEntityProvider {
 	@org.jetbrains.annotations.Nullable
 	@Override
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-		return world.isClient || type != MycoturgyBlocks.MASON_JAR_BLOCK_ENTITY ? null : (w, p, s, be) -> ((MasonJarBlockEntity) be).tick();
+		return type != MycoturgyBlocks.MASON_JAR_BLOCK_ENTITY ? null : (w, p, s, be) -> ((MasonJarBlockEntity) be).tick();
 	}
 
 	@Override

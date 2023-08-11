@@ -69,7 +69,9 @@ public class MycoturgyItems {
 			entries.addItem(MycoturgyBlocks.HAUSTOR_SEQUESTER);
 			entries.addItem(MycoturgyBlocks.MASON_JAR);
 			entries.addItem(MycoturgyBlocks.PADDLE_RHIZOME_SPORES);
-			entries.addItem(MycoturgyBlocks.TEST_BOUNCE_PAD);
+			entries.addItem(MycoturgyBlocks.SMALL_SPRINGSTOOL);
+			entries.addItem(MycoturgyBlocks.MEDIUM_SPRINGSTOOL);
+			entries.addItem(MycoturgyBlocks.LARGE_SPRINGSTOOL);
 			entries.addItem(MycoturgyBlocks.COOKING_POT);
 			entries.addItem(MycoturgyBlocks.PADDLE_RHIZOME);
 			entries.addItem(MycoturgyBlocks.LAMPSHROOM);

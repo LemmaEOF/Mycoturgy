@@ -28,6 +28,12 @@ repositories {
 		name = "TerraformersMC"
 		url = "https://maven.terraformersmc.com/"
 	}
+	maven {
+		url 'https://repo.sleeping.town'
+		content {
+			includeGroup 'com.unascribed'
+		}
+	}
 }
 
 dependencies {
@@ -37,12 +43,17 @@ dependencies {
 	modImplementation "org.quiltmc.quilted-fabric-api:quilted-fabric-api:${project.qfapi_version}-${project.minecraft_version}"
 	modImplementation "org.quiltmc.quilted-fabric-api:quilted-fabric-api-deprecated:${project.qfapi_version}-${project.minecraft_version}"
 
-	include modImplementation("dev.onyxstudios.cardinal-components-api:cardinal-components-base:${project.cardinal_version}") { transitive = false }
-	include modImplementation("dev.onyxstudios.cardinal-components-api:cardinal-components-chunk:${project.cardinal_version}") { transitive = false }
-	include modImplementation("dev.onyxstudios.cardinal-components-api:cardinal-components-item:${project.cardinal_version}") { transitive = false }
-	include modImplementation("dev.onyxstudios.cardinal-components-api:cardinal-components-entity:${project.cardinal_version}") { transitive = false }
-	include modImplementation("dev.emi:trinkets:${project.trinkets_version}") { transitive = false }
-	include modImplementation("vazkii.patchouli:Patchouli:${project.patchouli_version}") { exclude group: "net.fabricmc.fabric-api" exclude group: "net.fabricmc" }
+	modImplementation include("dev.onyxstudios.cardinal-components-api:cardinal-components-base:${project.cardinal_version}") { transitive = false }
+	modImplementation include("dev.onyxstudios.cardinal-components-api:cardinal-components-chunk:${project.cardinal_version}") { transitive = false }
+	modImplementation include("dev.onyxstudios.cardinal-components-api:cardinal-components-item:${project.cardinal_version}") { transitive = false }
+	modImplementation include("dev.onyxstudios.cardinal-components-api:cardinal-components-entity:${project.cardinal_version}") { transitive = false }
+	modImplementation include("dev.emi:trinkets:${project.trinkets_version}") { transitive = false }
+	modImplementation include("vazkii.patchouli:Patchouli:${project.patchouli_version}") { exclude group: "net.fabricmc.fabric-api" exclude group: "net.fabricmc" }
+	modImplementation include("com.unascribed:lib39-core:${project.lib39_version}")
+	modImplementation include("com.unascribed:lib39-util:${project.lib39_version}")
+	modImplementation include("com.unascribed:lib39-waypoint:${project.lib39_version}")
+	modImplementation include("com.unascribed:lib39-weld:${project.lib39_version}")
+	
 }
 
 processResources {

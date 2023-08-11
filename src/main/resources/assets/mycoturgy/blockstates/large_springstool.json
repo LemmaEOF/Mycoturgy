@@ -1,0 +1,13 @@
+{
+    "variants": {
+        "x=0,z=0": {"model": "mycoturgy:block/large_springstool_northwest"},
+        "x=0,z=1": {"model": "mycoturgy:block/large_springstool_west"},
+        "x=0,z=2": {"model": "mycoturgy:block/large_springstool_southwest"},
+        "x=1,z=0": {"model": "mycoturgy:block/large_springstool_north"},
+        "x=1,z=1": {"model": "mycoturgy:block/large_springstool_center"},
+        "x=1,z=2": {"model": "mycoturgy:block/large_springstool_south"},
+        "x=2,z=0": {"model": "mycoturgy:block/large_springstool_northeast"},
+        "x=2,z=1": {"model": "mycoturgy:block/large_springstool_east"},
+        "x=2,z=2": {"model": "mycoturgy:block/large_springstool_southeast"}
+    }
+}

@@ -1,19 +1,21 @@
 package gay.lemmaeof.mycoturgy.block;
 
+import com.unascribed.lib39.weld.api.BigBlock;
+import gay.lemmaeof.mycoturgy.init.MycoturgySounds;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.SlimeBlock;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.state.property.IntProperty;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 
-public class BouncePadBlock extends SlimeBlock {
+public class SpringstoolBlock extends BigBlock {
 	private final double bounceHeight;
 
-	public BouncePadBlock(double bounceHeight, Settings settings) {
-		super(settings);
+	public SpringstoolBlock(double bounceHeight, IntProperty x, IntProperty z, Settings settings) {
+		super(x, null, z, settings);
 		this.bounceHeight = bounceHeight;
 	}
 
@@ -21,16 +23,14 @@ public class BouncePadBlock extends SlimeBlock {
 	public void onLandedUpon(World world, BlockState state, BlockPos pos, Entity entity, float fallDistance) {
 		if (entity.bypassesLandingEffects()) {
 			super.onLandedUpon(world, state, pos, entity, fallDistance);
+		} else {
+			this.bounce(entity);
 		}
 	}
 
 	@Override
 	public void onEntityLand(BlockView world, Entity entity) {
-		if (entity.bypassesLandingEffects()) {
-			super.onEntityLand(world, entity);
-		} else {
-			this.bounce(entity);
-		}
+		//no-op - we do our velocity change in onLandedUpon because this happens *any* time an entity touches
 	}
 
 	private void bounce(Entity entity) {
@@ -38,7 +38,7 @@ public class BouncePadBlock extends SlimeBlock {
 		if (vec3d.y < 0.0D) {
 			double d = entity instanceof LivingEntity ? 1.0D : 0.8D;
 			entity.setVelocity(vec3d.x, bounceHeight * d, vec3d.z);
+			entity.playSound(MycoturgySounds.SPRINGSTOOL_BOUNCE, 1.0F, (float)(1.375F - bounceHeight/2 - (entity.getWorld().random.nextFloat() * 0.2F - 0.1F)));
 		}
-
 	}
 }

@@ -1,5 +1,6 @@
 package gay.lemmaeof.mycoturgy.client.render;
 
+import gay.lemmaeof.mycoturgy.block.MasonJarBlock;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.block.entity.BlockEntityRenderer;
@@ -16,8 +17,11 @@ import java.util.List;
 
 public class CookingPotBlockEntityRenderer implements BlockEntityRenderer<CookingPotBlockEntity> {
 	private static final List<Vec3d> OFFSETS = new ArrayList<>();
+	private final BlockEntityRendererFactory.Context context;
 
-	public CookingPotBlockEntityRenderer(BlockEntityRendererFactory.Context dispatcher) {}
+	public CookingPotBlockEntityRenderer(BlockEntityRendererFactory.Context context) {
+		this.context = context;
+	}
 
 	@Override
 	public void render(CookingPotBlockEntity entity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
@@ -31,10 +35,14 @@ public class CookingPotBlockEntityRenderer implements BlockEntityRenderer<Cookin
 		if (!stack.isEmpty()) {
 			matrices.push();
 			matrices.translate(0.5D, -0.2D, 0.5D);
-			matrices.translate(offset.x, offset.y + (Math.sin((tickDelta + entity.ticks) / 8) * 0.05), offset.z);
-			matrices.multiply(Axis.Y_POSITIVE.rotationDegrees((tickDelta + entity.ticks) / 1.5f));
+			double y = offset.y;
+			if (entity.getCachedState().get(MasonJarBlock.FILLED)) {
+				y += Math.sin((tickDelta + entity.ticks) / 32) * 0.05;
+				matrices.multiply(Axis.Y_POSITIVE.rotationDegrees((tickDelta + entity.ticks) / 1.5f));
+			}
+			matrices.translate(offset.x, y, offset.z);
 			matrices.scale(0.35f, 0.35f, 0.35f);
-			MinecraftClient.getInstance().getItemRenderer().renderItem(stack, ModelTransformationMode.FIXED, light, overlay, matrices, vertexConsumers, null, 0);
+			context.getItemRenderer().renderItem(stack, ModelTransformationMode.FIXED, light, overlay, matrices, vertexConsumers, null, 0);
 			matrices.pop();
 		}
 	}

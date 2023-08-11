@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "x=0,z=0": {"model": "mycoturgy:block/medium_springstool_northwest"},
+        "x=0,z=1": {"model": "mycoturgy:block/medium_springstool_southwest"},
+        "x=1,z=0": {"model": "mycoturgy:block/medium_springstool_northeast"},
+        "x=1,z=1": {"model": "mycoturgy:block/medium_springstool_southeast"}
+    }
+}

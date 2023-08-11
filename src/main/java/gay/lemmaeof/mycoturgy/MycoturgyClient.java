@@ -1,6 +1,5 @@
 package gay.lemmaeof.mycoturgy;
 
-import net.fabricmc.fabric.api.client.rendering.v1.BlockEntityRendererRegistry;
 import net.minecraft.client.item.ModelPredicateProviderRegistry;
 import net.minecraft.client.item.UnclampedModelPredicateProvider;
 
@@ -30,7 +29,7 @@ public class MycoturgyClient implements ClientModInitializer {
 
 	@Override
 	public void onInitializeClient(ModContainer container) {
-		BlockRenderLayerMap.put(RenderLayer.getCutout(), MycoturgyBlocks.SPOREBRUSH_CROP, MycoturgyBlocks.HAUSTOR_SEQUESTER, MycoturgyBlocks.SCATTERED_ASHES);
+		BlockRenderLayerMap.put(RenderLayer.getCutout(), MycoturgyBlocks.SPOREBRUSH_CROP, MycoturgyBlocks.HAUSTOR_SEQUESTER, MycoturgyBlocks.SCATTERED_ASHES, MycoturgyBlocks.SMALL_SPRINGSTOOL, MycoturgyBlocks.MEDIUM_SPRINGSTOOL, MycoturgyBlocks.LARGE_SPRINGSTOOL);
 		BlockRenderLayerMap.put(RenderLayer.getTranslucent(), MycoturgyBlocks.MASON_JAR, MycoturgyBlocks.COOKING_POT);
 		//TODO: change color if ashes in jar?
 		ColorProviderRegistry.BLOCK.register((state, world, pos, index) -> FluidRenderHandlerRegistry.INSTANCE.get(Fluids.WATER).getFluidColor(world, pos, Fluids.WATER.getDefaultState()), MycoturgyBlocks.MASON_JAR, MycoturgyBlocks.COOKING_POT);
