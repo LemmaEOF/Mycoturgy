@@ -114,7 +114,7 @@
 	"overrides": [
 		{
 			"predicate": { "lib39:halo": 1 },
-			"model": "mycoturgy:block/sturdy_glowcap_glow"
+			"model": "mycoturgy:block/glowcap_glow"
 		}
 	]
 }

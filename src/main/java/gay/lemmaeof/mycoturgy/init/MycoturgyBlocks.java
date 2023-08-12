@@ -140,7 +140,7 @@ public class MycoturgyBlocks {
 						.suffocates(Blocks::never)
 						.blockVision(Blocks::never)
 						.nonOpaque()
-						.luminance(state -> state.get(SturdyGlowcapBlock.Y) == 2? 12 : 0)
+						.luminance(state -> 10 + state.get(SturdyGlowcapBlock.Y))
 						.ticksRandomly()
 				), new Item.Settings()
 		);
@@ -197,7 +197,7 @@ public class MycoturgyBlocks {
 		return Registry.register(Registries.BLOCK, new Identifier(Mycoturgy.MODID, name), block);
 	}
 
-	public static <T extends BlockEntity> BlockEntityType<T> register(String name, FabricBlockEntityTypeBuilder.Factory<T> be, Block...blocks) {
-		return Registry.register(Registries.BLOCK_ENTITY_TYPE, new Identifier(Mycoturgy.MODID, name), FabricBlockEntityTypeBuilder.create(be, blocks).build(null));
+	public static <T extends BlockEntity> BlockEntityType<T> register(String name, BlockEntityType.BlockEntityFactory<T> be, Block...blocks) {
+		return Registry.register(Registries.BLOCK_ENTITY_TYPE, new Identifier(Mycoturgy.MODID, name), BlockEntityType.Builder.create(be, blocks).build(null));
 	}
 }

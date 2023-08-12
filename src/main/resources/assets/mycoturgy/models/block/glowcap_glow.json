@@ -1,0 +1,41 @@
+{
+	"credit": "Made by Cart3r using Blockbench.",
+	"textures": {
+		"2": "mycoturgy:block/sturdy_glowcap_glow",
+		"particle": "mycoturgy:block/glowcap_cap_particle"
+	},
+	"elements": [
+		{
+			"from": [1.5, 9, 14.5],
+			"to": [14.5, 14, 14.5],
+			"faces": {
+				"north": {"uv": [2, 0, 15, 5], "texture": "#2"},
+				"south": {"uv": [2, 0, 15, 5], "texture": "#2"}
+			}
+		},
+		{
+			"from": [14.5, 9, 1.5],
+			"to": [14.5, 14, 14.5],
+			"faces": {
+				"east": {"uv": [2, 0, 15, 5], "texture": "#2"},
+				"west": {"uv": [2, 0, 15, 5], "texture": "#2"}
+			}
+		},
+		{
+			"from": [1.5, 9, 1.5],
+			"to": [1.5, 14, 14.5],
+			"faces": {
+				"east": {"uv": [2, 0, 15, 5], "texture": "#2"},
+				"west": {"uv": [2, 0, 15, 5], "texture": "#2"}
+			}
+		},
+		{
+			"from": [1.5, 9, 1.5],
+			"to": [14.5, 14, 1.5],
+			"faces": {
+				"north": {"uv": [2, 0, 15, 5], "texture": "#2"},
+				"south": {"uv": [2, 0, 15, 5], "texture": "#2"}
+			}
+		}
+	]
+}

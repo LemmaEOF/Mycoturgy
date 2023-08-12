@@ -1,5 +1,6 @@
 package gay.lemmaeof.mycoturgy.component;
 
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.world.chunk.Chunk;
 
 //carved-out component for blanketcon usage/performance
@@ -7,6 +8,11 @@ public class BlanketConHaustorComponent extends HaustorComponent {
 
 	public BlanketConHaustorComponent(Chunk chunk) {
 		super(chunk);
+	}
+
+	@Override
+	public boolean shouldSyncWith(ServerPlayerEntity player) {
+		return false;
 	}
 
 	@Override
