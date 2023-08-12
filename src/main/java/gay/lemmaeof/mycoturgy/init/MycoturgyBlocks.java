@@ -126,11 +126,12 @@ public class MycoturgyBlocks {
 		);
 		//thanks lovelymimic for the request!
 		PADDLE_RHIZOME = register("paddle_rhizome",
-				new Block(QuiltBlockSettings.create()
+				new PaddleRhizomeBlock(QuiltBlockSettings.create()
 						.allowsSpawning(Blocks::never)
 						.solidBlock(Blocks::never)
 						.suffocates(Blocks::never)
 						.blockVision(Blocks::never)
+						.sounds(BlockSoundGroup.FUNGUS)
 				), new Item.Settings()
 		);
 		STURDY_GLOWCAP = register("sturdy_glowcap",
@@ -139,6 +140,7 @@ public class MycoturgyBlocks {
 						.solidBlock(Blocks::never)
 						.suffocates(Blocks::never)
 						.blockVision(Blocks::never)
+						.sounds(BlockSoundGroup.FUNGUS)
 						.nonOpaque()
 						.luminance(state -> 10 + state.get(SturdyGlowcapBlock.Y))
 						.ticksRandomly()
@@ -150,6 +152,7 @@ public class MycoturgyBlocks {
 						.solidBlock(Blocks::never)
 						.suffocates(Blocks::never)
 						.blockVision(Blocks::never)
+						.sounds(BlockSoundGroup.FUNGUS)
 						.nonOpaque()
 						.luminance(state -> 12)
 						.ticksRandomly()

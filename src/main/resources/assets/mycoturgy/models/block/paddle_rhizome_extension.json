@@ -1,0 +1,63 @@
+{
+	"credit": "Made by Cart3r using Blockbench.",
+	"textures": {
+		"0": "mycoturgy:block/paddle_rhizome_extension",
+		"particle": "mycoturgy:block/paddle_rhizome_extension"
+	},
+	"elements": [
+		{
+			"from": [2.75, 1, -7.925],
+			"to": [2.75, 7, 0.075],
+			"rotation": {"angle": -22.5, "axis": "z", "origin": [2.75, 4, -3.925]},
+			"faces": {
+				"east": {"uv": [8.032, 15.968, 15.968, 10.032], "texture": "#0"},
+				"west": {"uv": [15.968, 15.968, 8.032, 10.032], "texture": "#0"}
+			}
+		},
+		{
+			"from": [8, 1, -7.925],
+			"to": [8, 7, 0.075],
+			"rotation": {"angle": 22.5, "axis": "z", "origin": [8, 4, -3.925]},
+			"faces": {
+				"east": {"uv": [0.032, 10.032, 7.968, 15.968], "texture": "#0"},
+				"west": {"uv": [7.968, 10.032, 0.032, 15.968], "texture": "#0"}
+			}
+		},
+		{
+			"from": [11, 11, -7.925],
+			"to": [16, 11, 0.075],
+			"rotation": {"angle": -22.5, "axis": "z", "origin": [13, 11, -3.925]},
+			"faces": {
+				"up": {"uv": [7.968, 4.968, 0.032, 0.032], "rotation": 90, "texture": "#0"},
+				"down": {"uv": [0.032, 4.968, 7.968, 0.032], "rotation": 90, "texture": "#0"}
+			}
+		},
+		{
+			"from": [9, 6, -7.925],
+			"to": [15, 6, 0.075],
+			"rotation": {"angle": 22.5, "axis": "z", "origin": [12, 6, -3.925]},
+			"faces": {
+				"up": {"uv": [7.968, 5.032, 0.032, 10.968], "rotation": 90, "texture": "#0"},
+				"down": {"uv": [0.032, 5.032, 7.968, 10.968], "rotation": 90, "texture": "#0"}
+			}
+		},
+		{
+			"from": [0, 11, -7.925],
+			"to": [6, 11, 0.075],
+			"rotation": {"angle": -22.5, "axis": "z", "origin": [3, 11, -3.925]},
+			"faces": {
+				"up": {"uv": [15.968, 5.032, 8.032, 10.968], "rotation": 90, "texture": "#0"},
+				"down": {"uv": [8.032, 5.032, 15.968, 10.968], "rotation": 90, "texture": "#0"}
+			}
+		},
+		{
+			"from": [9, 10, -7.925],
+			"to": [9, 15, 0.075],
+			"rotation": {"angle": -22.5, "axis": "z", "origin": [9, 12, -3.925]},
+			"faces": {
+				"east": {"uv": [15.968, 0.032, 8.032, 4.968], "rotation": 180, "texture": "#0"},
+				"west": {"uv": [8.032, 0.032, 15.968, 4.968], "rotation": 180, "texture": "#0"}
+			}
+		}
+	]
+}

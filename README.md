@@ -17,4 +17,4 @@ Spore bundle and sporebrush ash items - edited from assets in ["RPG Items - Retr
 Springstool, glowcap, and paddle rhizome blocks - Cart3r
 Mycoturge's journal, spore pouch, side sword, springstool shield, and arrow of grief items, relaxation effect icon - danidoom
 Grief HUD animation - fluffbolds@sleeping.town
-Springstool bounc sound effect - edited from sounds by [pbimal](https://freesound.org/people/pbimal/sounds/534111/) and [odeean](https://freesound.org/people/odeean/sounds/139476/) on FreeSound
+Springstool bounce sound effect - edited from sounds by [pbimal](https://freesound.org/people/pbimal/sounds/534111/) and [odeean](https://freesound.org/people/odeean/sounds/139476/) on FreeSound

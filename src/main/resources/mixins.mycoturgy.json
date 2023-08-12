@@ -9,7 +9,6 @@
     "MixinArrowEntity",
     "MixinCampfireBlock",
     "MixinCampfireBlockEntity",
-    "MixinCrossbowItem",
     "MixinFlowableFluid",
     "MixinLivingEntity",
     "MixinPlayerEntity",

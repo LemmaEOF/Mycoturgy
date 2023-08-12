@@ -23,8 +23,8 @@ public class MycoturgyItems {
 	public static Item HAUSTORAL_BAND;
 	public static Item MYCOTURGE_JOURNAL;
 	public static Item SPORE_POUCH;
-	public static Item SIDE_SWORD;
-	public static Item MUSHROOM_SHIELD;
+	public static Item LACED_DAGGER;
+	public static Item SPRINGSTOOL_SHIELD;
 	public static Item GRIEF_ARROW;
 	public static Item BAND_OF_ENTERA;
 	public static Item SPOREBRUSH_PIPE;
@@ -50,8 +50,8 @@ public class MycoturgyItems {
 		HAUSTORAL_BAND = register("haustoral_band", new HaustoralBandItem(new Item.Settings().maxCount(1).rarity(Rarity.RARE)));
 		MYCOTURGE_JOURNAL = register("mycoturge_journal", new MycoturgeJournalItem(new Item.Settings().maxCount(1)));
 		SPORE_POUCH = register("spore_pouch", new SporePouchItem(new Item.Settings().maxCount(1)));
-		SIDE_SWORD = register("side_sword", new SideSwordItem(new Item.Settings().maxCount(1)));
-		MUSHROOM_SHIELD = register("mushroom_shield", new MushroomShieldItem(new Item.Settings().maxCount(1)));
+		LACED_DAGGER = register("laced_dagger", new LacedDaggerItem(new Item.Settings().maxCount(1)));
+		SPRINGSTOOL_SHIELD = register("springstool_shield", new SpringstoolShieldItem(new Item.Settings().maxCount(1)));
 		GRIEF_ARROW = register("grief_arrow", new ArrowItem(new Item.Settings()));
 		BAND_OF_ENTERA = register("band_of_entera", new BandOfEnteraItem(new Item.Settings()));
 		SPOREBRUSH_PIPE = register("sporebrush_pipe", new SporebrushPipeItem(new Item.Settings().maxCount(1)));
@@ -84,8 +84,8 @@ public class MycoturgyItems {
 			entries.addItem(HAUSTORAL_BAND);
 			entries.addItem(MYCOTURGE_JOURNAL);
 			entries.addItem(SPORE_POUCH);
-			entries.addItem(SIDE_SWORD);
-			entries.addItem(MUSHROOM_SHIELD);
+			entries.addItem(LACED_DAGGER);
+			entries.addItem(SPRINGSTOOL_SHIELD);
 			entries.addItem(GRIEF_ARROW);
 			entries.addItem(BAND_OF_ENTERA);
 			entries.addItem(SPOREBRUSH_PIPE);

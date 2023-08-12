@@ -1,14 +1,14 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "minecraft:item/diamond_sword"
+    "layer0": "mycoturgy:item/laced_dagger"
   },
   "overrides": [
     {
       "predicate": {
         "blocking": 1
       },
-      "model": "mycoturgy:item/side_sword_blocking"
+      "model": "mycoturgy:item/laced_dagger_blocking"
     }
   ]
 }

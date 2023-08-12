@@ -34,7 +34,8 @@ public class MycoturgyClient implements ClientModInitializer {
 				MycoturgyBlocks.HAUSTOR_SEQUESTER,
 				MycoturgyBlocks.SCATTERED_ASHES,
 				MycoturgyBlocks.STURDY_GLOWCAP,
-				MycoturgyBlocks.CLINGY_GLOWCAP
+				MycoturgyBlocks.CLINGY_GLOWCAP,
+				MycoturgyBlocks.PADDLE_RHIZOME
 		);
 		BlockRenderLayerMap.put(RenderLayer.getTranslucent(), MycoturgyBlocks.MASON_JAR, MycoturgyBlocks.COOKING_POT);
 		//TODO: change color if ashes in jar?
@@ -43,8 +44,8 @@ public class MycoturgyClient implements ClientModInitializer {
 		ClientBookRegistry.INSTANCE.pageTypes.put(new Identifier(Mycoturgy.MODID, "jar_infusing"), JarInfusingPage.class);
 		BlockEntityRendererFactories.register(MycoturgyBlocks.MASON_JAR_BLOCK_ENTITY, MasonJarBlockEntityRenderer::new);
 		BlockEntityRendererFactories.register(MycoturgyBlocks.COOKING_POT_BLOCK_ENTITY, CookingPotBlockEntityRenderer::new);
-		ModelPredicateProviderRegistry.register(MycoturgyItems.SIDE_SWORD, new Identifier("blocking"), blockingPredicate);
-		ModelPredicateProviderRegistry.register(MycoturgyItems.MUSHROOM_SHIELD, new Identifier("blocking"), blockingPredicate);
+		ModelPredicateProviderRegistry.register(MycoturgyItems.LACED_DAGGER, new Identifier("blocking"), blockingPredicate);
+		ModelPredicateProviderRegistry.register(MycoturgyItems.SPRINGSTOOL_SHIELD, new Identifier("blocking"), blockingPredicate);
 		ModelPredicateProviderRegistry.register(MycoturgyItems.SPOREBRUSH_PIPE, new Identifier(Mycoturgy.MODID, "filled"), (stack, world, user, seed) -> stack.getOrCreateNbt().getInt("PipeFill") == 0? 0: 1);
 	}
 }

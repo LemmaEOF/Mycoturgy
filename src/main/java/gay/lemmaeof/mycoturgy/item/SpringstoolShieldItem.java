@@ -3,8 +3,8 @@ package gay.lemmaeof.mycoturgy.item;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 
-public class MushroomShieldItem extends CustomBlockingItem {
-	public MushroomShieldItem(Settings settings) {
+public class SpringstoolShieldItem extends CustomBlockingItem {
+	public SpringstoolShieldItem(Settings settings) {
 		super(settings);
 	}
 

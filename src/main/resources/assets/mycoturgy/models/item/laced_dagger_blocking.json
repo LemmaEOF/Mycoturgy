@@ -1,0 +1,6 @@
+{
+  "parent": "mycoturgy:item/laced_dagger",
+  "textures": {
+    "layer0": "mycoturgy:item/laced_dagger_blocking"
+  }
+}

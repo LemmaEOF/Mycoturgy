@@ -40,6 +40,7 @@ public abstract class MixinHeldItemRenderer {
 	@Shadow public abstract void renderItem(LivingEntity entity, ItemStack stack, ModelTransformationMode modelTransformationMode, boolean leftHanded, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light);
 
 	//copying in a decent amount of the crossbow first-person render code so the pipe Looks Good in first person!
+	//TODO: make it not dip when changing NBT for puff puff pass
 	@Inject(method = "renderFirstPersonItem", at = @At("HEAD"), cancellable = true)
 	private void injectPipeRenderer(AbstractClientPlayerEntity player,
 									float tickDelta,
