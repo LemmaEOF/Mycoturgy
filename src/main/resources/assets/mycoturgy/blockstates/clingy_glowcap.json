@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": {"model": "mycoturgy:block/clingy_glowcap"},
+        "facing=east": {"model": "mycoturgy:block/clingy_glowcap", "y": 90},
+        "facing=south": {"model": "mycoturgy:block/clingy_glowcap", "y": 180},
+        "facing=west": {"model": "mycoturgy:block/clingy_glowcap", "y": 270}
+    }
+}

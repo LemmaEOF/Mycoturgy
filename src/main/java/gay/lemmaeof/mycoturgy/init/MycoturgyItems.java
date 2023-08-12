@@ -74,7 +74,8 @@ public class MycoturgyItems {
 			entries.addItem(MycoturgyBlocks.LARGE_SPRINGSTOOL);
 			entries.addItem(MycoturgyBlocks.COOKING_POT);
 			entries.addItem(MycoturgyBlocks.PADDLE_RHIZOME);
-			entries.addItem(MycoturgyBlocks.LAMPSHROOM);
+			entries.addItem(MycoturgyBlocks.STURDY_GLOWCAP);
+			entries.addItem(MycoturgyBlocks.CLINGY_GLOWCAP);
 			entries.addItem(MycoturgyBlocks.INFESTED_MOB_SPAWNER);
 			entries.addItem(SPORE_BUNDLE);
 			entries.addItem(SPOREBRUSH);

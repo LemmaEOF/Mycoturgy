@@ -1,0 +1,40 @@
+{
+	"credit": "Made by Cart3r using Blockbench.",
+	"texture_size": [128, 128],
+	"textures": {
+		"0": "mycoturgy:block/shroom_models",
+		"particle": "mycoturgy:block/glowcap_stalk_particle"
+	},
+	"elements": [
+		{
+			"from": [6, 0, 6],
+			"to": [10, 16, 10],
+			"faces": {
+				"north": {"uv": [0.004, 0.629, 0.496, 2.621], "texture": "#0"},
+				"east": {"uv": [0.004, 0.629, 0.496, 2.621], "texture": "#0"},
+				"south": {"uv": [0.004, 0.629, 0.496, 2.621], "texture": "#0"},
+				"west": {"uv": [0.004, 0.629, 0.496, 2.621], "texture": "#0"},
+				"up": {"uv": [0.004, 0.004, 0.496, 0.496], "texture": "#0"},
+				"down": {"uv": [0.004, 2.754, 0.496, 3.246], "texture": "#0"}
+			}
+		},
+		{
+			"from": [1.50732, 0, 8.01768],
+			"to": [14.50732, 12, 8.01768],
+			"rotation": {"angle": 45, "axis": "y", "origin": [7.98232, 6, 8.01768]},
+			"faces": {
+				"north": {"uv": [0.625, 0, 2.375, 1.5], "texture": "#0"},
+				"south": {"uv": [0.625, 0, 2.375, 1.5], "texture": "#0"}
+			}
+		},
+		{
+			"from": [1.48232, 0, 8.01768],
+			"to": [14.48232, 12, 8.01768],
+			"rotation": {"angle": -45, "axis": "y", "origin": [7.98232, 6, 8.01768]},
+			"faces": {
+				"north": {"uv": [0.625, 0, 2.375, 1.5], "texture": "#0"},
+				"south": {"uv": [0.625, 0, 2.375, 1.5], "texture": "#0"}
+			}
+		}
+	]
+}

@@ -2,27 +2,27 @@
 	"credit": "Made by Cart3r using Blockbench.",
 	"texture_size": [128, 128],
 	"textures": {
-		"0": "mycoturgy:block/springstool",
-		"particle": "mycoturgy:block/springstool"
+		"0": "mycoturgy:block/shroom_models",
+		"particle": "mycoturgy:block/springstool_particle"
 	},
 	"elements": [
 		{
-			"from": [0, 4, 1],
-			"to": [16, 12, 16],
+			"from": [0, 8, 1],
+			"to": [16, 16, 16],
 			"rotation": {"angle": 0, "axis": "y", "origin": [-8, 0, 26]},
 			"faces": {
-				"north": {"uv": [14.125, 5.875, 12.125, 6.875], "texture": "#0"},
+				"north": {"uv": [12.125, 5.875, 14.125, 6.875], "texture": "#0"},
 				"up": {"uv": [12.125, 0, 14.125, 1.875], "texture": "#0"},
 				"down": {"uv": [12.125, 10.875, 14.125, 12.75], "texture": "#0"}
 			}
 		},
 		{
 			"from": [0, 0, 12],
-			"to": [16, 4, 16],
+			"to": [16, 8, 16],
 			"rotation": {"angle": 0, "axis": "y", "origin": [-8, 0, 26]},
 			"faces": {
-				"north": {"uv": [7.625, 9.125, 9.625, 9.625], "texture": "#0"},
-				"down": {"uv": [7.625, 12.25, 9.625, 12.75], "texture": "#0"}
+				"north": {"uv": [7.629, 8.879, 9.621, 9.871], "texture": "#0"},
+				"down": {"uv": [7.629, 12.504, 9.621, 12.996], "texture": "#0"}
 			}
 		}
 	],

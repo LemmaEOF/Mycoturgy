@@ -5,6 +5,7 @@ import com.unascribed.lib39.weld.api.BigBlockItem;
 import gay.lemmaeof.mycoturgy.Mycoturgy;
 import gay.lemmaeof.mycoturgy.block.*;
 import gay.lemmaeof.mycoturgy.block.entity.CookingPotBlockEntity;
+import gay.lemmaeof.mycoturgy.block.entity.GlowcapBlockEntity;
 import gay.lemmaeof.mycoturgy.block.entity.HaustorSequesterBlockEntity;
 import gay.lemmaeof.mycoturgy.block.entity.MasonJarBlockEntity;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
@@ -34,12 +35,14 @@ public class MycoturgyBlocks {
 	public static Block LARGE_SPRINGSTOOL;
 	public static Block COOKING_POT;
 	public static Block PADDLE_RHIZOME;
-	public static Block LAMPSHROOM;
+	public static Block STURDY_GLOWCAP;
+	public static Block CLINGY_GLOWCAP;
 	public static Block INFESTED_MOB_SPAWNER;
 
 	public static BlockEntityType<HaustorSequesterBlockEntity> HAUSTOR_SEQUESTER_BLOCK_ENTITY;
 	public static BlockEntityType<MasonJarBlockEntity> MASON_JAR_BLOCK_ENTITY;
 	public static BlockEntityType<CookingPotBlockEntity> COOKING_POT_BLOCK_ENTITY;
+	public static BlockEntityType<GlowcapBlockEntity> GLOWCAP_BLOCK_ENTITY;
 
 	public static TagKey<Block> SPELL_CASTABLE;
 
@@ -91,12 +94,9 @@ public class MycoturgyBlocks {
 				), new Item.Settings()
 		);
 		SMALL_SPRINGSTOOL = register("small_springstool",
-				new SpringstoolBlock(0.75,
-						null,
-						null,
-						QuiltBlockSettings.create()
-								.sounds(BlockSoundGroup.FUNGUS)
-								.nonOpaque()
+				new SmallSpringstoolBlock(QuiltBlockSettings.create()
+							.sounds(BlockSoundGroup.FUNGUS)
+							.nonOpaque()
 				), new Item.Settings()
 		);
 		MEDIUM_SPRINGSTOOL = register("medium_springstool",
@@ -133,12 +133,24 @@ public class MycoturgyBlocks {
 						.blockVision(Blocks::never)
 				), new Item.Settings()
 		);
-		LAMPSHROOM = register("lampshroom",
-				new LampshroomBlock(QuiltBlockSettings.create()
+		STURDY_GLOWCAP = register("sturdy_glowcap",
+				new SturdyGlowcapBlock(QuiltBlockSettings.create()
 						.allowsSpawning(Blocks::never)
 						.solidBlock(Blocks::never)
 						.suffocates(Blocks::never)
 						.blockVision(Blocks::never)
+						.nonOpaque()
+						.luminance(state -> state.get(SturdyGlowcapBlock.Y) == 2? 12 : 0)
+						.ticksRandomly()
+				), new Item.Settings()
+		);
+		CLINGY_GLOWCAP = register("clingy_glowcap",
+				new ClingyGlowcapBlock(QuiltBlockSettings.create()
+						.allowsSpawning(Blocks::never)
+						.solidBlock(Blocks::never)
+						.suffocates(Blocks::never)
+						.blockVision(Blocks::never)
+						.nonOpaque()
 						.luminance(state -> 12)
 						.ticksRandomly()
 				), new Item.Settings()
@@ -159,6 +171,11 @@ public class MycoturgyBlocks {
 		COOKING_POT_BLOCK_ENTITY = register("cooking_pot",
 				CookingPotBlockEntity::new,
 				COOKING_POT
+		);
+		GLOWCAP_BLOCK_ENTITY = register("glowcap",
+				GlowcapBlockEntity::new,
+				STURDY_GLOWCAP,
+				CLINGY_GLOWCAP
 		);
 
 		SPELL_CASTABLE = TagKey.of(Registries.BLOCK.getKey(), new Identifier(Mycoturgy.MODID, "spell_castable"));

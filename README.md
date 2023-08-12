@@ -16,5 +16,5 @@ Sporebrush item and Haustor Sequester block - @Coda#1552 on discord
 Spore bundle and sporebrush ash items - edited from assets in ["RPG Items - Retro Pack"](https://emberheartgames.itch.io/rpg-items-retro-pack) by Emberheart Games
 Springstool, glowcap, and paddle rhizome blocks - Cart3r
 Mycoturge's journal, spore pouch, side sword, springstool shield, and arrow of grief items, relaxation effect icon - danidoom
-Grief HUD animation - formerly OlliCantSkate on Twitter (need to find new @)
+Grief HUD animation - fluffbolds@sleeping.town
 Springstool bounc sound effect - edited from sounds by [pbimal](https://freesound.org/people/pbimal/sounds/534111/) and [odeean](https://freesound.org/people/odeean/sounds/139476/) on FreeSound

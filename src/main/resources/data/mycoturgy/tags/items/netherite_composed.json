@@ -14,6 +14,198 @@
     "minecraft:netherite_hoe",
     "minecraft:netherite_sword",
     "minecraft:netherite_block",
-    "mycoturgy:grief_arrow"
+    "mycoturgy:grief_arrow",
+    {
+      "id": "plethora:module_scanner",
+      "required": false
+    },
+    {
+      "id": "plethora:module_sensor",
+      "required": false
+    },
+    {
+      "id": "gildednetherite:gilded_netherite",
+      "required": false
+    },
+    {
+      "id": "gildednetherite:gilded_netherite_template",
+      "required": false
+    },
+    {
+      "id": "gildednetherite:gilded_netherite_helmet",
+      "required": false
+    },
+    {
+      "id": "gildednetherite:gilded_netherite_chestplate",
+      "required": false
+    },
+    {
+      "id": "gildednetherite:gilded_netherite_leggings",
+      "required": false
+    },
+    {
+      "id": "gildednetherite:gilded_netherite_boots",
+      "required": false
+    },
+    {
+      "id": "consistency_plus:netherite_nugget",
+      "required": false
+    },
+    {
+      "id": "consistency_plus:netherite_horse_armor",
+      "required": false
+    },
+    {
+      "id": "peculiarpieces:packed_pouch",
+      "required": false
+    },
+    {
+      "id": "peculiarpieces:couriporter",
+      "required": false
+    },
+    {
+      "id": "piercingpaxels:netherite_paxel_upgrade_kit",
+      "required": false
+    },
+    {
+      "id": "piercingpaxels:upgrade_unbreakable",
+      "required": false
+    },
+    {
+      "id": "piercingpaxels:netherite_paxel",
+      "required": false
+    },
+    {
+      "id": "power_networks:ultimate_coil",
+      "required": false
+    },
+    {
+      "id": "create:netherite_diving_helmet",
+      "required": false
+    },
+    {
+      "id": "create:netherite_backtank",
+      "required": false
+    },
+    {
+      "id": "create:netherite_diving_boots",
+      "required": false
+    },
+    {
+      "id": "peripheralworks:netherite_peripheralium_hub",
+      "required": false
+    },
+    {
+      "id": "turtlematic:forged_automata_core",
+      "required": false
+    },
+    {
+      "id": "turtlematic:netherite_husbandry_automata_core",
+      "required": false
+    },
+    {
+      "id": "turtlematic:netherite_end_automata_core",
+      "required": false
+    },
+    {
+      "id": "turtlematic:netherite_protective_automata_core",
+      "required": false
+    },
+    {
+      "id": "yttr:reinforced_void_cleaver",
+      "required": false
+    },
+    {
+      "id": "yttr:ultrapure_netherite",
+      "required": false
+    },
+    {
+      "id": "calibrated:unlimited_accessor",
+      "required": false
+    },
+    {
+      "id": "fabricaeexnihilo:netherite_hammer",
+      "required": false
+    },
+    {
+      "id": "fabricaeexnihilo:netherite_mesh",
+      "required": false
+    },
+    {
+      "id": "sandwichable:netherite_kitchen_knife",
+      "required": false
+    },
+    {
+      "id": "terracotta_knights:tiny_netherite_sword_item",
+      "required": false
+    },
+    {
+      "id": "terracotta_knights:tiny_netherite_helmet",
+      "required": false
+    },
+    {
+      "id": "terracotta_knights:tiny_netherite_chestplate",
+      "required": false
+    },
+    {
+      "id": "terracotta_knights:tiny_netherite_leggings",
+      "required": false
+    },
+    {
+      "id": "terracotta_knights:tiny_netherite_boots",
+      "required": false
+    },
+    {
+      "id": "elysium:elysium_ingot",
+      "required": false
+    },
+    {
+      "id": "elysium:elysium_block",
+      "required": false
+    },
+    {
+      "id": "elysium:cheirosiphon",
+      "required": false
+    },
+    {
+      "id": "elysium:elysium_prism",
+      "required": false
+    },
+    {
+      "id": "elysium:gravitator",
+      "required": false
+    },
+    {
+      "id": "elysium_repulsor",
+      "required": false
+    },
+    {
+      "id": "elysium:electrode",
+      "required": false
+    },
+    {
+      "id": "mythicmetals:froge",
+      "required": false
+    },
+    {
+      "id": "arcpocalypse:abyss_lift",
+      "required": false
+    },
+    {
+      "id": "geocluster:raw_ancient_debris",
+      "required": false
+    },
+    {
+      "id": "geocluster:ancient_debris_ore",
+      "required": false
+    },
+    {
+      "id": "geocluster:ancient_debris_sample",
+      "required": false
+    },
+    {
+      "id": "nucleoid_extras:netherite_tater",
+      "required": false
+    }
   ]
 }

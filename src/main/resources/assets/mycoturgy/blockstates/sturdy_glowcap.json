@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "y=0": {
+      "model": "mycoturgy:block/sturdy_glowcap_base"
+    },
+    "y=1": {
+      "model": "mycoturgy:block/sturdy_glowcap_stalk"
+    },
+    "y=2": {
+      "model": "mycoturgy:block/sturdy_glowcap_cap"
+    }
+  }
+}

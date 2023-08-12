@@ -2,8 +2,8 @@
 	"credit": "Made by Cart3r using Blockbench.",
 	"texture_size": [128, 128],
 	"textures": {
-		"0": "mycoturgy:block/springstool",
-		"particle": "mycoturgy:block/springstool"
+		"0": "mycoturgy:block/shroom_models",
+		"particle": "mycoturgy:block/springstool_particle"
 	},
 	"elements": [
 		{
@@ -24,11 +24,11 @@
 			"to": [12, 4, 12],
 			"rotation": {"angle": 0, "axis": "y", "origin": [-8, 0, -8]},
 			"faces": {
-				"north": {"uv": [5.254, 8.629, 6.246, 9.121], "texture": "#0"},
-				"east": {"uv": [5.254, 8.629, 6.246, 9.121], "texture": "#0"},
-				"south": {"uv": [5.254, 8.629, 6.246, 9.121], "texture": "#0"},
-				"west": {"uv": [5.254, 8.629, 6.246, 9.121], "texture": "#0"},
-				"down": {"uv": [5.254, 9.254, 6.246, 10.246], "texture": "#0"}
+				"north": {"uv": [5.254, 5.379, 6.246, 5.871], "texture": "#0"},
+				"east": {"uv": [5.254, 5.379, 6.246, 5.871], "texture": "#0"},
+				"south": {"uv": [5.254, 5.379, 6.246, 5.871], "texture": "#0"},
+				"west": {"uv": [5.254, 5.379, 6.246, 5.871], "texture": "#0"},
+				"down": {"uv": [5.254, 6.504, 6.246, 7.496], "texture": "#0"}
 			}
 		}
 	],

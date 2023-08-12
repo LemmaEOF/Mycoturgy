@@ -11,7 +11,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 
-public class SpringstoolBlock extends BigBlock {
+public abstract class SpringstoolBlock extends BigBlock {
 	private final double bounceHeight;
 
 	public SpringstoolBlock(double bounceHeight, IntProperty x, IntProperty z, Settings settings) {

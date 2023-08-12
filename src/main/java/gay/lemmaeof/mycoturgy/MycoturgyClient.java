@@ -29,7 +29,13 @@ public class MycoturgyClient implements ClientModInitializer {
 
 	@Override
 	public void onInitializeClient(ModContainer container) {
-		BlockRenderLayerMap.put(RenderLayer.getCutout(), MycoturgyBlocks.SPOREBRUSH_CROP, MycoturgyBlocks.HAUSTOR_SEQUESTER, MycoturgyBlocks.SCATTERED_ASHES, MycoturgyBlocks.SMALL_SPRINGSTOOL, MycoturgyBlocks.MEDIUM_SPRINGSTOOL, MycoturgyBlocks.LARGE_SPRINGSTOOL);
+		BlockRenderLayerMap.put(RenderLayer.getCutout(),
+				MycoturgyBlocks.SPOREBRUSH_CROP,
+				MycoturgyBlocks.HAUSTOR_SEQUESTER,
+				MycoturgyBlocks.SCATTERED_ASHES,
+				MycoturgyBlocks.STURDY_GLOWCAP,
+				MycoturgyBlocks.CLINGY_GLOWCAP
+		);
 		BlockRenderLayerMap.put(RenderLayer.getTranslucent(), MycoturgyBlocks.MASON_JAR, MycoturgyBlocks.COOKING_POT);
 		//TODO: change color if ashes in jar?
 		ColorProviderRegistry.BLOCK.register((state, world, pos, index) -> FluidRenderHandlerRegistry.INSTANCE.get(Fluids.WATER).getFluidColor(world, pos, Fluids.WATER.getDefaultState()), MycoturgyBlocks.MASON_JAR, MycoturgyBlocks.COOKING_POT);
