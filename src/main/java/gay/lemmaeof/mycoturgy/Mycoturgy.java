@@ -66,13 +66,13 @@ public class Mycoturgy implements ModInitializer {
 						.conditionally(RandomChanceLootCondition.builder(0.1f)
 								.build()
 						)
-						.with(ItemEntry.builder(MycoturgyItems.GLITTERING_SPORES)
+						.with(ItemEntry.builder(MycoturgyItems.GLIMMERING_SPORES)
 						.build()
 				).build());
 			}
 		});
 
-		ItemContentRegistries.COMPOST_CHANCES.put(MycoturgyItems.GLITTERING_SPORES, 0.3f);
+		ItemContentRegistries.COMPOST_CHANCES.put(MycoturgyItems.GLIMMERING_SPORES, 0.3f);
 		ItemContentRegistries.COMPOST_CHANCES.put(MycoturgyItems.SPOREBRUSH, 0.65f);
 		ItemContentRegistries.COMPOST_CHANCES.put(MycoturgyItems.SPORE_BUNDLE, 0.85f);
 

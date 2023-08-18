@@ -5,6 +5,7 @@ import com.unascribed.lib39.weld.api.BigBlock;
 import gay.lemmaeof.mycoturgy.block.entity.GlowcapBlockEntity;
 import gay.lemmaeof.mycoturgy.component.HaustorComponent;
 import gay.lemmaeof.mycoturgy.init.MycoturgyComponents;
+import gay.lemmaeof.mycoturgy.init.MycoturgySounds;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockEntityProvider;
 import net.minecraft.block.BlockState;
@@ -14,6 +15,7 @@ import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundCategory;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.util.math.BlockPos;
@@ -26,13 +28,12 @@ import org.jetbrains.annotations.Nullable;
 
 public class SturdyGlowcapBlock extends BigBlock implements BlockEntityProvider {
 	public static final IntProperty Y = IntProperty.of("y", 0, 2);
-	private static final VoxelShape LOWER_SHAPE = Block.createCuboidShape(6, 0, 6, 10, 19, 10);
-	private static final VoxelShape MIDDLE_SHAPE = Block.createCuboidShape(6, 0, 6, 10, 19, 10);
+	private static final VoxelShape LOWER_SHAPE = Block.createCuboidShape(6, 0, 6, 10, 16, 10);
+	private static final VoxelShape MIDDLE_SHAPE = Block.createCuboidShape(6, 0, 6, 10, 16, 10);
 	private static final VoxelShape UPPER_SHAPE = VoxelShapes.union(
-			Block.createCuboidShape(4, 6, 4, 12, 13, 12),
-			Block.createCuboidShape(5, 3, 5, 11, 6, 11),
-			Block.createCuboidShape(3, 13, 3, 13, 16, 13),
-			Block.createCuboidShape(1, 13, 1, 15, 13, 15)
+			Block.createCuboidShape(6, 0, 6, 10, 14, 10),
+			Block.createCuboidShape(1, 13.925, 1, 15, 14.925, 15)
+//			Block.createCuboidShape(1.5, 9, 1.5, 14.9, 14, 14.5)
 	);
 
 	public SturdyGlowcapBlock(Settings settings) {
@@ -61,6 +62,18 @@ public class SturdyGlowcapBlock extends BigBlock implements BlockEntityProvider 
 				double f = (double) pos.getZ() + 9/16D + (7/16D - random.nextDouble());
 				double g = (double) random.nextFloat() * -0.04D;
 				world.addParticle(ParticleTypes.END_ROD, d, e, f, 0.0D, g, 0.0D);
+			}
+			if (random.nextInt(100) == 0) {
+				world.playSound(
+						(double)pos.getX() + 0.5,
+						(double)pos.getY() + 0.5,
+						(double)pos.getZ() + 0.5,
+						MycoturgySounds.GLOWCAP_HUM,
+						SoundCategory.BLOCKS,
+						0.5F + random.nextFloat(),
+						random.nextFloat() * 0.1F + 0.95F,
+						false
+				);
 			}
 		}
 	}

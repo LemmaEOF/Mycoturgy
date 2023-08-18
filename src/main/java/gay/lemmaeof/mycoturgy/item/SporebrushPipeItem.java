@@ -85,12 +85,10 @@ public class SporebrushPipeItem extends Item {
 	@Override
 	public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
 		if (!world.isClient && stack.getOrCreateNbt().containsUuid("LastHit")) {
-			int shareCooldown = stack.getNbt().getInt("ShareCooldown");
-			if (shareCooldown == 0) {
+			long lastTime = stack.getNbt().getLong("LastHitTime");
+			if (entity.getWorld().getTime() - lastTime > 600) {
 				stack.getNbt().remove("LastHit");
-				stack.getNbt().remove("ShareCooldown");
-			} else {
-				stack.getNbt().putInt("ShareCooldown", shareCooldown - 1);
+				stack.getNbt().remove("LastHitTime");
 			}
 		}
 	}
@@ -176,7 +174,7 @@ public class SporebrushPipeItem extends Item {
 			}
 		}
 		stack.getNbt().putUuid("LastHit", player.getUuid());
-		stack.getNbt().putInt("ShareCooldown", 600);
+		stack.getNbt().putLong("LastHitTime", player.getWorld().getTime());
 	}
 
 	@Override

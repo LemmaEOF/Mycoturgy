@@ -18,3 +18,4 @@ Springstool, glowcap, and paddle rhizome blocks - Cart3r
 Mycoturge's journal, spore pouch, side sword, springstool shield, and arrow of grief items, relaxation effect icon - danidoom
 Grief HUD animation - fluffbolds@sleeping.town
 Springstool bounce sound effect - edited from sounds by [pbimal](https://freesound.org/people/pbimal/sounds/534111/) and [odeean](https://freesound.org/people/odeean/sounds/139476/) on FreeSound
+Glowcap buzz sound effect - edited from sounds by [EverydaySounds](https://freesound.org/people/EverydaySounds/sounds/125064/) and [deleted_user_14597403](https://freesound.org/people/deleted_user_14597403/sounds/678717/)

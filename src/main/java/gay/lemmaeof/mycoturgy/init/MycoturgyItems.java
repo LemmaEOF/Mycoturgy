@@ -18,7 +18,7 @@ import net.minecraft.util.Rarity;
 public class MycoturgyItems {
 	public static Item SPORE_BUNDLE;
 	public static Item SPOREBRUSH;
-	public static Item GLITTERING_SPORES;
+	public static Item GLIMMERING_SPORES;
 	public static Item SPOREBRUSH_ASH;
 	public static Item HAUSTORAL_BAND;
 	public static Item MYCOTURGE_JOURNAL;
@@ -45,7 +45,7 @@ public class MycoturgyItems {
 	public static void init() {
 		SPORE_BUNDLE = register("spore_bundle", new Item(new Item.Settings()));
 		SPOREBRUSH = register("sporebrush", new Item(new Item.Settings()));
-		GLITTERING_SPORES = register("glimmering_spores", new AliasedBlockItem(MycoturgyBlocks.SPOREBRUSH_CROP, new Item.Settings()));
+		GLIMMERING_SPORES = register("glimmering_spores", new AliasedBlockItem(MycoturgyBlocks.SPOREBRUSH_CROP, new Item.Settings()));
 		SPOREBRUSH_ASH = register("sporebrush_ash", new AliasedBlockItem(MycoturgyBlocks.SCATTERED_ASHES, new Item.Settings()));
 		HAUSTORAL_BAND = register("haustoral_band", new HaustoralBandItem(new Item.Settings().maxCount(1).rarity(Rarity.RARE)));
 		MYCOTURGE_JOURNAL = register("mycoturge_journal", new MycoturgeJournalItem(new Item.Settings().maxCount(1)));
@@ -79,7 +79,7 @@ public class MycoturgyItems {
 			entries.addItem(MycoturgyBlocks.INFESTED_MOB_SPAWNER);
 			entries.addItem(SPORE_BUNDLE);
 			entries.addItem(SPOREBRUSH);
-			entries.addItem(GLITTERING_SPORES);
+			entries.addItem(GLIMMERING_SPORES);
 			entries.addItem(SPOREBRUSH_ASH);
 			entries.addItem(HAUSTORAL_BAND);
 			entries.addItem(MYCOTURGE_JOURNAL);

@@ -1,0 +1,11 @@
+{
+    "type": "mycoturgy:pot_cooking",
+    "ingredients": [
+        { "item": "minecraft:iron_sword" },
+        { "item": "mycoturgy:glimmering_spores" }
+    ],
+    "result": { "item": "mycoturgy:laced_dagger" },
+    "hyphacost": 10,
+    "lamellacost": 10,
+    "cookingtime": 200
+}

@@ -1,0 +1,17 @@
+{
+    "name": "Note: Laced Dagger",
+    "icon": "mycoturgy:laced_dagger",
+    "category": "mycoturgy:journal",
+    "advancement": "mycoturgy:research/meditate_laced_dagger",
+    "pages": [
+        {
+            "type": "text",
+            "text": "My experimentations with $(item)spores$() have found that contacting them can be quite a surprise to those not expecting it. This may be beneficial to put to use as a $(key)sidearm$() for self-defense.$(br)$(br)$(5)(Temporary recipe, bear with me)$()"
+        },
+        {
+            "type": "mycoturgy:pot_cooking",
+            "recipe": "mycoturgy:laced_dagger",
+            "text": "I should be sure to $(key)raise it in short bursts$() - too long and enemies will notice before I have time to $(key)counter their attacks$()."
+        }
+    ]
+}

@@ -2,5 +2,9 @@
   "springstool_bounce": {
     "sounds": ["mycoturgy:springstool_bounce"],
     "subtitle": "subtitle.mycoturgy.springstool_bounce"
+  },
+  "glowcap_hum": {
+    "sounds": ["mycoturgy:glowcap_hum"],
+    "subtitle": "subtitle.mycoturgy.glowcap_hum"
   }
 }

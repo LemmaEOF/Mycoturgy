@@ -13,7 +13,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
 
 public class JarInfusingPage extends PageDoubleRecipeRegistry<JarInfusingRecipe> {
-	private static final Identifier CUSTOM_CRAFTING_TEXTURE = new Identifier(Mycoturgy.MODID, "textures/gui/custom_crafting.png");
+	private static final Identifier JAR_INFUSING_TEXTURE = new Identifier(Mycoturgy.MODID, "textures/gui/jar_infusing.png");
 
 	public JarInfusingPage() {
 		super(MycoturgyRecipes.JAR_INFUSING_RECIPE);
@@ -21,7 +21,7 @@ public class JarInfusingPage extends PageDoubleRecipeRegistry<JarInfusingRecipe>
 
 	@Override
 	protected void drawRecipe(GuiGraphics graphics, JarInfusingRecipe recipe, int recipeX, int recipeY, int mouseX, int mouseY, boolean second) {
-		graphics.drawTexture(CUSTOM_CRAFTING_TEXTURE, recipeX, recipeY, 11.0F, 71.0F, 96, 24, 128, 128);
+		graphics.drawTexture(JAR_INFUSING_TEXTURE, recipeX, recipeY, 11.0F, 71.0F, 96, 24, 128, 128);
 		this.parent.drawCenteredStringNoShadow(graphics, this.getTitle(second).asOrderedText(), 58, recipeY - 10, this.book.headerColor);
 		this.parent.renderIngredient(graphics, recipeX + 4, recipeY + 4, mouseX, mouseY, recipe.getIngredients().get(0));
 		this.parent.renderItemStack(graphics, recipeX + 76, recipeY + 4, mouseX, mouseY, recipe.getResult(DynamicRegistryManager.EMPTY));

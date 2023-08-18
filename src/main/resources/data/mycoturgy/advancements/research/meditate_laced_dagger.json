@@ -1,0 +1,19 @@
+{
+    "criteria": {
+        "meditate_dagger": {
+            "trigger": "mycoturgy:meditate",
+            "conditions": {
+                "path": "mycoturgy:laced_dagger"
+            }
+        }
+    },
+    "rewards": {
+        "recipes": [
+        ]
+    },
+    "requirements": [
+        [
+            "meditate_dagger"
+        ]
+    ]
+}

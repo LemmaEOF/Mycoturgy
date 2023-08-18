@@ -22,7 +22,7 @@ public abstract class SpringstoolBlock extends BigBlock {
 	@Override
 	public void onLandedUpon(World world, BlockState state, BlockPos pos, Entity entity, float fallDistance) {
 		if (entity.bypassesLandingEffects()) {
-			super.onLandedUpon(world, state, pos, entity, fallDistance);
+			//no-op - no fall damage!
 		} else {
 			this.bounce(entity);
 		}

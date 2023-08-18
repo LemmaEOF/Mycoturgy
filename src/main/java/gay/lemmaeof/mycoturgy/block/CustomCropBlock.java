@@ -1,8 +1,10 @@
 package gay.lemmaeof.mycoturgy.block;
 
+import gay.lemmaeof.mycoturgy.init.MycoturgyItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.CropBlock;
+import net.minecraft.item.ItemStack;
 import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
@@ -65,4 +67,8 @@ public class CustomCropBlock extends CropBlock {
 		return floor.isIn(BlockTags.MUSHROOM_GROW_BLOCK);
 	}
 
+	@Override
+	public ItemStack getPickStack(BlockView world, BlockPos pos, BlockState state) {
+		return new ItemStack(MycoturgyItems.GLIMMERING_SPORES);
+	}
 }

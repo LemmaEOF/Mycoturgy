@@ -8,6 +8,7 @@ import net.minecraft.util.Identifier;
 
 public class MycoturgySounds {
 	public static final SoundEvent SPRINGSTOOL_BOUNCE = register("springstool_bounce");
+	public static final SoundEvent GLOWCAP_HUM = register("glowcap_hum");
 
 	public static void init() {}
 

@@ -1,5 +1,6 @@
 package gay.lemmaeof.mycoturgy;
 
+import gay.lemmaeof.mycoturgy.patchouli.PotCookingPage;
 import net.minecraft.client.item.ModelPredicateProviderRegistry;
 import net.minecraft.client.item.UnclampedModelPredicateProvider;
 
@@ -42,6 +43,7 @@ public class MycoturgyClient implements ClientModInitializer {
 		ColorProviderRegistry.BLOCK.register((state, world, pos, index) -> FluidRenderHandlerRegistry.INSTANCE.get(Fluids.WATER).getFluidColor(world, pos, Fluids.WATER.getDefaultState()), MycoturgyBlocks.MASON_JAR, MycoturgyBlocks.COOKING_POT);
 		HudRenderCallback.EVENT.register(HaustorBandHud::render);
 		ClientBookRegistry.INSTANCE.pageTypes.put(new Identifier(Mycoturgy.MODID, "jar_infusing"), JarInfusingPage.class);
+		ClientBookRegistry.INSTANCE.pageTypes.put(new Identifier(Mycoturgy.MODID, "pot_cooking"), PotCookingPage.class);
 		BlockEntityRendererFactories.register(MycoturgyBlocks.MASON_JAR_BLOCK_ENTITY, MasonJarBlockEntityRenderer::new);
 		BlockEntityRendererFactories.register(MycoturgyBlocks.COOKING_POT_BLOCK_ENTITY, CookingPotBlockEntityRenderer::new);
 		ModelPredicateProviderRegistry.register(MycoturgyItems.LACED_DAGGER, new Identifier("blocking"), blockingPredicate);
